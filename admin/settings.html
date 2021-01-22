@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="icon" href="../svgs/logo.png" sizes="32x32" type="image/png">
+
+    <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">          
+    <link rel="stylesheet" href="../css/admin-style.css">
+
+</head>
+<body>
+    
+    <div class="d-flex" id="main-container">
+
+        <div id="sidebar-wrapper">
+          <div class="sidebar-heading bg-dark text-center">Admin Dashboard</div>
+          <div class="list-group list-group-flush">
+            <a href="admin-pre-qualified.html" class="list-group-item list-group-item-action"><i class="fa fa-list" aria-hidden="true"></i>CS Pre-qualified List</a>
+            <a href="admin-it-pre-qualified.html" class="list-group-item list-group-item-action"><i class="fa fa-list" aria-hidden="true"></i>IT Pre-qualified List</a>
+            <a href="admin-qualified.html" class="list-group-item list-group-item-action"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>CS Qualified List</a>
+            <a href="admin-it-qualified.html" class="list-group-item list-group-item-action"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>IT Qualified List</a>
+            <a href="admin-rejected.html" class="list-group-item list-group-item-action"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>Rejected List</a>
+            <a href="settings.html" class="list-group-item list-group-item-action active"><i class="fa fa-cog" aria-hidden="true"></i>Settings</a>
+            <a href="../login-page.html" class="list-group-item list-group-item-action"> <i class="fa fa-sign-out"></i> Logout</a>
+          </div>
+        </div>
+
+        <div id="content-container">
+
+            <nav class="navbar navbar-dark">
+        
+                <button class="navbar-toggler" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="system-logo">
+                    <span class="navbar-header display-4">WMSU ICS Department</span><img src="../svgs/logo.png" alt="" class="navbar-brand">
+                </div>
+
+            </nav>
+            <p class="display-4">Settings</p>
+
+            <form action="" class="form-group">
+                <div class="col-sm-4 px-4 py-1">
+                    <label for="slots" class="form-label">Set the total amount of slots</label>
+                    <input type="number" class="form-control" id="slots">
+                    <button class="btn btn-success mt-2"> Set </button>
+                </div>
+            </form>
+            <p class="display-4">Change Password</p>
+            <form action="" class="form-group">
+                <div class="col-sm-4 px-4">
+                    <label for="oldpass">Current password</label>
+                    <input type="password" class="form-control" id="oldpass">
+                    <label for="newpass">New password</label>
+                    <input type="password" class="form-control" id="newpass">
+                    <button class="btn btn-success mt-2"> Change </button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+
+    <script src="../jquery/jquery.min.js"></script>
+    <script src="../bootstrap4/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(".navbar-toggler").click(function(e) {
+          e.preventDefault();
+          $("#main-container").toggleClass("toggled");
+        });
+    </script>
+
+</body>
+</html>

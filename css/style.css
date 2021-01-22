@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#expenses-container{
+    padding: 50px;
+    background-color: burlywood;
+    text-align: center;
+    color: white;
+}
+#departure-container .row{
+    background-color:  rgba(54, 168, 168, 0.76);
+    color: white;
+}
+#departure-container div div .lead{
+    font-size: 15px;
+}
+#page-footer .lead{
+    font-size: small;
+}
+#page-footer hr{
+    width: 200px;
+    height: 1px;
+}
+#card-container .card{
+    border: none;
+}
+#card-container h3,h5{
+    text-align: center;
+}
+#card-container ul li{
+    font-size: 15px;
+}
+#card-container #small-info-board{
+    border-right: 3px solid gray;
+    background-color: rgba(128, 128, 128, 0.26);
+    padding: 20px;
+}
+#card-container #small-info-board .lead{
+    font-size: 15px;    
+}
+
+
+/*Registration Form*/
