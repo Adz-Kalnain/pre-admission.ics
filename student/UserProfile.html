@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>User Profile</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/style.uprofile.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        
+        
+    </head>
+    <body>
+        <header id="uphead">
+        <section class="container-fluid">
+            <div class="row">
+            <div class="col-lg-12 col-md-12 text-center text-white">
+             <h1>Welcome to ICS Pre-Admission</h1>
+             <p>You have successfully created an acount.</p>
+            </div>
+         </div>
+         </section>
+        </header>
+        <main id="maincontainer">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-12 mt-10 pt-10">
+                    <div class="row z-depth-3 ">
+                        <div class="col-sm-3 rounded-left" id="left">
+                            <div class="card-block text-center text-white">
+                                <img class="rounded-circle mt-4" src="meeh.jpg" alt="" width="150px" height="150px">
+                                <h3 class="font-weight-bold mt-2">Student Picture</h3>
+                                <div class="col-sm-6">
+                                    <input type="file" class="form-control-file" id="Studpic" placeholder="" value="">
+                            </div>
+                                <div class="col-sm-10 ">
+                                    <br>
+                                    <button type="button" class="btn btn-dark" data-placement="right">Status</button>
+                                </div>
+                            </div><br>
+                        </div>
+                        <div class="col-sm-9 bg-white rounded-right ">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="studinfo-tab" data-toggle="tab" href="#studinfo" role="tab" aria-controls="home" aria-selected="true">Student Information</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="comments-tab" data-toggle="tab" href="#course" role="tab" aria-controls="comments" aria-selected="false">Course</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="course-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="course" aria-selected="false">Comments</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="slots-tab" data-toggle="tab" href="#slots" role="tab" aria-controls="slots" aria-selected="false">Slots</a>
+                                </li>
+                                <div class="d-flex justify-content-end" id="logout">
+                                    <a href="../login-page.html" class="btn btn-outline-secondary" role="button">Logout</a>
+                                </div>
+                                
+                            </ul>
+                            
+                            <div class="col-md-12">
+                                <div class="tab-content profile-tab" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="studinfo" role="tabpanel">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>First Name</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <p>Juan</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>Last Name</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <p>Dela Cruz</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>Birthday</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <p>12/12/2000</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>Address</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <p>Upper Calarian, Zamboanga City</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>Email</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <p>JDC@gmail.com</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <label>Contact Number</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <p>09991234567</p>
+                                                    </div>
+                                                </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="course" role="tabpanel" aria-labelledby="profile-tab">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Information Technology</label>
+                                                    <div class="col-md-12" id="itcareer">
+                                                        <label>“Technology is a useful servant but a dangerous master.”<br>~Christian Lous Lange</label>
+                                                        <h5><label>Career Paths:</label></h5>
+                                                        <button type="button" class="btn analyst" data-placement="right">Computer Systems Analyst</button><br>
+                                                        <button type="button" class="btn dbadmin" data-placement="right">Database Administrator</button><br>
+                                                        <button type="button" class="btn prog" data-placement="right">Computer Programmer</button>
+                                                        <button type="button" class="btn btn-info" data-placement="left">Apply fo IT</button>
+                                                    </div>
+                                             </div>
+                                                <div class="col-md-6">
+                                                    <label>Computer Science</label>
+                                                    <div class="col-md-12" id="cscareer">
+                                                        <label>"Computer Science is the operating system for all innovation."<br>~Steve Ballmer</label>
+                                                        <h5><label>Career Paths:</label></h5>
+                                                        <button type="button" class="btn se" data-placement="right">Software Engineer</button><br>
+                                                        <button type="button" class="btn webdev" data-placement="right">Web Developer</button><br>
+                                                        <button type="button" class="btn prog" data-placement="right">Computer Programmer</button>
+                                                        <button type="button" class="btn btn-info" data-placement="left">Apply for CS</button>
+                                                        
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="profile-tab">
+                                        <div class="col-md-12">
+                                            <h3>Nothing to show for now! xD</h3>
+                                        </div>
+                                        <div class="col-8 mt-5 pt-5">
+                                            
+                                            <input type="text" class="form-control" id="address" placeholder="Reply to a Comment">
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="slots" role="tabpanel" aria-labelledby="slots">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Information Technology</label>
+                                                    <h6>37/40 Slots Available</h6>
+                                                    <div class="col-md-12">
+                                                        <p>James Karl Tuban</p>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <p>John Rupert Sierra</p>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <p>Ivy Gomez</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>Computer Science</label>
+                                                    <h6>35/40 Slots Available</h6>
+                                                    <div class="col-md-12">
+                                                        <p>Aizzy Diane Algupera</p>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <p>Adzmi Kalnain</p>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <p>Jayson Beltran</p>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <p>Josua Habil</p>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <p>Migfren Limen</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </main>
+        <footer id="upfooter">
+        <section class="container-fluid">
+            <div class="row">
+            <div class="col-md-6 text-center">
+                <p>©Copyright 2020-2023
+                    <a href="#">Kainotomo Tech</a></p>
+            </div>
+            
+                <div class="col-md-3 text-center">
+                    <p><a href="#">About Us</a></p>
+                </div>
+                <div class="col-md-3">
+                    <p><a href="#">Contact Us</a></p>
+                </div>
+            
+         </div>
+         </section>
+        </footer>
+    <script>
+        $(document).ready(function(){
+            $('.btn-dark').popover({title: "Your Status", trigger: "hover", content: "Undecided"}); 
+            $('.se').popover({title: "Software Engineer", trigger: "hover", content: "As a software engineer, you'll work in a constantly evolving environment, due to technological advances and the strategic direction of the organisation you work for. You'll create, maintain, audit and improve systems to meet particular needs, often as advised by a systems analyst or architect, testing both hard and software systems to diagnose and resolve system faults."}); 
+            $('.webdev').popover({title: "Web Developer", trigger: "hover", content: "A Web Developer is responsible for the coding, design and layout of a website according to a company's specifications. As the role takes into consideration user experience and function, a certain level of both graphic design and computer programming is necessary."});
+            $('.prog').popover({title: "Web Developer", trigger: "hover", content: "Computer Programmers are tasked with designing and creating software programs, integrating systems and software, training end-users, analyzing algorithms, modifying source-code, writing system instructions, debugging, and maintaining operating systems."});
+            $('.analyst').popover({title: "Computer Systems Analyst", trigger: "hover", content: "Computer systems analysts, sometimes called systems architects, study an organization’s current computer systems and procedures, and design solutions to help the organization operate more efficiently and effectively. They bring business and information technology (IT) together by understanding the needs and limitations of both."}); 
+            $('.dbadmin').popover({title: "Database Administrator", trigger: "hover", content: "Your responsibility as a database administrator (DBA) will be the performance, integrity and security of a database. You'll be involved in the planning and development of the database, as well as in troubleshooting any issues on behalf of the users. You'll ensure that: data remains consistent across the database."});
+            $('.btn-info').popover({title: "Requirements", trigger: "click", content: "CET, Good Moral, GPA, Shifty Form (for Shifty)"}); 
+            
+        });
+    </script>
+    </body>
+</html>
