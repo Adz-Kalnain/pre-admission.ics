@@ -3,8 +3,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
         <title>User Profile</title>
+        <link rel="icon" href="../svgs/logo.png" sizes="32x32" type="image/png">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/style.uprofile.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -18,7 +19,7 @@
         <section class="container-fluid">
             <div class="row">
             <div class="col-lg-12 col-md-12 text-center text-white">
-             <h1>Welcome to ICS Pre-Admission</h1>
+             <h1>Welcome WMSU ICS Online Pre-Admission System</h1>
              <p>You have successfully created an acount.</p>
             </div>
          </div>
@@ -57,7 +58,7 @@
                                     <a class="nav-link" id="slots-tab" data-toggle="tab" href="#slots" role="tab" aria-controls="slots" aria-selected="false">Slots</a>
                                 </li>
                                 <div class="d-flex justify-content-end" id="logout">
-                                    <a href="../login-page.html" class="btn btn-outline-secondary" role="button">Logout</a>
+                                    <a href="../index.html" class="btn btn-outline-secondary" role="button">Logout</a>
                                 </div>
                                 
                             </ul>
@@ -125,7 +126,7 @@
                                                         <button type="button" class="btn analyst" data-placement="right">Computer Systems Analyst</button><br>
                                                         <button type="button" class="btn dbadmin" data-placement="right">Database Administrator</button><br>
                                                         <button type="button" class="btn prog" data-placement="right">Computer Programmer</button>
-                                                        <button type="button" class="btn btn-info" data-placement="left">Apply fo IT</button>
+                                                        <button type="button" class="btn btn-info" data-placement="left">Apply for IT</button>
                                                     </div>
                                              </div>
                                                 <div class="col-md-6">
@@ -147,7 +148,7 @@
                                     </div>
                                     <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="col-md-12">
-                                            <h3>Nothing to show for now! xD</h3>
+                                            <h3>Nothing to show for now!</h3>
                                         </div>
                                         <div class="col-8 mt-5 pt-5">
                                             
@@ -201,23 +202,24 @@
         </div>
         </main>
         <footer id="upfooter">
-        <section class="container-fluid">
-            <div class="row">
-            <div class="col-md-6 text-center">
-                <p>©Copyright 2020-2023
-                    <a href="#">Kainotomo Tech</a></p>
-            </div>
-            
-                <div class="col-md-3 text-center">
-                    <p><a href="#">About Us</a></p>
+            <section class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <p>©Copyright 2020-2023
+                            <a href="#">Kainotomo Tech</a>
+                        </p>
+                    </div>
+                
+                    <div class="col-md-3 text-center">
+                        <p><a href="#">About Us</a></p>
+                    </div>
+                    <div class="col-md-3">
+                        <p><a href="#">Contact Us</a></p>
+                    </div>
+                
                 </div>
-                <div class="col-md-3">
-                    <p><a href="#">Contact Us</a></p>
-                </div>
-            
-         </div>
-         </section>
-        </footer>
+            </section>
+        </footer>   
     <script>
         $(document).ready(function(){
             $('.btn-dark').popover({title: "Your Status", trigger: "hover", content: "Undecided"}); 
@@ -226,9 +228,9 @@
             $('.prog').popover({title: "Web Developer", trigger: "hover", content: "Computer Programmers are tasked with designing and creating software programs, integrating systems and software, training end-users, analyzing algorithms, modifying source-code, writing system instructions, debugging, and maintaining operating systems."});
             $('.analyst').popover({title: "Computer Systems Analyst", trigger: "hover", content: "Computer systems analysts, sometimes called systems architects, study an organization’s current computer systems and procedures, and design solutions to help the organization operate more efficiently and effectively. They bring business and information technology (IT) together by understanding the needs and limitations of both."}); 
             $('.dbadmin').popover({title: "Database Administrator", trigger: "hover", content: "Your responsibility as a database administrator (DBA) will be the performance, integrity and security of a database. You'll be involved in the planning and development of the database, as well as in troubleshooting any issues on behalf of the users. You'll ensure that: data remains consistent across the database."});
-            $('.btn-info').popover({title: "Requirements", trigger: "click", content: "CET, Good Moral, GPA, Shifty Form (for Shifty)"}); 
+            $('.btn-info').popover({title: "Requirements", trigger: "click", content: "CET, Good Moral, GPA, Shiftee Form (for Shiftee)"}); 
             
         });
     </script>
-    </body>
+</body>
 </html>

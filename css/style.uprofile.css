@@ -1,20 +1,19 @@
-/*Footer Section Start*
-/************************************/
 
 #uphead{
     background-color: rgba(0, 128, 128, 0.808);
     margin-bottom: 5px;
 }
-#uphead h1 li{
-    padding: 5px;
-    color: black
+#uphead h1{
+    padding: 2px;
+    color: white;
 }
 #uphead .container p{
     padding: 5px;
     color: darkturquoise;
 }
 #maincontainer{
-    margin-bottom: 5px;
+    margin-bottom: 16px;
+    margin-top: 15px
 }
 #logout{
     margin-left: 310px;
@@ -62,13 +61,11 @@
 }
 
 
-
-/*Footer Section Start*/
 #upfooter{
     background-color: rgb(59, 57, 57);
     padding-bottom:31px;
 }
 #upfooter p{
     color: white;
-    padding-top: 65px;
+    padding-top: 40px;
 }
