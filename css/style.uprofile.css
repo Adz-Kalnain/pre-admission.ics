@@ -16,7 +16,7 @@
     margin-top: 15px
 }
 #logout{
-    margin-left: 310px;
+    margin-left: 195px;
 }
 #left{
     background-color: rgba(0, 128, 128, 0.808);
@@ -40,12 +40,13 @@
     margin-top: 10px;
     
 }
+
 #itcareer button{
-    margin-right: 10px;
+    margin-right: 6px;
     font-weight: 500;
 }
 #cscareer button{
-    margin-right: 10px;
+    margin-right: 6px;
     font-weight: 500;
 }
 #comments h3{

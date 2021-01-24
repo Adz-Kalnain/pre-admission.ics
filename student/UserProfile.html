@@ -49,7 +49,10 @@
                                     <a class="nav-link active" id="studinfo-tab" data-toggle="tab" href="#studinfo" role="tab" aria-controls="home" aria-selected="true">Student Information</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="comments-tab" data-toggle="tab" href="#course" role="tab" aria-controls="comments" aria-selected="false">Course</a>
+                                    <a class="nav-link" id="course-tab" data-toggle="tab" href="#course" role="tab" aria-controls="comments" aria-selected="false">Course</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="application-tab" data-toggle="tab" href="#application" role="tab" aria-controls="application" aria-selected="false">Application</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="course-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="course" aria-selected="false">Comments</a>
@@ -143,9 +146,113 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        
+                                        </div> 
                                     </div>
+                                    <div class="tab-pane fade" id="application" role="tabpanel" aria-labelledby="application-tab">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label>Information Technology</label>
+                                                    <div class="col-md-12" id="Application">
+                                                        <label>“Technology is a useful servant but a dangerous master.”<br>~Christian Lous Lange</label>
+                                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">
+                                                          Apply for IT
+                                                        </button>
+                                                        <!-- The Modal -->
+                                                        <div class="modal" id="myModal">
+                                                          <div class="modal-dialog">
+                                                            <div class="modal-content">
+
+                                                              <!-- Modal Header -->
+                                                              <div class="modal-header">
+                                                                <h4 class="modal-title">Upload your Requirements</h4>
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                              </div>
+
+                                                              <!-- Modal body -->
+                                                              <div class="modal-body">
+                                                                <div class="col-sm-12">
+                                                                    <label for="cet" class="form-label">CET copy</label>
+                                                                    <input type="file" class="form-control-file" id="cet" placeholder="" value="">
+                                                                </div>
+                                                                  <div class="col-sm-12">
+                                                                    <label for="cet" class="form-label">Good Moral</label>
+                                                                    <input type="file" class="form-control-file" id="cet" placeholder="" value="">
+                                                                </div>
+                                                                <div class="col-sm-12">
+                                                                    <label for="gpa" class="form-label">GPA copy</label>
+                                                                    <input type="file" class="form-control-file" id="gpa" placeholder="" value="">
+                                                                </div>
+                                                                  <div class="col-sm-12">
+                                                                    <label for="gpa" class="form-label">Shiftee Form copy(if your Shiftee)</label>
+                                                                    <input type="file" class="form-control-file" id="shiftee" placeholder="" value="">
+                                                                </div>
+                                                              </div>
+
+                                                              <!-- Modal footer -->
+                                                              <div class="modal-footer">
+                                                                <button type="button" class="btn btn-success" data-dismiss="modal">Done</button>
+                                                              </div>
+
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                    </div>
+                                             </div>
+                                                <div class="col-md-6">
+                                                    <label>Computer Science</label>
+                                                    <div class="col-md-12" id="ApplicationCS">
+                                                        <label>"Computer Science is the operating system for all innovation."<br>~Steve Ballmer</label>
+                                                       <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">
+                                                          Apply for CS
+                                                        </button>
+                                                        <!-- The Modal -->
+                                                        <div class="modal" id="myModal">
+                                                          <div class="modal-dialog">
+                                                            <div class="modal-content">
+
+                                                              <!-- Modal Header -->
+                                                              <div class="modal-header">
+                                                                <h4 class="modal-title">Upload your Requirements</h4>
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                              </div>
+
+                                                              <!-- Modal body -->
+                                                              <div class="modal-body">
+                                                                <div class="col-sm-6">
+                                                                    <label for="cet" class="form-label">CET copy</label>
+                                                                    <input type="file" class="form-control-file" id="cet" placeholder="" value="">
+                                                                </div>
+                                                                  <div class="col-sm-12">
+                                                                    <label for="cet" class="form-label">Good Moral</label>
+                                                                    <input type="file" class="form-control-file" id="cet" placeholder="" value="">
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <label for="gpa" class="form-label">GPA copy</label>
+                                                                    <input type="file" class="form-control-file" id="gpa" placeholder="" value="">
+                                                                </div>
+                                                                  <div class="col-sm-6">
+                                                                    <label for="gpa" class="form-label">Shiftee Form copy(if your Shiftee)</label>
+                                                                    <input type="file" class="form-control-file" id="shiftee" placeholder="" value="">
+                                                                </div>
+                                                              </div>
+
+                                                              <!-- Modal footer -->
+                                                              <div class="modal-footer">
+                                                                <button type="button" class="btn btn-succcess" data-dismiss="modal">Done</button>
+                                                              </div>
+
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                        
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                     <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="profile-tab">
                                         <div class="col-md-12">
                                             <h3>Nothing to show for now!</h3>
