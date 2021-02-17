@@ -1,4 +1,7 @@
 /*Header Section Start*/
+/*.navbar{
+    background-color: teal;
+}
 .menu-item-group{
     background-color: rgba(0, 128, 128, 0.808);
 }
@@ -25,8 +28,8 @@
 .menu-item-group .dropdown-menu .dropdown-item:hover{
     background-color: rgba(7, 207, 207, 0.301);
     color: white;
-} 
-.navbar{
+}*/
+/*.navbar{
     background-color: rgba(0, 128, 128, 0.808);
     text-align: center;
     padding-left: auto;
@@ -38,6 +41,54 @@
 .navbar .container a h3{
     text-decoration: none;
     color: white;
+}*/
+/*
+.navbar .container a img{
+    width: 120px;
+    border-radius: 60px;
+    margin-right: 10px;
+}
+.navbar .container .dropdown-menu{
+    visibility: hidden;
+}
+.navbar .container .menu-item-group{
+    visibility: hidden;
+}
+
+@media (max-width: 991.98px) {
+    .offcanvas-collapse {
+        height: 0px;
+        visibility: hidden;
+    }
+    .dropdown-menu.open{
+        visibility: visible;
+    }
+    .navbar .container .dropdown-menu{
+        visibility: visible;
+    }
+    .navbar .container .menu-item-group{
+        visibility: visible;
+    }
+}*/
+.navbar{
+    background-color:rgba(0, 128, 128, 0.808);
+}
+.navbar .navbar-brand img{
+    width: 90px;
+    border-radius: 60px;
+    margin-right: 10px;
+}
+.navbar .navbar-collapse ul li a.active{
+    border-bottom: 2px solid white;
+}
+@media (max-width: 520px){
+    .navbar .navbar-brand img{
+        width: 60px;
+    }
+    .navbar .navbar-brand{
+        font-size: 16px;
+        font-weight: 200px;
+    }
 }
 
 /*Header Section End*/
@@ -46,7 +97,9 @@
 .carousel {
     margin-bottom: 3rem;
 }
-
+.carousel ol li{
+    background-color: black;
+}
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
     bottom: 3rem;
@@ -72,17 +125,11 @@
     width: 60%;
     text-align: start;
 }
-.carousel-item .carousel-caption p:hover{
-    color: teal;
-}
 .carousel-item .carousel-caption .h3{
     color: teal;
 }
-.carousel-item .carousel-caption .h3:hover{
-    color: white;
-}
 .carousel-item .container .carousel-caption{
-    color: white;
+    color: black;
     text-align: start;
 }
 

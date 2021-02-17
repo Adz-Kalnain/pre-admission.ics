@@ -1,4 +1,4 @@
-.menu-item-group{
+/*.menu-item-group{
     background-color: rgba(0, 128, 128, 0.808);
 }
 .menu-item-group .icon img{
@@ -28,15 +28,27 @@
 .menu-item-group .dropdown-menu .dropdown-item:hover{
     background-color: rgba(7, 207, 207, 0.301);
     color: white;
-}
+}*/
 .navbar{
     background-color: rgba(0, 128, 128, 0.808);
-    text-align: center;
-    padding-left: auto;
+    color: white;
 }
-.navbar .container a img{
-    width: 120px;
+.navbar .navbar-brand img{
+    width: 90px;
     border-radius: 60px;
+    margin-right: 10px;
+}
+.navbar .navbar-collapse ul li a.active{
+    border-bottom: 2px solid white;
+}
+@media (max-width: 520px){
+    .navbar .navbar-brand img{
+        width: 60px;
+    }
+    .navbar .navbar-brand{
+        font-size: 16px;
+        font-weight: 200px;
+    }
 }
 .navbar .container a h3{
     text-decoration: none;
