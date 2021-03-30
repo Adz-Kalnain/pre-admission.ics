@@ -1,0 +1,26 @@
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<i class="fa fa-sign-in"></i>
+<i class="fa fa-home"></i>
+<i class="fa fa-envelope-o"></i>
+<i class="fa fa-window-close"></i>
+<i class="fa fa-user"></i>
+<i class="fa fa-lock"></i>
+&#xf2d3;//unicode of close
+<i class="fa fa-map-marker"></i>
+<i class="fa fa-sign-out"></i>
+<i class="fa fa-bars"></i>
+<i class="fa fa-info"></i>
+<i class="fa fa-user-plus"></i>
+<i class="fa fa-phone"></i>
+<i class="fa fa-pause" aria-hidden="true"></i>
+<i class="fa fa-clock-o" aria-hidden="true"></i>
+<i class="fa fa-list" aria-hidden="true"></i>
+<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+<i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+<i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+<i class="fa fa-check" aria-hidden="true"></i>
+<i class="fa fa-cog" aria-hidden="true"></i>
+<i class="fa fa-list-alt" aria-hidden="true"></i>
+<i class="fa fa-download" aria-hidden="true"></i>
+<i class="fa fa-bell" aria-hidden="true"></i>
+

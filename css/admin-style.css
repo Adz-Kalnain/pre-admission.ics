@@ -1,3 +1,5 @@
+/*remove #main-conteiner to flush back the dashiiiiiboards in desktop view, check nio toh aiz,jays*/
+/*makalito na oi kakapalit lng papalitan nanaman*/
 #sidebar-wrapper {
     min-height: 100vh;
     margin-left: -15rem;
@@ -5,7 +7,10 @@
     -webkit-transition: .20s ease-out;
     background-color: grey;
     color: white;
-}  
+}
+.navbar-toggler{
+    visibility: hidden;
+}
 #sidebar-wrapper .sidebar-heading {
     padding: 14px;
     font-size: 20px;
@@ -65,12 +70,25 @@
 #content-container .display-4{
     margin-left: 10px;
 }
-table tbody tr th{
+#printabletable{
+    width: 100%;
+}
+#tablecontent{
+    padding-left: 5px;
+    padding-right: 20px;
+    font-family: verdana;
+}
+table tbody tr td{
     font-size: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 table thead tr th{
-    font-size: 12px;
+    font-size: 11px;
+    border-right: 1px solid grey;
+    padding-left: 50px;
 }
+ 
 #content-container .d-flex{
     margin-right: 10px;
 }
@@ -86,6 +104,10 @@ table thead tr th{
     }
     #content-container .display-4{
         font-size: 20px;
+    }
+    
+    .navbar-toggler{
+        visibility: visible;
     }
 }
 @media (min-width: 768px) {
