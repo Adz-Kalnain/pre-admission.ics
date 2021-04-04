@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
-
+/*latto font lng malakas*/
 :root {
   --page-header-bgColor: teal;
   --page-header-bgColor-hover: rgb(3, 80, 80);
@@ -60,8 +60,7 @@ body {
   font: 16px/1.5 "Lato", sans-serif;
 }
 
-/* HEADER STYLES
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* HEADER/NAVBAR––––––––––––––––––––––––––––––------------------------–––––––––––––––––––– */
 .page-header {
   position: fixed;
   top: 0;
@@ -116,12 +115,13 @@ body {
 .page-header .admin-menu li:nth-last-child(2) {
   margin-bottom: 35px;
 }
-
+/*tulak pababa c logout, kapuy toh pag aralan oi, dame ko tutorial natapos para lng dito*/
 .page-header .admin-menu li:last-child {
   margin-top: auto;
   margin-bottom: 20px;
 }
 
+/*ang alam ko yung * for all, dih kase e explain ng tutorial*/
 .page-header .admin-menu li > * {
   width: 100%;
   padding: 14px 15px;
@@ -178,8 +178,7 @@ body {
   outline: none;
 }
 
-/* PAGE CONTENT STYLES
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* PAGE CONTENT–------------------------------––––––––––––––––––––––––––––––––––––––––––––––––– */
 .page-content {
   position: relative;
   left: var(--page-header-width);
@@ -371,8 +370,7 @@ body {
 }*/
 
 
-/* MQ RULES
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/*Adjustment----------------------------------–––––––––––––––––––––––––––––––––––––––––––––––––– */
 @media screen and (max-width: 767px) {
   .page-header,
   .page-content {
@@ -475,6 +473,14 @@ body {
   .search-and-user .admin-profile {
       justify-content: flex-end;
   }
+
+  .page-content .grid .setting .accordion .card .collapse .card-body .form-control {
+    width: 100%;
+  }
+
+  .page-content .grid .setting .accordion .card .collapse .card-body {
+    margin-right: 20px;
+  }
 }
 
 @media screen and (max-width: 400px) {
@@ -489,14 +495,18 @@ body {
     font-size: 0px;
     visibility: hidden;
   }
+
+  .page-content .grid .setting .accordion .card .collapse .card-body .form-control {
+    width: 100%;
+  }
+
+  .page-content .grid .setting .accordion .card .collapse .card-body {
+    margin-right: 20px;
+  }
 }
 
 
-/* BODY CLASSES
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-/*.mob-menu-opened .toggle-mob-menu svg {
-  transform: rotate(180deg);
-}*/
+/* BODY----------------------------------------------–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .mob-menu-opened .page-header .admin-menu {
   transform: scale(1);
@@ -531,4 +541,40 @@ body {
     left: 40px;
     width: calc(100% - 40px);
   }*/
+}
+
+/*SETTINGS-----------------------------------------------------------------------------------------*/
+.page-content .grid .setting .accordion{
+  width: 100%;
+}
+
+.page-content .grid .setting .accordion .card .card-header .btn {
+  text-decoration: none;
+  color: rgb(88, 88, 88);
+
+}
+
+.page-content .grid .setting .accordion .card .card-header .btn:focus {
+  text-decoration: none;
+  outline: none !important;
+  box-shadow: none;
+  /*hirap tanggalin ng ugly blue outline nayan*/
+  /*box-shadow lng pala*/
+}
+
+.page-content .grid .setting .accordion .card .collapse .card-body {
+  margin-left: 20px;
+}
+
+.page-content .grid .setting .accordion .card .card-body .form-control {
+  width: 50%;
+}
+
+.page-content .grid .setting .accordion .card .card-body .btn {
+  background-color: var(--page-header-bgColor);
+  color: white;
+}
+
+.page-content .grid .setting .accordion .card .card-body .btn:hover {
+  background-color: var(--page-header-bgColor-hover);
 }

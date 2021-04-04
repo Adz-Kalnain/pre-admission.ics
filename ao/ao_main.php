@@ -46,14 +46,14 @@ if (isset($_GET['logout'])) {
                 <i class="fa fa-thumbs-o-up" aria-hidden="true"><span>Qualified</span></i>
               </a>
             </li>
-            <li class="menu-heading">
+            <!--<li class="menu-heading">
               <h3>Settings</h3>
             </li>
             <li>
               <a href="#0">
                 <i class="fa fa-cog" aria-hidden="true"><span>Settings</span></i>
               </a>
-            </li>
+            </li>-->
             <!--<li>
               <a href="#0">
                 <i class="fa fa-list-alt" aria-hidden="true"><span>Criteria</span></i>

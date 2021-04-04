@@ -60,7 +60,7 @@ if (isset($_GET['logout'])) {
               <h3>Settings</h3>
             </li>
             <li>
-              <a href="#0">
+              <a href="../sett.html">
                 <i class="fa fa-cog" aria-hidden="true"><span>Settings</span></i>
               </a>
             </li>

@@ -1,3 +1,5 @@
+<!--  < ?php include('authenticate.php') ?>-->
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -61,11 +63,12 @@
         background-color: rgb(4, 116, 116);
         color: whitesmoke;
     }
-    /*@media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-    }*/
+    .form_error span {
+        width: 80%;
+        height: 35px;
+        margin: 3px 10%;
+        color: red;
+    }
     @media (max-width: 375px){
         .h2{
             font-size: 20px;
@@ -124,8 +127,8 @@
                 <div class="col-md-7 col-lg-8" id="form-body">
                     <h4 class="mb-4 mt-4 pt-3">Registration</h4>
 
-                    <?php
-                        require('db.php');
+                    <!--<  ?php
+                        /*require('db.php');
                         // pag e sumbit na, mag insert sia value sa database naten, anyways initialsystem pinangalan ko sa database naten
                         // tas users naman sa table
                         if (isset($_REQUEST['username'])) {
@@ -153,81 +156,73 @@
                                     </div>";
                             }
                         } else {
+                    ?>-->
+                    
+                    <?php 
+                        $db = mysqli_connect('localhost', 'root', '', 'initialsystem');
+                        $username = "";
+                        $email = "";
+                        if (isset($_POST['submit'])) {
+                            $username = $_POST['username'];
+                            $email = $_POST['email'];
+                            $password = $_POST['password'];
+
+                            $sql_u = "SELECT * FROM users WHERE username='$username'";
+                            $sql_e = "SELECT * FROM users WHERE email='$email'";
+                            $res_u = mysqli_query($db, $sql_u);
+                            $res_e = mysqli_query($db, $sql_e);
+
+                            if (mysqli_num_rows($res_u) > 0) {
+                            $name_error = "Username already taken"; 	
+                            }else if(mysqli_num_rows($res_e) > 0){
+                            $email_error = "Email already taken"; 	
+                            }else{
+                                $query = "INSERT INTO users (username, email, password, user_type) 
+                                        VALUES ('$username', '$email', '".md5($password)."', 'user')";
+                                $results = mysqli_query($db, $query);
+                                    //yung md5 for encryption yan, pero dih na ata possible yung feature na reset password pang gagamit tayo md5, pero oknayan atleast encrypted. 
+                                    if ($results) {
+                                        echo "<div class='form'>
+                                            <h3>You are registered successfully.</h3><br/>
+                                            <p class='link pb-2'>Click here to <a href='login-page.php'>Login</a></p>
+                                            </div>";
+                                    } else {
+                                        echo "<div class='form'>
+                                            <h3>Required fields are missing.</h3><br/>
+                                            <p class='link'>Click here to <a href='registration-page.php'>registration</a> again.</p>
+                                            </div>";
+                                    }
+                                //exit();
+                            }
+                        }else{
                     ?>
 
-                    <!--<form class="form needs-validation" onsubmit="return validateForm()" action="" method="post">-->
-                    <!--<form class="needs-validation" novalidate>-->
-                        <!--<div class="row g-3 form-group">-->
-                            <!--<input type='hidden' name='submitted' id='submitted' value='1'/>-->
-                            <!--<div class="col-sm-12">
-                                <label for="username" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="username" placeholder="" value="" required>
-                                <div class="invalid-feedback">
-                                    Username is required.
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="email" class="form-label">Email </label>
-                                <input type="email" class="form-control" id="email" placeholder="example@example.com" required>
-                                <div class="invalid-feedback">
-                                    Please enter a valid email address.
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12">
-                                <label for="password" class="form-label">Create Password</label>
-                                <input type="password" class="form-control" id="password" required>
-                                <div class="invalid-feedback">
-                                    Password creation is required
-                                </div>
-                            </div>-->
-
-                            <!--<div class="col-sm-6">
-                                <label for="confirmpass" class="form-label">Confirm Password</label>
-                                <input type="password" class="form-control" id="confirmpass" required>
-                                <div class="invalid-feedback">
-                                    Password confrimation is required
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="address" class="form-label">Contact No</label>
-                                <input type="text" class="form-control" id="address" placeholder="097875****" required>
-                                <div class="invalid-feedback">
-                                    Please enter a valid phone number
-                                </div>
-                            </div>-->
-
-                        <!--</div>
-
-                        <hr class="my-3">-->
-
-                        <!--<div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="same-address" required>
-                            <label class="form-check-label" for="same-address">Upon checking this you're allowing the institute to collect your personal data.</label>
-                        </div>-->
-                        <!--<div class="row">
-                            <div class="col-sm-12">
-                                <button class="w-100 btn btn-submit btn-md mt-3 mb-2" type="submit" name="submit" value="register">Register</button>
-                            </div>
-                        </div>
-        
-                    </form>-->
                     <form class="form" action="" method="post">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control login-input" id="username" name="username" placeholder="Username" required />
+                        <div <?php if (isset($name_error)): ?> class="form_error" <?php endif ?> >
+                            <input type="text" class="form-control login-input" id="username" name="username" placeholder="Username" value="<?php echo $username; ?>" required>
+                            <?php if (isset($name_error)): ?>
+                            <span><?php echo $name_error; ?></span>
+                            <?php endif ?>
+                        </div>
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control login-input" id="email" name="email" placeholder="Email Adress" required>
+                        <div <?php if (isset($email_error)): ?> class="form_error" <?php endif ?> >
+                            <input type="email" class="form-control login-input" id="email" name="email" placeholder="Email Adress" value="<?php echo $email; ?>" required>
+                            <?php if (isset($email_error)): ?>
+                            <span><?php echo $email_error; ?></span>
+                            <?php endif ?>
+                        </div>
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control login-input" name="password" placeholder="Password" required>
                         <input type="submit" name="submit" value="Register" class="btn btn-submit mt-2 mb-2">
                         <p class="link pb-2">Already have an account? <a href="login-page.php">Login here</a></p>
                     </form>
-
                     <?php
-                        }
+                    }
                     ?>
+                    <!--<  ?php
+                        }
+                    ?>-->
 
                 </div>
             </div>
