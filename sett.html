@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluator</title>
+    <link rel="icon" href="../svgs/logo.png" sizes="32x32" type="image/png">
+
+    <link rel="stylesheet" href="bootstrap4/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">          
+    <link rel="stylesheet" href="css/admin.style.css">
+    <link rel="stylesheet" type="text/css" href="DataTables/datatables.css">
+
+</head>
+<body>
+    <header class="page-header">
+        <nav>
+          <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
+            <i class="fa fa-bars"></i>
+          </button>
+          <a href="../index.html">
+            <img class="logo mx-auto" src="../svgs/logo.png" alt="ics logo">
+          </a>
+          <ul class="admin-menu">
+            <li class="menu-heading">
+              <h3>Dashboard</h3>
+            </li>
+            <li>
+              <a href="admin/admin.main.php" class="active">
+                <i class="fa fa-list" aria-hidden="true"><span>Applicants</span></i>
+              </a>
+          </li>
+          <li>
+              <a href="admin/admin.pre.php">
+                <i class="fa fa-check" aria-hidden="true"><span>Prequalified</span></i>
+              </a>
+          </li>
+          <li>
+              <a href="admin/admin.qual.php">
+                  <i class="fa fa-thumbs-o-up" aria-hidden="true"><span>Qualified</span></i>
+              </a>
+          </li>
+          <li>
+            <a href="admin/admin.rej.php">
+              <i class="fa fa-thumbs-o-down" aria-hidden="true"><span>Rejected</span></i>
+            </a>
+          </li>
+          <li>
+            <li class="menu-heading">
+              <h3>Settings</h3>
+            </li>
+            <li>
+              <a href="sett.html" class="active">
+                <i class="fa fa-cog" aria-hidden="true"><span>Settings</span></i>
+              </a>
+            </li>
+            <!--<li>
+              <a href="#0">
+                <i class="fa fa-list-alt" aria-hidden="true"><span>Requirement</span></i>
+              </a>
+            </li>-->
+            <li>
+              <a href="#">
+                <i class="fa fa-sign-out"><span>Logout</span></i>
+                
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <section class="page-content">
+        <section class="btn-group">
+          <p class="section-name">Settings</p>
+        </section>
+        <section class="grid">
+          <article class="setting">
+              <div class="accordion" id="accordionexample">
+                <div class="card">
+                    <div class="card-header" id="headerone">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseone" aria-expanded="true" aria-controls="collapseone">
+                                Requirements
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div class="collapse" id="collapseone"aria-labelledby="headerone" data-parent="#accordionexample">
+                        <div class="card-body">
+                          <label for="gpa">GPA (Grade Point Average)</label>
+                          <input type="number" name="gpa" class="form-control  mb-3">
+                          <label for="cet">CET Score (College Entrance Test)</label>
+                          <input type="number" name="cet" class="form-control">
+
+                          <input type="button" class="btn mt-3" name="reqsubmit" value="submit">
+                          </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" id="headertwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsetwo" aria-expanded="false" aria-controls="collapsetwo">
+                                Course
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div class="collapse" id="collapsetwo"aria-labelledby="headertwo" data-parent="#accordionexample">
+                        <div class="card-body">
+                          -------This require PHP so,.. im gonna save it for later-------
+                          
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card">
+                  <div class="card-header" id="headerthree">
+                      <h5 class="mb-0">
+                          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsethree" aria-expanded="false" aria-controls="collapsethree">
+                              Admission
+                          </button>
+                      </h5>
+                  </div>
+
+                  <div class="collapse" id="collapsethree"aria-labelledby="headerthree" data-parent="#accordionexample">
+                      <div class="card-body">
+                          <label for="startingdate">Set the starting date of Admission :</label>
+                          <input type="date" name="startingdate" class="form-control mb-3">
+                          <label for="endingdate">Set the End date of Admission :</label>
+                          <input type="date" name="endingdate" class="form-control mb-3">
+
+                          <input type="button" class="btn mt-3" name="admissionsubmit" value="submit">
+                        </div>
+                  </div>
+
+              </div>
+
+              <div class="card">
+                <div class="card-header" id="headerfour">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
+                            Create new account
+                        </button>
+                    </h5>
+                </div>
+
+                <div class="collapse" id="collapsefour"aria-labelledby="headerfour" data-parent="#accordionexample">
+                    <div class="card-body">
+                        <form action="">
+                          <label for="username">Username</label>
+                          <input type="text" name="username" class="form-control mb-3">
+                          <label for="password">Password</label>
+                          <input type="password" name="password" class="form-control mb-3">
+                          <h6>Usertype:</h6>
+                          <input type="checkbox" class="form-check-input" id="admin">
+                          <label for="admin" class="form-check-label">Admin</label><br>
+                          <input type="checkbox" class="form-check-input" id="ao">
+                          <label for="ao" class="form-check-label">Admission Officer</label><br>
+                          <input type="checkbox" class="form-check-input" id="ic">
+                          <label for="ic" class="form-check-label">Interviewer Committee</label><br>
+                          <input type="checkbox" class="form-check-input" id="eva">
+                          <label for="eva" class="form-check-label">Evaluator</label><br>
+
+                          <input type="button" class="btn mt-3" name="accountCreate" value="Create">
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card">
+              <div class="card-header" id="headerfive">
+                  <h5 class="mb-0">
+                      <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
+                          Quota
+                      </button>
+                  </h5>
+              </div>
+
+              <div class="collapse" id="collapsefive"aria-labelledby="headerfive" data-parent="#accordionexample">
+                  <div class="card-body">
+                      <label for="itquota">Quota for IT</label>
+                      <input type="number" name="itquota" class="form-control">
+                      <label for="csquota">Quota for CS</label>
+                      <input type="number" name="csquota" class="form-control">
+
+                      <input type="button" class="btn mt-3" name="quotasubmit" value="submit">
+                    </div>
+              </div>
+
+          </div>
+
+              </div>
+          </article>
+        </section>
+      </section>
+</body>
+    <script src="jquery/jquery.min.js"></script>
+    <script src="bootstrap4/js/bootstrap.bundle.min.js"></script>
+    <script src="js/control.js"></script>
+
+    <script>
+      $(function(){
+        $('#accordionexample .card-header .btn').eq(0).trigger('click');
+      });
+    </script>
+
+</html>
+
+  
+  
+  

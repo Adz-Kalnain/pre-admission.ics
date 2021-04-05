@@ -1,3 +1,18 @@
+
+
+<?php
+ include('../session.php');
+ include('../db.php');
+
+
+
+ $query= mysqli_query($db,"SELECT * FROM users WHERE `username` = '".$_SESSION['login_user']."' ")or die(mysql_error());
+ $arr = mysqli_fetch_array($query);
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -99,7 +114,7 @@
                                                 <label>First Name</label>
                                             </div>
                                             <div class="col-md-8">
-                                                <p>Juan</p>
+                                                <p><?php echo $arr['name']?></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -131,7 +146,7 @@
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-8">
-                                                <p>JDC@gmail.com</p>
+                                                <p><?php echo $arr['email']?></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -207,7 +222,7 @@
                 <h1>Are you ready to choose your course?</h1>
                 <p>Hi there, .</p>
                 <div class="Application col-md-10">
-                    <a href="UserApplication.html" class="btn btn-primary my-2">Apply for a course</a>
+                    <a href="UserApplication.php" class="btn btn-primary my-2">Apply for a course</a>
                 </div>
             </div>
         </div>

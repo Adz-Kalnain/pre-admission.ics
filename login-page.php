@@ -1,4 +1,40 @@
-<?php include('functions.php') ?>
+
+<?php
+   session_start();
+   include("db.php");
+   $error=''; // Variable To Store Error Message
+   $active = '';
+   if($_SERVER["REQUEST_METHOD"] == "POST") {
+      // username and password sent from form 
+
+      $myusername = mysqli_real_escape_string($db,$_POST['username']);
+      $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
+      $sql = "SELECT * FROM users WHERE username = '$myusername' and password = '$mypassword'";
+      //$sql = "SELECT user_id,active FROM admin_tbl WHERE username = '$myusername' and password = '$mypassword'";
+      $result = mysqli_query($db,$sql) or die("Error: ".mysqli_error($db));
+
+      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+      $userid=$row['id'];
+      $active = $row['active'];
+
+      $count = mysqli_num_rows($result);
+
+      // If result matched $myusername and $mypassword, table row must be 1 row
+
+      if($count == 1) {
+         // Register $myusername, $mypassword and redirect to file "index.php"
+         //session_register("username");
+         //session_register("password");
+         $_SESSION['login_user'] = $myusername;
+         $_SESSION['id'] = $userid; 
+
+         header("location: student/UserApplication.php");
+      }else {
+         $error = "Your Username Name or Password is invalid";
+      }
+   }
+?>
+
 
 <!doctype html>
 <html lang="en">
@@ -98,12 +134,14 @@
                         </div>
                     </form>-->
                     
-                    <form class="form" method="post" name="login" action="login-page.php">
+                    <form class="form" method="POST" action="">
                           <label for="username" class="form-label">Username</label>
                           <input type="text" class="form-control" id="username" name="username" placeholder="" autofocus="true"/>
                           <label for="password" class="form-label">Password</label>
                           <input type="password" class="form-control" id="password" name="password" placeholder=""/>
-                          <input type="submit" value="login" name="login_btn" class="btn btn-login w-100 mt-3"/>
+                          <input type="submit" value="login" name="submit" class="btn btn-login w-100 mt-3"/>
+             
+
                           <p class="link mt-2">Don't have an account? <a href="registration.php"><span class="pressMe">Registration Now</span></a></p>
                     </form>
                      
@@ -125,3 +163,4 @@
       
   </body>
 </html>
+

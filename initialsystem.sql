@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2021 at 03:47 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.34
+-- Generation Time: Apr 05, 2021 at 09:08 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.2.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,8 +31,19 @@ CREATE TABLE `file` (
   `id` int(11) NOT NULL,
   `file_name` varchar(50) NOT NULL,
   `type` varchar(50) NOT NULL,
-  `size` varchar(50) NOT NULL
+  `size` varchar(50) NOT NULL,
+  `file_path` text NOT NULL,
+  `user_id` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `file`
+--
+
+INSERT INTO `file` (`id`, `file_name`, `type`, `size`, `file_path`, `user_id`) VALUES
+(1, 'CAN I ALSO BE WHAT I WANT TO BE.docx', '', '13416', '', 16),
+(2, '1.docx', '', '13255', '', 16),
+(3, 'ticket.pdf', '', '145692', '../files_upload/ticket.pdf ', 16);
 
 -- --------------------------------------------------------
 
@@ -45,21 +56,17 @@ CREATE TABLE `users` (
   `username` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `user_type` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `name` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `user_type`, `password`) VALUES
-(1, 'blue', 'blue@gmail.com', 'user', '48d6215903dff56238e52e8891380c8f'),
-(4, 'violet', 'violet@gmail.com', 'ic', 'd1d813a48d99f0e102f7d0a1b9068001'),
-(5, 'teal', 'teal@gmail.com', 'admin', '3c4184e82bb3be8fa32669800fb7373c'),
-(6, 'cyan', 'cyan@gmail.com', 'evaluator', '6411532ba4971f378391776a9db629d3'),
-(7, 'gold', 'gold@gmail.com', 'ao', 'e07e81c20cf5935f5225765f0af81755'),
-(8, 'silver', 'silver@gmail.com', 'user', '97f014516561ef487ec368d6158eb3f4'),
-(9, 'grey', 'grey@gmail.com', 'user', 'ca50000a180a293de0b27acb67a695cb');
+INSERT INTO `users` (`id`, `username`, `email`, `user_type`, `password`, `name`) VALUES
+(16, 'ronald', 'ronaldxdale@gmail.com', 'user', 'ronald', 'FUENTEBELLA RONALD DALE'),
+(17, 'jayson123', 'jayson@gmail.com', 'user', 'jayson', 'jayson');
 
 --
 -- Indexes for dumped tables
@@ -69,7 +76,8 @@ INSERT INTO `users` (`id`, `username`, `email`, `user_type`, `password`) VALUES
 -- Indexes for table `file`
 --
 ALTER TABLE `file`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userid` (`user_id`);
 
 --
 -- Indexes for table `users`
@@ -85,13 +93,23 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `file`
 --
 ALTER TABLE `file`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `file`
+--
+ALTER TABLE `file`
+  ADD CONSTRAINT `userid` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
