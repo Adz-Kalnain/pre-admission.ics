@@ -1,58 +1,3 @@
-
-<?php
-   include('db.php');
-   session_start();
-   $error=''; // Variable To Store Error Message
-   $active = '';
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
-      // username and password sent from form 
-
-      $myusername = mysqli_real_escape_string($db,$_POST['username']);
-      $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
-      $sql = "SELECT * FROM users WHERE username = '$myusername' and password = '$mypassword'";
-      //$sql = "SELECT user_id,active FROM admin_tbl WHERE username = '$myusername' and password = '$mypassword'";
-      $result = mysqli_query($db,$sql) or die("Error: ".mysqli_error($db));
-
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $userid=$row['id'];
-      $active = $row['active'];
-
-      $count = mysqli_num_rows($result);
-
-      // If result matched $myusername and $mypassword, table row must be 1 row
-
-      if($count == 1) {
-
-        if ($row['user_type'] == 'admin') {
-  
-          $_SESSION['login_user'] = $myusername;
-          header('location: admin/admin.main.php');		  
-              }elseif ($row['user_type'] == 'evaluator'){
-  
-            $_SESSION['login_user'] = $myusername;
-          header('location: evaluator/evaluator.main.php');
-              }elseif ($row['user_type'] == 'ic'){
-  
-          $_SESSION['login_user'] = $myusername;
-          header('location: ic/ic.main.php');
-              }elseif ($row['user_type'] == 'ao'){
-  
-          $_SESSION['login_user'] = $myusername;
-          header('location: ao/ao_main.php');
-              }elseif($row['user_type'] == 'user'){
-          $_SESSION['login_user'] = $myusername;
-          header('location: student/UserApplication.php');
-        }
-      else {
-        array_push($errors, "Wrong username/password combination");
-      }
-    }
-
-  }
-   
-?>
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -64,7 +9,7 @@
 
   <link href="bootstrap4/css/bootstrap.min.css" rel="stylesheet">
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">          
-  <link rel="stylesheet" href="css/login-style.css">
+  <link rel="stylesheet" href="css/login.style.css">
         
 </head>
 <body>
@@ -82,10 +27,10 @@
                   <a class="nav-link" href="index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="registration-page.php">Register</a>
+                  <a class="nav-link" href="registration-page.html">Register</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active" href="login-page.php">Login</a>
+                  <a class="nav-link active" href="login-page.html">Login</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="about.html">About</a>
@@ -102,11 +47,8 @@
                 <p class="h2">WMSU ICS Online Pre-Admission System</p>
             
                 <div class="col-md-8 col-lg-8 col-sm-8" id="form-body">
-                <h4 class="mb-4 mt-4 pt-3">Sign-in</h4>
-
-            
-
-                    <!--<form class="needs-validation" novalidate>
+                    <h4 class="mb-4 mt-4 pt-3">Sign-in</h4>
+                    <form class="needs-validation" novalidate>
                         <div class="row">
 
                             <div class="col-12">
@@ -128,8 +70,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
-                              <input type="submit" value="Login" name="submit" class="login-button"/> 
-                    --><!--<div class="menu-item-group">
+                                <div class="menu-item-group">
                                     <button type="button" class="btn btn-login btn-secondary w-100 btn-md mt-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Login
                                     </button>
@@ -140,29 +81,16 @@
                                     <a href="ic/ic-pre-qualified-list.html" class="dropdown-item">Interviewer</a>
                                     <a href="ao/ao-cs-pre-qualified-list.html" class="dropdown-item">Admission Officer</a>
                                     </div>
-                                </div>-->
-                            <!--/div> -->
-                            <!--<div class="col-sm-6">
+                                </div>
+                            </div> 
+                            <div class="col-sm-6">
                                 <button class="w-100 btn btn-cancel btn-md mt-3 mb-3"> <a href="index.html">Cancel</a> </button>
-                            </div>-->
-                            <!--<div class="register ml-3">
+                            </div>
+                            <div class="register ml-3">
                                 Doesnt have an account yet? <a href="registration-page.html"><span class="pressMe">Click Here</span></a>
                             </div>
                         </div>
-                    </form>-->
-                    
-                    <form class="form" method="POST" action="">
-                          <label for="username" class="form-label">Username</label>
-                          <input type="text" class="form-control" id="username" name="username" placeholder="" autofocus="true"/>
-                          <label for="password" class="form-label">Password</label>
-                          <input type="password" class="form-control" id="password" name="password" placeholder=""/>
-                          <input type="submit" value="login" name="submit" class="btn btn-login w-100 mt-3"/>
-             
-
-                          <p class="link mt-2">Don't have an account? <a href="registration.php"><span class="pressMe">Registration Now</span></a></p>
                     </form>
-                     
-
                 </div>
             </div>
         </main>
@@ -180,4 +108,3 @@
       
   </body>
 </html>
-

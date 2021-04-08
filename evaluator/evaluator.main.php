@@ -1,11 +1,20 @@
-<?php 
-include('../functions.php');
 
-if (isset($_GET['logout'])) {
-	session_destroy();
-	unset($_SESSION['user']);
-	header("location: ../login-page.php");
+<?php
+ include('../session.php');
+ include('../db.php');
+
+ 
+
+
+if (isset($_POST['approve']))
+{
+ $id=$_POST['id'];
+ $status=$_POST['status'];
+
+ 
+$query="UPDATE applicants SET status='approve' WHERE id='$id'";
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -23,8 +32,7 @@ if (isset($_GET['logout'])) {
 
 </head>
 <body>
-    <?php  if (isset($_SESSION['user'])) : ?>
-    <header class="page-header">
+        <header class="page-header">
         <nav>
           <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
             <i class="fa fa-bars"></i>
@@ -73,8 +81,7 @@ if (isset($_GET['logout'])) {
           </ul>
         </nav>
       </header>
-      <?php endif ?>
-      <section class="page-content">
+            <section class="page-content">
         <section class="search-and-user">
           <div class="admin-profile">
             <div class="notifications">
@@ -110,305 +117,43 @@ if (isset($_GET['logout'])) {
               <div class="table table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mx-3 my-3">
                 <table class="table table-sm table-striped table-bordered table-hover" id="printable-table">
                     <thead class="thead">
+
+                    <?php $results = mysqli_query($db, "SELECT * FROM applicants WHERE status='pending'"); ?>
+
                         <tr>
-                            <th><input type="checkbox" onclick="toggle(this)"></th>
                             <th>FirstName</th>
-                            <th>LastName</th>
                             <th>BirthDate</th>
                             <th>Address</th>
                             <th>ContactNo</th>
                             <th>Email</th>
                             <th>Cet</th>
-                            <th>Gpa</th>
+                            <th>Status</th>
+ 
                         </tr>
                     </thead>
                     <tbody class="tbody">
+                    <?php while ($row = mysqli_fetch_array($results)) { ?>
                         <tr>
-                            <td><input type="checkbox" name="selected"></td>
-                            <td>Adz</td>
-                            <td>Kalnain</td>
-                            <td>December 16,1998</td>
-                            <td>Mampang Z.C.</td>
-                            <td>09666319676</td>
-                            <td>adzgreen2017@gmail.com</td>
-                            <td>92%</td>
-                            <td>92%</td>
+                                <td><?php echo $row['name']; ?></td>
+                                <td><?php echo $row['birthdate']; ?></td>
+                                <td><?php echo $row['address']; ?></td>
+                                <td><?php echo $row['contact']; ?></td>
+                                <td><?php echo $row['email']; ?></td>
+                                <td><?php echo $row['cet_name']; ?></td>
+                                <td><?php echo $row['status']; ?></td>
+                                <td>
+                                   <a href="evaluator.pre.php?approve=<?php echo $row['id']; ?>" class="edit_btn" >Approve</a>
+                                  </td>
+                                  <td>
+                                    <a href="evaluator.rej.php?reject=<?php echo $row['id']; ?>" class="del_btn">Reject</a>
+                                  </td>
+                         
                         </tr>
-                        <tr>
-                          <td><input type="checkbox" name="selected"></td>
-                          <td>Adz</td>
-                          <td>Kalnain</td>
-                          <td>December 16,1998</td>
-                          <td>Mampang Z.C.</td>
-                          <td>09666319676</td>
-                          <td>adzgreen2017@gmail.com</td>
-                          <td>92%</td>
-                          <td>92%</td>
-                      </tr>
-                      <tr>
-                        <td><input type="checkbox" name="selected"></td>
-                        <td>Adz</td>
-                        <td>Kalnain</td>
-                        <td>December 16,1998</td>
-                        <td>Mampang Z.C.</td>
-                        <td>09666319676</td>
-                        <td>adzgreen2017@gmail.com</td>
-                        <td>92%</td>
-                        <td>92%</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" name="selected"></td>
-                      <td>Adz</td>
-                      <td>Kalnain</td>
-                      <td>December 16,1998</td>
-                      <td>Mampang Z.C.</td>
-                      <td>09666319676</td>
-                      <td>adzgreen2017@gmail.com</td>
-                      <td>92%</td>
-                      <td>92%</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox" name="selected"></td>
-                    <td>Adz</td>
-                    <td>Kalnain</td>
-                    <td>December 16,1998</td>
-                    <td>Mampang Z.C.</td>
-                    <td>09666319676</td>
-                    <td>adzgreen2017@gmail.com</td>
-                    <td>92%</td>
-                    <td>92%</td>
-                </tr>
-                <tr>
-                  <td><input type="checkbox" name="selected"></td>
-                  <td>Adz</td>
-                  <td>Kalnain</td>
-                  <td>December 16,1998</td>
-                  <td>Mampang Z.C.</td>
-                  <td>09666319676</td>
-                  <td>adzgreen2017@gmail.com</td>
-                  <td>92%</td>
-                  <td>92%</td>
-              </tr>
-              <tr>
-                <td><input type="checkbox" name="selected"></td>
-                <td>Adz</td>
-                <td>Kalnain</td>
-                <td>December 16,1998</td>
-                <td>Mampang Z.C.</td>
-                <td>09666319676</td>
-                <td>adzgreen2017@gmail.com</td>
-                <td>92%</td>
-                <td>92%</td>
-            </tr>
-            <tr>
-              <td><input type="checkbox" name="selected"></td>
-              <td>Adz</td>
-              <td>Kalnain</td>
-              <td>December 16,1998</td>
-              <td>Mampang Z.C.</td>
-              <td>09666319676</td>
-              <td>adzgreen2017@gmail.com</td>
-              <td>92%</td>
-              <td>92%</td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" name="selected"></td>
-            <td>Adz</td>
-            <td>Kalnain</td>
-            <td>December 16,1998</td>
-            <td>Mampang Z.C.</td>
-            <td>09666319676</td>
-            <td>adzgreen2017@gmail.com</td>
-            <td>92%</td>
-            <td>92%</td>
-        </tr>
-        <tr>
-          <td><input type="checkbox" name="selected"></td>
-          <td>Adz</td>
-          <td>Kalnain</td>
-          <td>December 16,1998</td>
-          <td>Mampang Z.C.</td>
-          <td>09666319676</td>
-          <td>adzgreen2017@gmail.com</td>
-          <td>92%</td>
-          <td>92%</td>
-      </tr>
-      <tr>
-        <td><input type="checkbox" name="selected"></td>
-        <td>Adz</td>
-        <td>Kalnain</td>
-        <td>December 16,1998</td>
-        <td>Mampang Z.C.</td>
-        <td>09666319676</td>
-        <td>adzgreen2017@gmail.com</td>
-        <td>92%</td>
-        <td>92%</td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" name="selected"></td>
-      <td>Adz</td>
-      <td>Kalnain</td>
-      <td>December 16,1998</td>
-      <td>Mampang Z.C.</td>
-      <td>09666319676</td>
-      <td>adzgreen2017@gmail.com</td>
-      <td>92%</td>
-      <td>92%</td>
-  </tr>
-  <tr>
-    <td><input type="checkbox" name="selected"></td>
-    <td>Adz</td>
-    <td>Kalnain</td>
-    <td>December 16,1998</td>
-    <td>Mampang Z.C.</td>
-    <td>09666319676</td>
-    <td>adzgreen2017@gmail.com</td>
-    <td>92%</td>
-    <td>92%</td>
-</tr>
-<tr>
-  <td><input type="checkbox" name="selected"></td>
-  <td>Adz</td>
-  <td>Kalnain</td>
-  <td>December 16,1998</td>
-  <td>Mampang Z.C.</td>
-  <td>09666319676</td>
-  <td>adzgreen2017@gmail.com</td>
-  <td>92%</td>
-  <td>92%</td>
-</tr>
-<tr>
-  <td><input type="checkbox" name="selected"></td>
-  <td>Adz</td>
-  <td>Kalnain</td>
-  <td>December 16,1998</td>
-  <td>Mampang Z.C.</td>
-  <td>09666319676</td>
-  <td>adzgreen2017@gmail.com</td>
-  <td>92%</td>
-  <td>92%</td>
-</tr>
-<tr>
-  <td><input type="checkbox" name="selected"></td>
-  <td>Adz</td>
-  <td>Kalnain</td>
-  <td>December 16,1998</td>
-  <td>Mampang Z.C.</td>
-  <td>09666319676</td>
-  <td>adzgreen2017@gmail.com</td>
-  <td>92%</td>
-  <td>92%</td>
-</tr>
-<tr>
-  <td><input type="checkbox" name="selected"></td>
-  <td>Adz</td>
-  <td>Kalnain</td>
-  <td>December 16,1998</td>
-  <td>Mampang Z.C.</td>
-  <td>09666319676</td>
-  <td>adzgreen2017@gmail.com</td>
-  <td>92%</td>
-  <td>92%</td>
-</tr>
-<tr>
-  <td><input type="checkbox" name="selected"></td>
-  <td>Adz</td>
-  <td>Kalnain</td>
-  <td>December 16,1998</td>
-  <td>Mampang Z.C.</td>
-  <td>09666319676</td>
-  <td>adzgreen2017@gmail.com</td>
-  <td>92%</td>
-  <td>92%</td>
-</tr>
-<tr>
-  <td><input type="checkbox" name="selected"></td>
-  <td>Adz</td>
-  <td>Kalnain</td>
-  <td>December 16,1998</td>
-  <td>Mampang Z.C.</td>
-  <td>09666319676</td>
-  <td>adzgreen2017@gmail.com</td>
-  <td>92%</td>
-  <td>92%</td>
-</tr>
-<tr>
-  <td><input type="checkbox" name="selected"></td>
-  <td>Adz</td>
-  <td>Kalnain</td>
-  <td>December 16,1998</td>
-  <td>Mampang Z.C.</td>
-  <td>09666319676</td>
-  <td>adzgreen2017@gmail.com</td>
-  <td>92%</td>
-  <td>92%</td>
-</tr>
-<tr>
-  <td><input type="checkbox" name="selected"></td>
-  <td>Adz</td>
-  <td>Kalnain</td>
-  <td>December 16,1998</td>
-  <td>Mampang Z.C.</td>
-  <td>09666319676</td>
-  <td>adzgreen2017@gmail.com</td>
-  <td>92%</td>
-  <td>92%</td>
-</tr>
-<tr>
-  <td><input type="checkbox" name="selected"></td>
-  <td>Adz</td>
-  <td>Kalnain</td>
-  <td>December 16,1998</td>
-  <td>Mampang Z.C.</td>
-  <td>09666319676</td>
-  <td>adzgreen2017@gmail.com</td>
-  <td>92%</td>
-  <td>92%</td>
-</tr>
-<tr>
-  <td><input type="checkbox" name="selected"></td>
-  <td>Adz</td>
-  <td>Kalnain</td>
-  <td>December 16,1998</td>
-  <td>Mampang Z.C.</td>
-  <td>09666319676</td>
-  <td>adzgreen2017@gmail.com</td>
-  <td>92%</td>
-  <td>92%</td>
-</tr>
-<tr>
-  <td><input type="checkbox" name="selected"></td>
-  <td>Adz</td>
-  <td>Kalnain</td>
-  <td>December 16,1998</td>
-  <td>Mampang Z.C.</td>
-  <td>09666319676</td>
-  <td>adzgreen2017@gmail.com</td>
-  <td>92%</td>
-  <td>92%</td>
-</tr>
-<tr>
-  <td><input type="checkbox" name="selected"></td>
-  <td>Adz</td>
-  <td>Kalnain</td>
-  <td>December 16,1998</td>
-  <td>Mampang Z.C.</td>
-  <td>09666319676</td>
-  <td>adzgreen2017@gmail.com</td>
-  <td>92%</td>
-  <td>92%</td>
-</tr>
-<tr>
-  <td><input type="checkbox" name="selected"></td>
-  <td>Adz</td>
-  <td>Kalnain</td>
-  <td>December 16,1998</td>
-  <td>Mampang Z.C.</td>
-  <td>09666319676</td>
-  <td>adzgreen2017@gmail.com</td>
-  <td>92%</td>
-  <td>92%</td>
-</tr>
+                                          
+                        <?php } ?>
+
+
+
                     </tbody>
                 </table>
               </div>

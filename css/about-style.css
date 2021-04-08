@@ -117,10 +117,14 @@ nav .nav-pills abbr{
         text-decoration: none;
         color: white;
         font-size: 15px;
-    }   
-    .navbar .container a img{
-        width: 90px;
-        border-radius: 60px;
+    }
+    .navbar .navbar-brand {
+        font-size: 15px;
+        font-weight: 600;
+    }
+    .navbar .navbar-brand img{
+        width: 30px;
+        margin-right: 2px;
     }
     #navbar-header .container .row a h5{
         font-size: 15px;
