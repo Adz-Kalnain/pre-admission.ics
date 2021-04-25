@@ -236,7 +236,7 @@
     }
 }
 @media (max-width: 440px){
-    .navbar .container a h3{
+    /*.navbar .container a h3{
         text-decoration: none;
         color: white;
         font-size: 12px;
@@ -244,12 +244,24 @@
     .navbar .container a img{
         width: 70px;
         border-radius: 60px;
+    }*/
+    .navbar .navbar-brand {
+        font-size: 15px;
+        font-weight: 600;
     }
-    .carousel-item {
+    .navbar .navbar-brand img{
+        width: 30px;
+        margin-right: 2px;
+    }
+    .navbar .navbar-toggler .navbar-toggler-icon{
+        width: 20px;
+        height: 20px;
+    }
+    .carousel-inner .carousel-item{
         height: 16rem;
     }
-    .carousel-item .container .carousel-caption{
-        color: white;
+    .carousel-inner .carousel-item .container .carousel-caption{
+        color: black;
         text-align: start;
         font-size: 9px;
     }

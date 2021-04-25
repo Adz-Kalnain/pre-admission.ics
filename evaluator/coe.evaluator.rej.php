@@ -13,12 +13,12 @@ if (isset($_GET['logout'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrator</title>
-    <link rel="icon" href="../seal/wmsu-logo.png" sizes="32x32" type="image/png">
+    <title>Evaluator - COE</title>
+    <link rel="icon" href="../seal/coe-logo.png" sizes="32x32" type="image/png">
 
     <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">          
-    <link rel="stylesheet" href="../css/admin.style.css">
+    <link rel="stylesheet" href="../css/coe.style.css">
     <link rel="stylesheet" type="text/css" href="../DataTables/datatables.css">
 
 </head>
@@ -30,38 +30,25 @@ if (isset($_GET['logout'])) {
             <i class="fa fa-bars"></i>
           </button>
           <a href="../index.html">
-            <img class="logo mx-auto" src="../seal/wmsu-logo.png" alt="wmsu logo">
+            <img class="logo mx-auto" src="../seal/coe-logo.png" alt="ics logo">
           </a>
           <ul class="admin-menu">
             <li class="menu-heading">
               <h3>Dashboard</h3>
             </li>
             <li>
-                <a href="admin.main.php">
-                  <i class="fa fa-list" aria-hidden="true"><span>Applicants</span></i>
-                </a>
-            </li>
-            <li>
-                <a href="admin.pre.php">
-                  <i class="fa fa-check" aria-hidden="true"><span>Prequalified</span></i>
-                </a>
-            </li>
-            <li>
-                <a href="admin.qual.php">
-                    <i class="fa fa-thumbs-o-up" aria-hidden="true"><span>Qualified</span></i>
-                </a>
-            </li>
-            <li>
-              <a href="admin.rej.php" class="active">
-                <i class="fa fa-thumbs-o-down" aria-hidden="true"><span>Rejected</span></i>
+              <a href="coe.evaluator.main.php">
+                <i class="fa fa-list" aria-hidden="true"><span>Applicants</span></i>
               </a>
             </li>
-            <li class="menu-heading">
-              <h3>Settings</h3>
+            <li>
+              <a href="coe.evaluator.pre.php">
+                <i class="fa fa-check" aria-hidden="true"><span>Prequalified</span></i>
+              </a>
             </li>
             <li>
-              <a href="setting.admin.php">
-                <i class="fa fa-cog" aria-hidden="true"><span>Settings</span></i>
+              <a href="coe.evaluator.rej.php" class="active">
+                <i class="fa fa-thumbs-o-down" aria-hidden="true"><span>Rejected</span></i>
               </a>
             </li>
             <li>
@@ -83,9 +70,9 @@ if (isset($_GET['logout'])) {
                   <i class="fa fa-user"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-profile">
-                    <p class="mb-0 mt-4">Mr.Admin Sir</p>
+                    <p class="mb-0 mt-4">Mr.Evaluator Sir</p>
                     <div class="dropdown-divider"></div>
-                    <p class="mt-0 mb-5">Administrator</p>
+                    <p class="mt-0 mb-5">Evaluator</p>
                     <button type="button" class="btn-danger">Logout</button>
                 </div>
                 <span class="badge">11</span>
@@ -116,7 +103,6 @@ if (isset($_GET['logout'])) {
                             <th>Address</th>
                             <th>ContactNo</th>
                             <th>Email</th>
-                            <th>Course</th>
                             <th>Cet</th>
                             <th>Gpa</th>
                         </tr>
@@ -130,7 +116,6 @@ if (isset($_GET['logout'])) {
                             <td>Mampang Z.C.</td>
                             <td>09666319676</td>
                             <td>adzgreen2017@gmail.com</td>
-                            <td>CS</td>
                             <td>92%</td>
                             <td>92%</td>
                         </tr>
@@ -142,10 +127,10 @@ if (isset($_GET['logout'])) {
                           <td>Mampang Z.C.</td>
                           <td>09666319676</td>
                           <td>adzgreen2017@gmail.com</td>
-                          <td>IT</td>
                           <td>92%</td>
                           <td>92%</td>
-                      </tr>
+                        </tr>
+                     
                     </tbody>
                 </table>
               </div>

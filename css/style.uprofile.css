@@ -31,12 +31,12 @@
 }
 
 #myTabContent p {
-     color: #000000 !Important;
+    color: dodgerblue;
     font-weight: 500;
-
+    
 }
 #myTabContent label {
-     color: #000000 !Important;
+    color: black;
     font-weight: 500;
     
 }

@@ -13,12 +13,12 @@ if (isset($_GET['logout'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrator</title>
-    <link rel="icon" href="../seal/wmsu-logo.png" sizes="32x32" type="image/png">
+    <title>Admission Officer - COE</title>
+    <link rel="icon" href="../seal/coe-logo.png" sizes="32x32" type="image/png">
 
     <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">          
-    <link rel="stylesheet" href="../css/admin.style.css">
+    <link rel="stylesheet" href="../css/coe.style.css">
     <link rel="stylesheet" type="text/css" href="../DataTables/datatables.css">
 
 </head>
@@ -30,37 +30,27 @@ if (isset($_GET['logout'])) {
             <i class="fa fa-bars"></i>
           </button>
           <a href="../index.html">
-            <img class="logo mx-auto" src="../seal/wmsu-logo.png" alt="wmsu logo">
+            <img class="logo mx-auto" src="../seal/coe-logo.png" alt="ics logo">
           </a>
           <ul class="admin-menu">
             <li class="menu-heading">
               <h3>Dashboard</h3>
             </li>
             <li>
-                <a href="admin.main.php">
-                  <i class="fa fa-list" aria-hidden="true"><span>Applicants</span></i>
-                </a>
+              <a href="coe.ao.main.php">
+                <i class="fa fa-list" aria-hidden="true"><span>Prequalified</span></i>
+              </a>
             </li>
             <li>
-                <a href="admin.pre.php">
-                  <i class="fa fa-check" aria-hidden="true"><span>Prequalified</span></i>
-                </a>
-            </li>
-            <li>
-                <a href="admin.qual.php" class="active">
-                    <i class="fa fa-thumbs-o-up" aria-hidden="true"><span>Qualified</span></i>
-                </a>
-            </li>
-            <li>
-              <a href="admin.rej.php">
-                <i class="fa fa-thumbs-o-down" aria-hidden="true"><span>Rejected</span></i>
+            <a href="coe.ao.qual.php" class="active">
+                <i class="fa fa-thumbs-o-up" aria-hidden="true"><span>Qualified</span></i>
               </a>
             </li>
             <li class="menu-heading">
               <h3>Settings</h3>
             </li>
             <li>
-              <a href="setting.admin.php">
+              <a href="ao.sett.php">
                 <i class="fa fa-cog" aria-hidden="true"><span>Settings</span></i>
               </a>
             </li>
@@ -75,26 +65,10 @@ if (isset($_GET['logout'])) {
       </header>
       <?php endif ?>
       <section class="page-content">
-        <!--<section class="search-and-user">
-          <div class="admin-profile">
-            <div class="notifications">
-                <i class="fa fa-bell" aria-hidden="true"></i>
-                <button class="userprofile" id="dropdown-profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-user"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-profile">
-                    <p class="mb-0 mt-4">Mr.Admin Sir</p>
-                    <div class="dropdown-divider"></div>
-                    <p class="mt-0 mb-5">Administrator</p>
-                    <button type="button" class="btn-danger">Logout</button>
-                </div>
-                <span class="badge">11</span>
-              </div>
-          </div>
-        </section>-->
         <section class="btn-group">
-          <p class="section-name">Qualified List</p>
+          <p class="section-name">Pre-qualified List</p>
           <div class="buttons">
+            <button class="btn btn-warning" type="submit"><span class="label">Submit</span></button>
             <button class="toggle-more-menu" id="dropdown-more-buttons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-bars"></i>
             </button>

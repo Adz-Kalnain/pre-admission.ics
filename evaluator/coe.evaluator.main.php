@@ -1,11 +1,19 @@
 <?php 
 include('../functions.php');
 
-if (isset($_GET['logout'])) {
-	session_destroy();
-	unset($_SESSION['user']);
-	header("location: ../index.php");
-}
+  if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['user']);
+  	header("location: ../index.php");
+
+  }
+  if (isset($_POST['approve'])){
+    $id=$_POST['id'];
+    $status=$_POST['status'];
+    
+    
+    $query="UPDATE applicants SET status='approve' WHERE id='$id'";
+  }
 ?>
 
 <!DOCTYPE html>
@@ -13,12 +21,12 @@ if (isset($_GET['logout'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrator</title>
-    <link rel="icon" href="../seal/wmsu-logo.png" sizes="32x32" type="image/png">
+    <title>Evaluator - COE</title>
+    <link rel="icon" href="../seal/coe-logo.png" sizes="32x32" type="image/png">
 
     <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">          
-    <link rel="stylesheet" href="../css/admin.style.css">
+    <link rel="stylesheet" href="../css/coe.style.css">
     <link rel="stylesheet" type="text/css" href="../DataTables/datatables.css">
 
 </head>
@@ -30,38 +38,25 @@ if (isset($_GET['logout'])) {
             <i class="fa fa-bars"></i>
           </button>
           <a href="../index.html">
-            <img class="logo mx-auto" src="../seal/wmsu-logo.png" alt="wmsu logo">
+            <img class="logo mx-auto" src="../seal/coe-logo.png" alt="ics logo">
           </a>
           <ul class="admin-menu">
             <li class="menu-heading">
               <h3>Dashboard</h3>
             </li>
             <li>
-                <a href="admin.main.php">
-                  <i class="fa fa-list" aria-hidden="true"><span>Applicants</span></i>
-                </a>
-            </li>
-            <li>
-                <a href="admin.pre.php">
-                  <i class="fa fa-check" aria-hidden="true"><span>Prequalified</span></i>
-                </a>
-            </li>
-            <li>
-                <a href="admin.qual.php">
-                    <i class="fa fa-thumbs-o-up" aria-hidden="true"><span>Qualified</span></i>
-                </a>
-            </li>
-            <li>
-              <a href="admin.rej.php" class="active">
-                <i class="fa fa-thumbs-o-down" aria-hidden="true"><span>Rejected</span></i>
+              <a href="coe.evaluator.main.php" class="active">
+                <i class="fa fa-list" aria-hidden="true"><span>Applicants</span></i>
               </a>
             </li>
-            <li class="menu-heading">
-              <h3>Settings</h3>
+            <li>
+              <a href="coe.evaluator.pre.php">
+                <i class="fa fa-check" aria-hidden="true"><span>Prequalified</span></i>
+              </a>
             </li>
             <li>
-              <a href="setting.admin.php">
-                <i class="fa fa-cog" aria-hidden="true"><span>Settings</span></i>
+              <a href="coe.evaluator.rej.php">
+                <i class="fa fa-thumbs-o-down" aria-hidden="true"><span>Rejected</span></i>
               </a>
             </li>
             <li>
@@ -75,31 +70,17 @@ if (isset($_GET['logout'])) {
       </header>
       <?php endif ?>
       <section class="page-content">
-        <!--<section class="search-and-user">
-          <div class="admin-profile">
-            <div class="notifications">
-                <i class="fa fa-bell" aria-hidden="true"></i>
-                <button class="userprofile" id="dropdown-profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-user"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-profile">
-                    <p class="mb-0 mt-4">Mr.Admin Sir</p>
-                    <div class="dropdown-divider"></div>
-                    <p class="mt-0 mb-5">Administrator</p>
-                    <button type="button" class="btn-danger">Logout</button>
-                </div>
-                <span class="badge">11</span>
-              </div>
-          </div>
-        </section>-->
+        
         <section class="btn-group">
-          <p class="section-name">Rejected List</p>
+          <p class="section-name">Applicant's List</p>
           <div class="buttons">
+            <button class="btn btn-warning"><span class="label">Verify</span></button>
+            <button class="btn btn-danger"><span class="label">Reject</span></button>
             <button class="toggle-more-menu" id="dropdown-more-buttons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-bars"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdown-more-buttons">
-              <button class="dropdown-item" type="button">Print</button>
+              <button class="dropdown-item" type="button" onclick="printcontent()">Print</button>
             </div>
           </div>
         </section>
@@ -108,44 +89,38 @@ if (isset($_GET['logout'])) {
               <div class="table table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mx-3 my-3">
                 <table class="table table-sm table-striped table-bordered table-hover" id="printable-table">
                     <thead class="thead">
+
+                        <?php $results = mysqli_query($db, "SELECT * FROM applicants WHERE status='pending'"); ?>
                         <tr>
-                            <th><input type="checkbox" onclick="toggle(this)"></th>
                             <th>FirstName</th>
                             <th>LastName</th>
                             <th>BirthDate</th>
                             <th>Address</th>
                             <th>ContactNo</th>
                             <th>Email</th>
-                            <th>Course</th>
                             <th>Cet</th>
                             <th>Gpa</th>
                         </tr>
                     </thead>
                     <tbody class="tbody">
+                    <?php while ($row = mysqli_fetch_array($results)) { ?>
                         <tr>
-                            <td><input type="checkbox" name="selected"></td>
-                            <td>Adz</td>
-                            <td>Kalnain</td>
-                            <td>December 16,1998</td>
-                            <td>Mampang Z.C.</td>
-                            <td>09666319676</td>
-                            <td>adzgreen2017@gmail.com</td>
-                            <td>CS</td>
-                            <td>92%</td>
-                            <td>92%</td>
+                          <td><?php echo $row['name']; ?></td>
+                          <td><?php echo $row['birthdate']; ?></td>
+                          <td><?php echo $row['address']; ?></td>
+                          <td><?php echo $row['contact']; ?></td>
+                          <td><?php echo $row['email']; ?></td>
+                          <td><?php echo $row['cet_name']; ?></td>
+                          <td><?php echo $row['status']; ?></td>
+                          <td>
+                            <a href="evaluator.pre.php?approve=<?php echo $row['id']; ?>" class="edit_btn" >Approve</a>
+                          </td>
+                          <td>
+                            <a href="evaluator.rej.php?reject=<?php echo $row['id']; ?>" class="del_btn">Reject</a>
+                          </td>
                         </tr>
-                        <tr>
-                          <td><input type="checkbox" name="selected"></td>
-                          <td>Adz</td>
-                          <td>Kalnain</td>
-                          <td>December 16,1998</td>
-                          <td>Mampang Z.C.</td>
-                          <td>09666319676</td>
-                          <td>adzgreen2017@gmail.com</td>
-                          <td>IT</td>
-                          <td>92%</td>
-                          <td>92%</td>
-                      </tr>
+                    <?php } ?>
+
                     </tbody>
                 </table>
               </div>
@@ -157,7 +132,7 @@ if (isset($_GET['logout'])) {
     <script src="../bootstrap4/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" charset="utf8" src="../DataTables/datatables.js"></script>
     <script src="../js/control.js"></script>
-    
+
     <script>
         $(document).ready( function () {
         $('#printable-table').DataTable();

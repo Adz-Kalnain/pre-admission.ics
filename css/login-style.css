@@ -1,4 +1,4 @@
-.navbar{
+/*.navbar{
     background-color:rgba(0, 128, 128, 0.808);
 }
 .navbar .navbar-brand img{
@@ -18,7 +18,7 @@
         width: 30px;
         margin-right: 2px;
     }
-}
+}*/
 .container {
     max-width: 760px;
 }
@@ -49,8 +49,9 @@
     color: grey;
 }
 .container main .form .pressMe{
-    color: teal;
+    color: crimson;
 }
+
 #username,#password{
     border: none;
     border-bottom: 2px solid rgb(99, 95, 95);
@@ -66,13 +67,14 @@ h4{
     color: rgb(85, 84, 84);
 }
 .btn-login{
-    background-color:teal;
+    background-color:crimson;
     color: white;
 }
 .btn-login:hover{
-    background-color: rgb(4, 116, 116);
+    background-color: rgb(173, 17, 49);
     color: whitesmoke;
 }
+
 /*.btn-cancel{
     background-color: grey;
 }

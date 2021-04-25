@@ -1,14 +1,18 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
 /*latto font lng malakas*/
 :root {
-  --page-header-bgColor: crimson;
-  --page-header-bgColor-hover: rgba(0, 0, 0, 0.103);
+  --page-header-bgColor: rgb(148, 2, 2);
+  --page-header-bgColor-hover: rgb(88, 2, 2);
   --page-header-txtColor: white;
   --page-header-headingColor: rgb(202, 198, 198);
   --page-header-width: 220px;
   --page-content-bgColor: #f0f1f6;
   --page-content-txtColor: #171616;
   --page-content-blockColor: #fff;
+  --white: #fff;
+  --black: #333;
+  --blue: #00b9eb;
+  --red: #ec1848;
   --border-radius: 4px;
   --box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.075);
 }
@@ -32,20 +36,13 @@ a {
 }
 
 button {
+  background: none;
   cursor: pointer;
 }
-/*
-input {
-  -webkit-appearance: none;
-}*/
 
 button, input {
   border: none;
 }
-/*
-svg {
-  display: block;
-}*/
 
 i {
   display: block;
@@ -68,26 +65,6 @@ body {
   color: var(--page-header-txtColor);
   background: var(--page-header-bgColor);
 }
-/*
-.dropdown-toggle::after{
-	display: block;
-	position: absolute;
-	right: 20%;
-	transform: translateY(-50%);
-}
-
-ul ul a{
-  margin: 0 !important;
-  padding: 0 !important;
-	font-size: 12px !important;
-	padding-left: 40px !important;
-	background: crimson;
-}
-
-ul ul a:hover {
-  background: white !important;
-  color: crimson !important;
-}*/
 
 .page-header nav {
   display: flex;
@@ -99,14 +76,12 @@ ul ul a:hover {
   border-radius: 50%;
   display: block;
   max-width: 120px;
-  /*margin: 0 15px;*/
 }
 
 .page-header .toggle-mob-menu {
   display: none;
   margin-left: 5px;
   padding: 0px;
-  /*background: var(--page-content-blockColor);*/
   background: var(--page-header-bgColor);
   color: white;
   width: 35px;
@@ -182,16 +157,12 @@ ul ul a:hover {
 }
 
 .page-header .admin-menu a:hover,
-.page-header .admin-menu a:focus {
+.page-header .admin-menu a:focus/*,
+.page-header .admin-menu button:hover,
+.page-header .admin-menu button:focus*/ {
   background: var(--page-header-bgColor-hover);
   outline: none;
 }
-
-/*.page-header .admin-menu button:hover,
-.page-header .admin-menu button:focus{
-  background: var(--page-header-bgColor-hover);
-  outline: none;
-}*/
 
 /* PAGE CONTENT–------------------------------––––––––––––––––––––––––––––––––––––––––––––––––– */
 .page-content {
@@ -202,14 +173,6 @@ ul ul a:hover {
   padding: 30px;
   color: var(--page-content-txtColor);
   background: var(--page-content-bgColor);
-}
-
-#allSettingButtons {
-  background-color: var(--page-header-bgColor);
-}
-
-#allSettingButtons:hover {
-  background-color: rgb(185, 13, 47);
 }
 
 .btn-group {
@@ -230,24 +193,18 @@ ul ul a:hover {
   justify-content: flex-end;
 }
 
-/*.btn-group .buttons .btn-success {
-  width: 80px;
-  height: 30px;
-  background-color: teal;
-  color: white;
+.btn-group .buttons .btn-warning {
+  color: black;
+  width: 85px;
   margin: 0 10px 10px;
-  border-radius: 15px;
   outline: none;
-}*/
-/*
+}
+
 .btn-group .buttons .btn-danger {
-  width: 80px;
-  height: 30px;
-  color: white;
+  width: 85px;
   margin: 0 0 10px;
-  border-radius: 15px;
   outline: none;
-}*/
+}
 
 .btn-group .buttons .toggle-more-menu i {
   width: 30px;
@@ -277,19 +234,9 @@ ul ul a:hover {
   font-size: 13px;
 }
 
-/*.btn-group .buttons .btn-success:hover {
-  background-color: var(--page-header-bgColor-hover);
-}*/
-
 .btn-group .section-name {
   font-size: 25px;
 }
-
-/*.page-content .grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 30px;
-}*/
 
 .page-content .grid .thead {
     background-color: var(--page-header-bgColor);

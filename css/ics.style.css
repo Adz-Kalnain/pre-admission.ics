@@ -1,14 +1,18 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
 /*latto font lng malakas*/
 :root {
-  --page-header-bgColor: crimson;
-  --page-header-bgColor-hover: rgba(0, 0, 0, 0.103);
+  --page-header-bgColor: teal;
+  --page-header-bgColor-hover: rgb(3, 100, 100);
   --page-header-txtColor: white;
   --page-header-headingColor: rgb(202, 198, 198);
   --page-header-width: 220px;
   --page-content-bgColor: #f0f1f6;
   --page-content-txtColor: #171616;
   --page-content-blockColor: #fff;
+  --white: #fff;
+  --black: #333;
+  --blue: #00b9eb;
+  --red: #ec1848;
   --border-radius: 4px;
   --box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.075);
 }
@@ -32,20 +36,13 @@ a {
 }
 
 button {
+  background: none;
   cursor: pointer;
 }
-/*
-input {
-  -webkit-appearance: none;
-}*/
 
 button, input {
   border: none;
 }
-/*
-svg {
-  display: block;
-}*/
 
 i {
   display: block;
@@ -68,26 +65,6 @@ body {
   color: var(--page-header-txtColor);
   background: var(--page-header-bgColor);
 }
-/*
-.dropdown-toggle::after{
-	display: block;
-	position: absolute;
-	right: 20%;
-	transform: translateY(-50%);
-}
-
-ul ul a{
-  margin: 0 !important;
-  padding: 0 !important;
-	font-size: 12px !important;
-	padding-left: 40px !important;
-	background: crimson;
-}
-
-ul ul a:hover {
-  background: white !important;
-  color: crimson !important;
-}*/
 
 .page-header nav {
   display: flex;
@@ -182,16 +159,12 @@ ul ul a:hover {
 }
 
 .page-header .admin-menu a:hover,
-.page-header .admin-menu a:focus {
+.page-header .admin-menu a:focus/*,
+.page-header .admin-menu button:hover,
+.page-header .admin-menu button:focus*/ {
   background: var(--page-header-bgColor-hover);
   outline: none;
 }
-
-/*.page-header .admin-menu button:hover,
-.page-header .admin-menu button:focus{
-  background: var(--page-header-bgColor-hover);
-  outline: none;
-}*/
 
 /* PAGE CONTENT–------------------------------––––––––––––––––––––––––––––––––––––––––––––––––– */
 .page-content {
@@ -202,14 +175,6 @@ ul ul a:hover {
   padding: 30px;
   color: var(--page-content-txtColor);
   background: var(--page-content-bgColor);
-}
-
-#allSettingButtons {
-  background-color: var(--page-header-bgColor);
-}
-
-#allSettingButtons:hover {
-  background-color: rgb(185, 13, 47);
 }
 
 .btn-group {
@@ -229,8 +194,8 @@ ul ul a:hover {
 .btn-group .buttons {
   justify-content: flex-end;
 }
-
-/*.btn-group .buttons .btn-success {
+/*
+.btn-group .buttons .btn-success {
   width: 80px;
   height: 30px;
   background-color: teal;
@@ -238,8 +203,8 @@ ul ul a:hover {
   margin: 0 10px 10px;
   border-radius: 15px;
   outline: none;
-}*/
-/*
+}
+
 .btn-group .buttons .btn-danger {
   width: 80px;
   height: 30px;
@@ -247,6 +212,18 @@ ul ul a:hover {
   margin: 0 0 10px;
   border-radius: 15px;
   outline: none;
+}*/
+
+/*.btn-group .buttons .btn-info {
+  background-color: teal;
+  width: 85px;
+  height: 30px;
+  margin: 0 10px 10px;
+}
+
+.btn-group .buttons .btn-secondary {
+  width: 85px;
+  margin: 0 0 10px;
 }*/
 
 .btn-group .buttons .toggle-more-menu i {
@@ -276,10 +253,6 @@ ul ul a:hover {
 .btn-group .buttons .label {
   font-size: 13px;
 }
-
-/*.btn-group .buttons .btn-success:hover {
-  background-color: var(--page-header-bgColor-hover);
-}*/
 
 .btn-group .section-name {
   font-size: 25px;
@@ -378,47 +351,6 @@ ul ul a:hover {
   .page-content .grid {
     grid-gap: 10px;
   }
-
-  /*.search-and-user {
-    position: absolute;
-    left: 131px;
-    top: 10px;
-    padding: 0;
-    grid-column-gap: 5px;
-    width: calc(100% - 141px);
-    border-radius: var(--border-radius);
-    background: transparent;
-  }
-
-  .search-and-user .admin-profile .notifications i {
-    width: 30px;
-    height: 15px;
-    color: var(--white);
-    margin-right: 0px;
-    margin-left: 3px;
-    margin-top: 8px;
-    transition: fill 0.2s;
-  }*/
-
-/*  .search-and-user input[type="search"] {
-    font-size: 1rem;
-    height: 35px;
-  }
-*/
-  /*.search-and-user form svg {
-    width: 18px;
-    height: 18px;
-  }*/
-
-  /*.search-and-user .admin-profile svg {
-    fill: var(--white);
-  }*/
-  
-/*this one is optional, move nia lang to the right c profile*/
-
-  /*.search-and-user .admin-profile {
-      justify-content: flex-end;
-  }*/
 
   .page-content .grid .setting .accordion .card .collapse .card-body .form-control {
     width: 100%;
