@@ -124,12 +124,9 @@
                         $username = "";
                         $email = "";
                         $name = "";
-                        $fname = "";
-                        $lname = "";
                         if (isset($_POST['submit'])) {
+                            $name = $_POST['name'];
                             $username = $_POST['username'];
-                            $fname = $_POST['firstname'];
-                            $lname = $_POST['lastname'];
                             $email = $_POST['email'];
                             $password = $_POST['password'];
 
@@ -144,8 +141,8 @@
                             }else if(mysqli_num_rows($res_e) > 0){
                             $email_error = "Email already taken"; 	
                             }else{
-                                $query = "INSERT INTO users (firstname, lastname, username, email, password, user_type) 
-                                        VALUES ('$fname' '$lname','$username', '$email', '".md5($password)."', 'user')";
+                                $query = "INSERT INTO users (name,username, email, password, user_type) 
+                                        VALUES ('$name','$username', '$email', '".md5($password)."', 'user')";
                                 $results = mysqli_query($db, $query);
                                     //yung md5 for encryption yan, pero dih na ata possible yung feature na reset password pang gagamit tayo md5, pero oknayan atleast encrypted. 
                                     if ($results) {
@@ -167,19 +164,11 @@
                     <form class="form" action="" method="post">
 
 
-                    <label for="name" class="form-label">First Name</label>
-                    <div <?php if (isset($fname_error)): ?> class="form_error" <?php endif ?> >
-                            <input type="text" class="form-control login-input" id="firstname" name="firstname" placeholder="First Name" value="<?php echo $fname; ?>" required>
-                            <?php if (isset($fname_error)): ?>
-                            <span><?php echo $fname_error; ?></span>
-                            <?php endif ?>
+                    <label for="name" class="form-label">Full Name</label>
+                      
+                            <input type="text" class="form-control login-input" id="name" name="name" placeholder="Name" value="<?php echo $name; ?>" required>
+          
 
-                    <label for="name" class="form-label">Last Name</label>
-                    <div <?php if (isset($lname_error)): ?> class="form_error" <?php endif ?> >
-                            <input type="text" class="form-control login-input" id="lastname" name="lastname" placeholder="Last Name" value="<?php echo $lname; ?>" required>
-                            <?php if (isset($lname_error)): ?>
-                            <span><?php echo $lname; ?></span>
-                            <?php endif ?>
 
                         <label for="username" class="form-label">Username</label>
                         <div <?php if (isset($name_error)): ?> class="form_error" <?php endif ?> >
