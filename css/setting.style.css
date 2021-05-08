@@ -34,18 +34,10 @@ a {
 button {
   cursor: pointer;
 }
-/*
-input {
-  -webkit-appearance: none;
-}*/
 
 button, input {
   border: none;
 }
-/*
-svg {
-  display: block;
-}*/
 
 i {
   display: block;
@@ -99,14 +91,12 @@ ul ul a:hover {
   border-radius: 50%;
   display: block;
   max-width: 120px;
-  /*margin: 0 15px;*/
 }
 
 .page-header .toggle-mob-menu {
   display: none;
   margin-left: 5px;
   padding: 0px;
-  /*background: var(--page-content-blockColor);*/
   background: var(--page-header-bgColor);
   color: white;
   width: 35px;
@@ -187,12 +177,6 @@ ul ul a:hover {
   outline: none;
 }
 
-/*.page-header .admin-menu button:hover,
-.page-header .admin-menu button:focus{
-  background: var(--page-header-bgColor-hover);
-  outline: none;
-}*/
-
 /* PAGE CONTENT–------------------------------––––––––––––––––––––––––––––––––––––––––––––––––– */
 .page-content {
   position: relative;
@@ -204,116 +188,90 @@ ul ul a:hover {
   background: var(--page-content-bgColor);
 }
 
+.btn-group .section-name {
+  font-size: 25px;
+}
+/*---------Here Goes Setting design--------*/
+
+.page-content .grid .setting .options .setting-menu {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-top: 20px;
+}
+/*ang alam ko yung * for all, dih kase e explain ng tutorial*/
+/*.page-content .grid .setting .options .setting-menu ul li > * {
+  padding: 14px 15px;
+}*/
+
+.page-content .grid .setting .options {
+  width: 25%;
+  background-color: var(--page-header-bgColor);
+  color: white;
+  text-align: start;
+  margin-right: 3%;
+  border-bottom-left-radius: var(--border-radius);
+  border-top-left-radius: var(--border-radius);
+}
+
+.page-content .grid .setting .options .setting-menu .list-group .list-group-item{
+  text-decoration: none;
+  padding: 14px 15px;
+  background-color: var(--page-header-bgColor);
+  color: var(--page-header-txtColor);
+}
+
+.page-content .grid .setting .options .setting-menu .list-group .list-group-item.active, .list-group-item:focus {
+  background-color: var(--page-header-bgColor-hover);
+  border-color: transparent;
+}
+
+#message {
+  color: teal !important;
+}
+
+#warning {
+  color: crimson;
+}
+
+#setting-content-container {
+  position: absolute;
+  width: 550px;
+  margin: 0;
+  top: 50%;
+  left: 65%;
+  margin-right: -50%;
+  transform: translate(-65%, -50%);
+}
+
+/*.page-content .grid .setting ul li {
+  padding: 15px 0 10px;
+  padding-left: 12%;
+}
+
+.page-content .grid .setting ul li:hover {
+  background-color: var(--page-header-bgColor-hover);
+}*/
+
+.page-content .grid > article {
+display: flex;
+min-height: 80vh;
+height: 100%;
+background: var(--page-content-blockColor);
+border-radius: var(--border-radius);
+box-shadow: var(--box-shadow);
+}
+
+/*-------------------end---------------*/
+
 #allSettingButtons {
   background-color: var(--page-header-bgColor);
+  color: white;
 }
 
 #allSettingButtons:hover {
   background-color: rgb(185, 13, 47);
 }
-
-.btn-group {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-column-gap: 0px;
-  align-items: center;
-  background: var(--page-content-bgColor);
-  margin-bottom: 25px;
-}
-
-.btn-group .buttons {
-  display: flex;
-  align-items: center;
-}
-
-.btn-group .buttons {
-  justify-content: flex-end;
-}
-
-/*.btn-group .buttons .btn-success {
-  width: 80px;
-  height: 30px;
-  background-color: teal;
-  color: white;
-  margin: 0 10px 10px;
-  border-radius: 15px;
-  outline: none;
-}*/
-/*
-.btn-group .buttons .btn-danger {
-  width: 80px;
-  height: 30px;
-  color: white;
-  margin: 0 0 10px;
-  border-radius: 15px;
-  outline: none;
-}*/
-
-.btn-group .buttons .toggle-more-menu i {
-  width: 30px;
-  height: 30px;
-  margin: 0 0 0 15px;
-}
-
-.btn-group .buttons .toggle-more-menu {
-  outline: none;
-}
-
-.btn-group .buttons .dropdown-menu {
-  background-color: var(--page-header-bgColor);
-}
-
-.btn-group .buttons .dropdown-menu .dropdown-item {
-  color: var(--page-header-txtColor);
-}
-
-.btn-group .buttons .dropdown-menu .dropdown-item:hover {
-  background-color: var(--page-header-bgColor-hover);
-  color: var(--white);
-}
-
-
-.btn-group .buttons .label {
-  font-size: 13px;
-}
-
-/*.btn-group .buttons .btn-success:hover {
-  background-color: var(--page-header-bgColor-hover);
-}*/
-
-.btn-group .section-name {
-  font-size: 25px;
-}
-
-/*.page-content .grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 30px;
-}*/
-
-.page-content .grid .thead {
-    background-color: var(--page-header-bgColor);
-    color: white;
-    font-size: 12px;
-}
-.page-content .grid .tbody {
-    font-size: 12px;
-}
-.page-content .grid > article {
-  display: flex;
-  /*height: 300px;*/
-  /*height: 100vh;*/
-  min-height: 70vh;
-  height: 100%;
-  background: var(--page-content-blockColor);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-}
-/*
-.page-content .grid > article:first-child,
-.page-content .grid > article:last-child {
-  grid-column: 1 / -1;
-}*/
 
 
 /*Adjustment----------------------------------–––––––––––––––––––––––––––––––––––––––––––––––––– */

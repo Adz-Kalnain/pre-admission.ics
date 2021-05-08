@@ -4,7 +4,7 @@ include('../functions.php');
 if (isset($_GET['logout'])) {
 	session_destroy();
 	unset($_SESSION['user']);
-	header("location: ../login-page.php");
+	header("location: ../index.php");
 }
 ?>
 
@@ -14,7 +14,7 @@ if (isset($_GET['logout'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrator</title>
-    <link rel="icon" href="../svgs/logo.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../seal/wmsu-logo.png" sizes="32x32" type="image/png">
 
     <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">          
@@ -30,16 +30,25 @@ if (isset($_GET['logout'])) {
             <i class="fa fa-bars"></i>
           </button>
           <a href="../index.html">
-            <img class="logo mx-auto" src="../svgs/logo.png" alt="ics logo">
+            <img class="logo mx-auto" src="../seal/wmsu-logo.png" alt="wmsu logo">
           </a>
           <ul class="admin-menu">
             <li class="menu-heading">
               <h3>Dashboard</h3>
             </li>
             <li>
-                <a href="admin.main.php" class="active">
+                <!--<a href="#applicantSubmenu" class="active" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">-->
+                <a href="#admin.main.php" class="active">
                   <i class="fa fa-list" aria-hidden="true"><span>Applicants</span></i>
                 </a>
+                <!--<ul class="collapse list-unstyled" id="applicantSubmenu">
+                  <li>
+                    <a href="#">ICS</a>
+                  </li>
+                  <li>
+                    <a href="#">COE</a>
+                  </li>
+                </ul>-->
             </li>
             <li>
                 <a href="admin.pre.php">
@@ -60,24 +69,13 @@ if (isset($_GET['logout'])) {
               <h3>Settings</h3>
             </li>
             <li>
-              <a href="../sett.html">
+              <a href="setting.admin.php">
                 <i class="fa fa-cog" aria-hidden="true"><span>Settings</span></i>
               </a>
             </li>
-            <!--<li>
-              <a href="#0">
-                <i class="fa fa-list-alt" aria-hidden="true"><span>Criteria</span></i>
-              </a>
-            </li>
             <li>
-                <a href="#0">
-                  <i class="fa fa-list-alt" aria-hidden="true"><span>Requirement</span></i>
-                </a>
-              </li>-->
-            <li>
-              <a href="../login-page.php?logout='1'">
+              <a href="../index.php?logout='1'">
                 <i class="fa fa-sign-out"><span>Logout</span></i>
-                
               </a>
             </li>
           </ul>
@@ -85,28 +83,11 @@ if (isset($_GET['logout'])) {
       </header>
       <?php endif ?>
       <section class="page-content">
-        <section class="search-and-user">
-          <div class="admin-profile">
-            <div class="notifications">
-                <i class="fa fa-bell" aria-hidden="true"></i>
-                <button class="userprofile" id="dropdown-profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-user"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-profile">
-                    <p class="mb-0 mt-4">Mr.Admin Sir</p>
-                    <div class="dropdown-divider"></div>
-                    <p class="mt-0 mb-5">Administrator</p>
-                    <button type="button" class="btn-danger">Logout</button>
-                </div>
-                <span class="badge">11</span>
-              </div>
-          </div>
-        </section>
         <section class="btn-group">
           <p class="section-name">Applicant's List</p>
           <div class="buttons">
-            <button class="btn-success"><span class="label">Verified</span></button>
-            <button class="btn-danger"><span class="label">Reject</span></button>
+            <button class="btn btn-primary mr-2 pl-3 pr-3"><span class="label">Verify</span></button>
+            <button class="btn btn-danger pl-3 pr-3"><span class="label">Reject</span></button>
             <button class="toggle-more-menu" id="dropdown-more-buttons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-bars"></i>
             </button>

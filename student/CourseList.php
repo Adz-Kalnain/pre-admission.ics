@@ -8,14 +8,17 @@
  $query= mysqli_query($db,"SELECT * FROM users WHERE `username` = '".$_SESSION['login_user']."' ")or die(mysql_error());
  $arr = mysqli_fetch_array($query);
 
- 
+ if (isset($_GET['select'])) {
+    $id = $_GET['select'];
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Application</title>
+    <title>Course List</title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -88,7 +91,7 @@ a {
     <header id="uphead">
         <nav class="navbar navbar-expand-lg navbar-dark px-5">
             <a class="navbar-brand justify-content-start" href="UserProfile.html">
-                <img src="../seal/wmsu-logo.png" alt="">WMSU Online Pre-Admission
+                <img src="../svgs/ics_seal.jpg" alt="">WMSU Online Pre-Admission
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -126,9 +129,17 @@ a {
 
 
  <div class="col-lg-12">
+
 <div class="card shadow mb-4">
   <div class="card-header py-3">
-    <h6 class="m-0 font-weight-bold text-danger">List of Colleges</h6>
+      <div class="row">
+      <div class="col-md-9">
+      <h6 class="m-0 font-weight-bold text-danger">List of Courses</h6>
+      </div>
+      <div class="col-md-3">
+      <a href="UserApplication.php">Return to Colleges</a>
+      </div>
+      </div>
   </div>
   <div class="card-body">
   <div class="row">
@@ -139,51 +150,66 @@ a {
 
 <table class='selected-col-2'>
 <tbody>
-<?php
-$limit = isset($_POST["limit-records"]) ? $_POST["limit-records"] : 5;
-$page = isset($_GET['page']) ? $_GET['page'] : 1;
-$start = ($page - 1) * $limit;
-$results = mysqli_query($db, "SELECT * from college LIMIT $start,$limit");
-$results1 = mysqli_query($db, "SELECT COUNT(college_id) AS id from college");
-$collegeCount = mysqli_fetch_array($results1);
-	$total = $collegeCount['id'];
-	$pages = ceil( $total / $limit );
-
-	$Previous = $page - 1;
-	$Next = $page + 1;
-?>
+<?php $results = mysqli_query($db, "SELECT * from coursestbl WHERE college_id='$id'")?>
     
     <?php while ($row = mysqli_fetch_array($results)) { ?>
         <tr>
-    <td><img class="rounded-circle" src="../collegeimg/<?php echo $row['college_img']; ?>" alt=""  width="150px" height="150px"></td>
-    <td><?php echo $row['college_name']; ?></td>
-    <td><?php echo $row['college_description']; ?></td>
-    <td style="display: none;"><?php echo $row['college_id']; ?></td>
-    <td><a href="CourseList.php?select=<?php echo $row['college_id']; ?>">Check</a></td>
+    <td><img class="rounded-circle" src="../collegeimg/<?php echo $row['course_img']; ?>" alt=""  width="150px" height="150px"></td>
+    <td><?php echo $row['course_name']; ?></td>
+    <td><?php echo $row['course_description']; ?></td>
+    
+    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CS-Modal">Apply
+                        </button></td>
     </tr>
     
     <?php } ?>
 </tbody>
 </table>
-<div class="col-md-10">
-				<nav aria-label="Page navigation">
-					<ul class="pagination">
-				    <li>
-				      <a href="UserApplication.php?page=<?= $Previous; ?>" aria-label="Previous">
-				        <span aria-hidden="true">&laquo; Previous</span>
-				      </a>
-				    </li>
-				    <?php for($i = 1; $i<= $pages; $i++) : ?>
-				    	<li><a href="UserApplication.php?page=<?= $i; ?>"><?= $i; ?></a></li>
-				    <?php endfor; ?>
-				    <li>
-				      <a href="UserApplication.php?page=<?= $Next; ?>" aria-label="Next">
-				        <span aria-hidden="true">Next &raquo;</span>
-				      </a>
-				    </li>
-				  </ul>
-				</nav>
-			</div>
+<form action="uploadcs.php" method="post" enctype="multipart/form-data">
+                            <div class="modal" id="CS-Modal">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Upload your Requirements</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <div class="col-sm-12">
+                                                <label for="cet" class="form-label">CET copy</label>
+                                                <input type="file" id="cet" name="cscet">
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <label for="cet" class="form-label">Good Moral</label>
+                                                <input type="file" id="moral">
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <label for="gpa" class="form-label">GPA copy</label>
+                                                <input type="file" id="gpa">
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <label for="gpa" class="form-label">Shiftee Form copy (if your
+                                                    Shiftee)</label>
+                                                <input type="file" id="shiftee">
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary"
+                                                data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-success" name="save">Upload</button>
+                                            
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
   </div>
 </div>
 
@@ -212,13 +238,6 @@ $collegeCount = mysqli_fetch_array($results1);
                 </div>
             </div>
         </div>
-        <script type="text/javascript">
-	$(document).ready(function(){
-		$("#limit-records").change(function(){
-			$('form').submit();
-		})
-	})
-</script>
 </body>
 
 </html>

@@ -1,5 +1,3 @@
-
-
 <?php
  include('../session.php');
  include('../db.php');
@@ -55,7 +53,7 @@
     <title>User Profile</title>
     <link rel="icon" href="../svgs/logo.png" sizes="32x32" type="image/png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/style.uprofile.css">
+    <link rel="stylesheet" href="../css/styleprofile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -68,7 +66,7 @@
     <header id="uphead">
         <nav class="navbar navbar-expand-lg navbar-dark px-5">
             <a class="navbar-brand justify-content-start" href="UserProfile.html">
-                <img src="../svgs/ics_seal.jpg" alt="">WMSU ICS Online Pre-Admission
+                <img src="../svgs/ics_seal.jpg" alt="">WMSU Online Pre-Admission
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,7 +81,8 @@
                         <a class="nav-link" href="UserApplication.php">Apply for Course</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../logout.php">Log-out</a>
+                        
+                    <a class="nav-link" href="../student/logout.php">Log-out</a>
                     </li>
                 </ul>
             </div>
@@ -97,15 +96,9 @@
                 <div class="col-md-12 mt-10 pt-10">
                     <div class="row z-depth-3 ">
                         <div class="col-sm-3 rounded-left" id="left">
-                    
-                    
                         <?php
                             $image_src2 = $arr['image_text'];
-
                                 ?>
-
-                    
-
                             <div class="card-block text-center text-white">
                                 <img class="rounded-circle mt-4" src='images/<?php echo $arr['image_text'];?>' alt="" width="150px" height="150px">
                                 <h3 class="font-weight-bold mt-2">Student Picture</h3>
@@ -128,8 +121,6 @@
                                     </form>
                                     </div>
                                 </div>
-
-
                                 <div class="col-sm-10 ">
                                     <br>
                                     <button type="button" class="btn btn-dark" data-placement="right">Status</button>
@@ -195,45 +186,6 @@
         </div>
     </main>
 
-    <div class="tableC">
-        <div class="row d-flex justify-content-center">
-            <div class="col-md-10 lg-10 col-sm-10">
-                <h2>Characteristics of IT and ComSci</h2>
-                <table>
-                    <tr>
-                        <th style="width:50%">Characteristics</th>
-                        <th>IT</th>
-                        <th>ComSci</th>
-                    </tr>
-                    <tr>
-                        <td>Analytical Skills</td>
-                        <td><i class="fa fa-remove"></i></td>
-                        <td><i class="fa fa-check"></i></td>
-                    </tr>
-                    <tr>
-                        <td>Problem solving Skills</td>
-                        <td><i class="fa fa-check"></i></td>
-                        <td><i class="fa fa-check"></i></td>
-                    </tr>
-                    <tr>
-                        <td>Creatvity</td>
-                        <td><i class="fa fa-check"></i></td>
-                        <td><i class="fa fa-check"></i></td>
-                    </tr>
-                    <tr>
-                        <td>Critical Thinking Skills</td>
-                        <td><i class="fa fa-remove"></i></td>
-                        <td><i class="fa fa-check"></i></td>
-                    </tr>
-                    <tr>
-                        <td>Versatile</td>
-                        <td><i class="fa fa-check"></i></td>
-                        <td><i class="fa fa-check"></i></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
     <section class="container-fluid justify-content-center" id="Ready">
         <div class="row">
             <div class="col-lg-10 col-md-10">
@@ -262,12 +214,6 @@
         </div>
     </div>
 
-    <script>
-        $(document).ready(function () {
-            $('.toast').toast('show');
-
-        });
-    </script>
 </body>
 
 </html>

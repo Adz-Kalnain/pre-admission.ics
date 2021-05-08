@@ -2,7 +2,9 @@
 session_start();
 
 // connect to database
-$db = mysqli_connect('localhost', 'root', '', 'initialsystem');
+//$db = mysqli_connect('localhost', 'root', '', 'initialsystem');
+//$db = mysqli_connect('sql208.epizy.com', 'epiz_28315883', 'heDrBDtXAD', 'epiz_28315883_initialsystem');
+$db = mysqli_connect('localhost','root','','initialsystem');
 
 // variable declaration
 $username = "";
@@ -48,7 +50,7 @@ function isLoggedIn()
 if (isset($_GET['logout'])) {
 	session_destroy();
 	unset($_SESSION['user']);
-	header("location: login-page.php");
+	header("location: index.php");
 }
 
 if (isset($_POST['login_btn'])) {
@@ -81,33 +83,49 @@ function login(){
 		if (mysqli_num_rows($results) == 1) { // user found
 			// check if user is admin or user
 			$logged_in_user = mysqli_fetch_assoc($results);
+
 			if ($logged_in_user['user_type'] == 'admin') {
-
-				$_SESSION['user'] = $logged_in_user;
-				$_SESSION['success']  = "You are now logged in";
-				header('location: admin/admin.main.php');		  
-            }elseif ($logged_in_user['user_type'] == 'evaluator'){
-
-                $_SESSION['user'] = $logged_in_user;
-				$_SESSION['success']  = "You are now logged in";
-				header('location: evaluator/evaluator.main.php');
-            }elseif ($logged_in_user['user_type'] == 'ic'){
-
-                $_SESSION['user'] = $logged_in_user;
-				$_SESSION['success']  = "You are now logged in";
-				header('location: ic/ic.main.php');
-            }elseif ($logged_in_user['user_type'] == 'ao'){
-
-                $_SESSION['user'] = $logged_in_user;
-				$_SESSION['success']  = "You are now logged in";
-				header('location: ao/ao_main.php');
-            }else{
-				$_SESSION['user'] = $logged_in_user;
-				$_SESSION['success']  = "You are now logged in";
-
-				header('location: index.html');
+  
+						$_SESSION['user'] = $logged_in_user;
+						$_SESSION['login_user'] = $username;
+						$_SESSION['success']  = "You are now logged in";
+						header('location: admin/admin.main.php');		  
+					}
+					
+					
+					elseif ($logged_in_user['user_type'] == 'evaluator'){
+		
+						$_SESSION['user'] = $logged_in_user;
+						$_SESSION['login_user'] = $username;
+						$_SESSION['success']  = "You are now logged in";
+						header('location: evaluator/evaluator.main.php');
+					}
+					
+					elseif ($logged_in_user['user_type'] == 'ic'){
+		
+						$_SESSION['user'] = $logged_in_user;
+						$_SESSION['login_user'] = $username;
+						$_SESSION['success']  = "You are now logged in";
+						header('location: ic/ic.main.php');
+					}
+					
+					elseif ($logged_in_user['user_type'] == 'ao'){
+		
+						$_SESSION['user'] = $logged_in_user;
+						$_SESSION['login_user'] = $username;
+						$_SESSION['success']  = "You are now logged in";
+						header('location: ao/ao_main.php');
+					}
+					
+					elseif($logged_in_user['user_type'] == 'user'){
+						$_SESSION['user'] = $logged_in_user;
+						$_SESSION['login_user'] = $username;
+						$_SESSION['success']  = "You are now logged in";
+						header('location: student/UserProfile.php');
+			  }
 			}
-		}else {
+
+		else {
 			array_push($errors, "Wrong username/password combination");
 		}
 	}
@@ -121,3 +139,5 @@ function isAdmin()
 		return false;
 	}
 }
+//this one is optional^^^^^ 
+?> 
