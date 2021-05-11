@@ -84,49 +84,45 @@ function login(){
 			// check if user is admin or user
 			$logged_in_user = mysqli_fetch_assoc($results);
 
-				$_SESSION['user'] = $logged_in_user;
-				$_SESSION['success']  = "You are now logged in";
-				header('location: admin/admin.main.php');		  
-            
-			}elseif ($logged_in_user['user_type'] == 'evaluator'){
-				if ($logged_in_user['college'] == 'ics') {
-					$_SESSION['user'] = $logged_in_user;
-					$_SESSION['success']  = "You are now logged in";
-					header('location: evaluator/evaluator.main.php');
-				}else {
-					$_SESSION['user'] = $logged_in_user;
-					$_SESSION['success']  = "You are now logged in";
-					header('location: evaluator/coe.evaluator.main.php');
-				}
-                
-            
-			}elseif ($logged_in_user['user_type'] == 'ic'){
-				if ($logged_in_user['college'] == 'ics') {
-					$_SESSION['user'] = $logged_in_user;
-					$_SESSION['success']  = "You are now logged in";
-					header('location: ic/ic.main.php');	
-				}else {
-					$_SESSION['user'] = $logged_in_user;
-					$_SESSION['success']  = "You are now logged in";
-					header('location: ic/coe.ic.main.php');
-				}
-            
-			}elseif ($logged_in_user['user_type'] == 'ao'){
-				if ($logged_in_user['college'] == 'ics') {
-					$_SESSION['user'] = $logged_in_user;
-					$_SESSION['success']  = "You are now logged in";
-					header('location: ao/ao_main.php');	
-				}else {
-					$_SESSION['user'] = $logged_in_user;
-					$_SESSION['success']  = "You are now logged in";
-					header('location: ao/coe.ao.main.php');
-				}
-               
-			}else{
-				$_SESSION['user'] = $logged_in_user;
-				$_SESSION['success']  = "You are now logged in";
-
-				header('location: student/UserProfile.php');
+			if ($logged_in_user['user_type'] == 'admin') {
+  
+						$_SESSION['user'] = $logged_in_user;
+						$_SESSION['login_user'] = $username;
+						$_SESSION['success']  = "You are now logged in";
+						header('location: admin/admin.main.php');		  
+					}
+					
+					
+					elseif ($logged_in_user['user_type'] == 'evaluator'){
+		
+						$_SESSION['user'] = $logged_in_user;
+						$_SESSION['login_user'] = $username;
+						$_SESSION['success']  = "You are now logged in";
+						header('location: evaluator/evaluator.main.php');
+					}
+					
+					elseif ($logged_in_user['user_type'] == 'ic'){
+		
+						$_SESSION['user'] = $logged_in_user;
+						$_SESSION['login_user'] = $username;
+						$_SESSION['success']  = "You are now logged in";
+						header('location: ic/ic.main.php');
+					}
+					
+					elseif ($logged_in_user['user_type'] == 'ao'){
+		
+						$_SESSION['user'] = $logged_in_user;
+						$_SESSION['login_user'] = $username;
+						$_SESSION['success']  = "You are now logged in";
+						header('location: ao/ao_main.php');
+					}
+					
+					elseif($logged_in_user['user_type'] == 'user'){
+						$_SESSION['user'] = $logged_in_user;
+						$_SESSION['login_user'] = $username;
+						$_SESSION['success']  = "You are now logged in";
+						header('location: student/UserProfile.php');
+			  }
 			}
 
 		else {
