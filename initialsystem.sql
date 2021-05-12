@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2021 at 08:09 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.34
+-- Generation Time: Apr 05, 2021 at 09:08 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.2.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,6 +37,38 @@ CREATE TABLE `file` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `file`
+--
+
+INSERT INTO `file` (`id`, `file_name`, `type`, `size`, `file_path`, `user_id`) VALUES
+(1, 'CAN I ALSO BE WHAT I WANT TO BE.docx', '', '13416', '', 16),
+(2, '1.docx', '', '13255', '', 16),
+(3, 'ticket.pdf', '', '145692', '../files_upload/ticket.pdf ', 16);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(10) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `user_type` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `name` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `user_type`, `password`, `name`) VALUES
+(16, 'ronald', 'ronaldxdale@gmail.com', 'user', 'ronald', 'FUENTEBELLA RONALD DALE'),
+(17, 'jayson123', 'jayson@gmail.com', 'user', 'jayson', 'jayson');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -48,6 +80,12 @@ ALTER TABLE `file`
   ADD KEY `userid` (`user_id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -56,6 +94,12 @@ ALTER TABLE `file`
 --
 ALTER TABLE `file`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables

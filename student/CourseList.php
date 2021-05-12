@@ -154,21 +154,26 @@ a {
     
     <?php while ($row = mysqli_fetch_array($results)) { ?>
         <tr>
-    <td><img class="rounded-circle" src="../collegeimg/<?php echo $row['course_img']; ?>" alt=""  width="150px" height="150px"></td>
+    <td style="display:none"><?php echo $row['course_id']; ?></td>
+    <td><img class="rounded-circle" src="../collegeimg/<?php echo $row['course_img']; ?>" alt=""  width="100px" height="100px"></td>
     <td><?php echo $row['course_name']; ?></td>
     <td><?php echo $row['course_description']; ?></td>
     
-    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CS-Modal">Apply
+    <td><button type="button" class="btn btn-primary selectCourse" >Apply
                         </button></td>
     </tr>
     
     <?php } ?>
 </tbody>
 </table>
-<form action="uploadcs.php" method="post" enctype="multipart/form-data">
-                            <div class="modal" id="CS-Modal">
+<form action="upload.php" method="post" enctype="multipart/form-data">
+                            <div class="modal" id="selectModel">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
+
+                                    <?php  $getID = mysqli_query($db, "SELECT * from users WHERE username ='gold'");
+                                           $rows = mysqli_num_rows($getID); ?>
+                                  
 
                                         <!-- Modal Header -->
                                         <div class="modal-header">
@@ -177,23 +182,38 @@ a {
                                         </div>
 
                                         <!-- Modal body -->
+                                 <div class="form-group">
+                                    <input style="display: none;" type="id"    name="id" id="id"  class="form-control" >
+                                </div>
+
+                                    <div class="form-group">
+                                        <label>Course Name :</label>
+                                        <input type="name" name="courseName" disabled="disabled"  id="courseName" class="form-control" >
+                                    </div>
+
+                                    <div class="form-group">
+                                            <input style="display: none;" type="text" class="form-control" id="contact" readonly="readonly" name="email"  value=" <?php echo $arr['id']?>">
+                                        </div>
+
+
+
                                         <div class="modal-body">
                                             <div class="col-sm-12">
                                                 <label for="cet" class="form-label">CET copy</label>
-                                                <input type="file" id="cet" name="cscet">
+                                                <input type="file" id="cet" name="cet">
                                             </div>
                                             <div class="col-sm-12">
                                                 <label for="cet" class="form-label">Good Moral</label>
-                                                <input type="file" id="moral">
+                                                <input type="file" id="moral" name="moral">
                                             </div>
                                             <div class="col-sm-12">
                                                 <label for="gpa" class="form-label">GPA copy</label>
-                                                <input type="file" id="gpa">
+                                                <input type="file" id="gpa" name="gpa">
                                             </div>
                                             <div class="col-sm-12">
                                                 <label for="gpa" class="form-label">Shiftee Form copy (if your
                                                     Shiftee)</label>
-                                                <input type="file" id="shiftee">
+                                                <input type="file" id="shiftee" name="shiftee">
                                             </div>
 
                                         </div>
@@ -202,7 +222,7 @@ a {
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-primary"
                                                 data-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-success" name="save">Upload</button>
+                                            <button type="submit" class="btn btn-success" name="send">Upload</button>
                                             
                                         </div>
 
@@ -241,3 +261,26 @@ a {
 </body>
 
 </html>
+
+
+
+<script>
+
+//TRANSFER DATA FROM TABLE TO MODAL
+        $(document).ready(function () {
+            $('.selectCourse').on('click', function () {
+
+
+              $('#selectModel').modal('show');
+              $tr = $(this).closest('tr');
+
+                  var data =$tr.children("td").map(function(){
+                    return $(this).text();
+                  }).get();
+                  $('#id').val(data[0]);
+                  $('#courseName').val(data[2]);
+
+            });
+           
+        });
+    </script>

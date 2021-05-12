@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="icon" href="../svgs/logo.png" sizes="32x32" type="image/png">
+
+    <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">          
+    <link rel="stylesheet" href="../css/admin-style.css">
+
+</head>
+<body>
+    
+    <div class="d-flex" id="main-container">
+
+        <div id="sidebar-wrapper">
+          <div class="sidebar-heading bg-dark text-center">Admin Dashboard</div>
+          <div class="list-group list-group-flush">
+            <a href="admin-pre-qualified.html" class="list-group-item list-group-item-action"><i class="fa fa-list" aria-hidden="true"></i>CS Pre-qualified List</a>
+            <a href="admin-it-pre-qualified.html" class="list-group-item list-group-item-action active"><i class="fa fa-list" aria-hidden="true"></i>IT Pre-qualified List</a>
+            <a href="admin-qualified.html" class="list-group-item list-group-item-action"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>CS Qualified List</a>
+            <a href="admin-it-qualified.html" class="list-group-item list-group-item-action"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>IT Qualified List</a>
+            <a href="settings.html" class="list-group-item list-group-item-action"><i class="fa fa-cog" aria-hidden="true"></i>Settings</a>
+            <a href="../login-page.html" class="list-group-item list-group-item-action"> <i class="fa fa-sign-out"></i> Logout</a>
+          </div>
+        </div>
+
+        <div id="content-container">
+
+            <nav class="navbar navbar-dark">
+        
+                <button class="navbar-toggler" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="system-logo">
+                    <span class="navbar-header display-4">WMSU ICS Department</span><img src="../svgs/logo.png" alt="" class="navbar-brand">
+                </div>
+
+            </nav>
+            
+            <p class="display-4">IT Pre-qualified Applicants</p>
+            <div class="d-flex flex-row-reverse mb-2 mt-1">
+                <button type="button" class="btn btn-success" onclick="printcontent()"> Print </button>
+                <button type="button" class="btn btn-success"> Submit </button>
+            </div>
+
+            <div class="table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl" id="tablecontent">
+                <table class="table table-sm table-striped table-hover" id="printabletable">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">FirstName</th>
+                            <th scope="col">LastName</th>
+                            <th scope="col">BirthDate</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Contact No.</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Former School</th>
+                            <th scope="col">CET</th>
+                            <th scope="col">GPA</th>
+                            <th scope="col">Interview Score (10)</th>
+                            <th scope="col">Overall Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <th scope="row">Juan</th>
+                            <th scope="row">Dela Cruz</th>
+                            <th scope="row">Dec.12,2000</th>
+                            <th scope="row">Zamboanga City</th>
+                            <th scope="row">09991234567</th>
+                            <th scope="row">JDC@gmail.com</th>
+                            <th scope="row">STI</th>
+                            <th scope="row">92%</th>
+                            <th scope="row">90%</th>
+                            <th scope="row"> <input type="number"></th>
+                            <th scope="row">--</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <th scope="row">Juan</th>
+                            <th scope="row">Dela Vega</th>
+                            <th scope="row">Dec.01,1998</th>
+                            <th scope="row">Zamboanga City</th>
+                            <th scope="row">09881234567</th>
+                            <th scope="row">JDV@gmail.com</th>
+                            <th scope="row">UZ</th>
+                            <th scope="row">95%</th>
+                            <th scope="row">95%</th>
+                            <th scope="row"> <input type="number"></th>
+                            <th scope="row">--</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <th scope="row">Juan</th>
+                            <th scope="row">Dela Santos</th>
+                            <th scope="row">June.20,2000</th>
+                            <th scope="row">Zamboanga City</th>
+                            <th scope="row">09771234567</th>
+                            <th scope="row">JDS@gmail.com</th>
+                            <th scope="row">Southern City College</th>
+                            <th scope="row">88%</th>
+                            <th scope="row">90%</th>
+                            <th scope="row"> <input type="number"></th>
+                            <th scope="row">--</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <th scope="row">Juan</th>
+                            <th scope="row">Dela Puerte</th>
+                            <th scope="row">Nov.16,1999</th>
+                            <th scope="row">Zamboanga City</th>
+                            <th scope="row">09661234567</th>
+                            <th scope="row">JDP@gmail.com</th>
+                            <th scope="row">STI</th>
+                            <th scope="row">90%</th>
+                            <th scope="row">99%</th>
+                            <th scope="row"> <input type="number"></th>
+                            <th scope="row">--</th>
+                        </tr>
+                    </tbody>
+                </table>
+            
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="../jquery/jquery.min.js"></script>
+    <script src="../bootstrap4/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(".navbar-toggler").click(function(e) {
+          e.preventDefault();
+          $("#main-container").toggleClass("toggled");
+        });
+    </script>
+
+    <script>
+        function printcontent(){
+            var divToPrint = document.getElementById("printabletable");
+            newWin=window.open("");
+            newWin.document.write(divToPrint.outerHTML);
+            newWin.print();
+            newWin.close();
+        }
+    </script>
+
+</body>
+</html>

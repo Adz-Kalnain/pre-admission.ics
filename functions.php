@@ -79,6 +79,7 @@ function login(){
 
 		$query = "SELECT * FROM users WHERE username='$username' AND password='$password' LIMIT 1";
 		$results = mysqli_query($db, $query);
+		$rows = mysqli_num_rows($result);
 
 		if (mysqli_num_rows($results) == 1) { // user found
 			// check if user is admin or user
@@ -88,6 +89,7 @@ function login(){
   
 						$_SESSION['user'] = $logged_in_user;
 						$_SESSION['login_user'] = $username;
+						$_SESSION['userID'] = $rows['id'];
 						$_SESSION['success']  = "You are now logged in";
 						header('location: admin/admin.main.php');		  
 					}
@@ -97,6 +99,7 @@ function login(){
 		
 						$_SESSION['user'] = $logged_in_user;
 						$_SESSION['login_user'] = $username;
+						$_SESSION['userID'] = $row['id'];
 						$_SESSION['success']  = "You are now logged in";
 						header('location: evaluator/evaluator.main.php');
 					}
@@ -105,6 +108,7 @@ function login(){
 		
 						$_SESSION['user'] = $logged_in_user;
 						$_SESSION['login_user'] = $username;
+						$_SESSION['userID'] = $row['id'];
 						$_SESSION['success']  = "You are now logged in";
 						header('location: ic/ic.main.php');
 					}
@@ -113,6 +117,7 @@ function login(){
 		
 						$_SESSION['user'] = $logged_in_user;
 						$_SESSION['login_user'] = $username;
+						$_SESSION['userID'] = $row['id'];
 						$_SESSION['success']  = "You are now logged in";
 						header('location: ao/ao_main.php');
 					}
@@ -120,6 +125,7 @@ function login(){
 					elseif($logged_in_user['user_type'] == 'user'){
 						$_SESSION['user'] = $logged_in_user;
 						$_SESSION['login_user'] = $username;
+						$_SESSION['userID'] = $row['id'];
 						$_SESSION['success']  = "You are now logged in";
 						header('location: student/UserProfile.php');
 			  }

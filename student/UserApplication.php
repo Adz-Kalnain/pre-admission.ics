@@ -19,7 +19,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="../svgs/logo.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../seal/wmsu-logo.png" sizes="32x32" type="image/png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.uapplication.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -108,7 +108,7 @@ a {
                     <?php endif ?>
                     </p>
                     <li class="nav-item">
-                        <a class="nav-link active" href="../index.html">Home</a>
+                        <a class="nav-link active" href="../student/UserApplication.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../student/UserProfile.php">View Profile</a>
@@ -155,11 +155,11 @@ $collegeCount = mysqli_fetch_array($results1);
     
     <?php while ($row = mysqli_fetch_array($results)) { ?>
         <tr>
-    <td><img class="rounded-circle" src="../collegeimg/<?php echo $row['college_img']; ?>" alt=""  width="150px" height="150px"></td>
+    <td><img class="rounded-circle" src="../collegeimg/<?php echo $row['college_img']; ?>" alt=""  width="100px" height="100px"></td>
     <td><?php echo $row['college_name']; ?></td>
     <td><?php echo $row['college_description']; ?></td>
     <td style="display: none;"><?php echo $row['college_id']; ?></td>
-    <td><a href="CourseList.php?select=<?php echo $row['college_id']; ?>">Check</a></td>
+    <td><a href="CourseList.php?select=<?php echo $row['college_id']; ?>">Select</a></td>
     </tr>
     
     <?php } ?>

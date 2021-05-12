@@ -51,7 +51,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>User Profile</title>
-    <link rel="icon" href="../svgs/logo.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="../seal/wmsu-logo.png" sizes="32x32" type="image/png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/styleprofile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -66,7 +66,7 @@
     <header id="uphead">
         <nav class="navbar navbar-expand-lg navbar-dark px-5">
             <a class="navbar-brand justify-content-start" href="UserProfile.html">
-                <img src="../svgs/ics_seal.jpg" alt="">WMSU Online Pre-Admission
+                <img src="../seal/wmsu-logo.png" alt="">WMSU Online Pre-Admission
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,10 +75,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="UserApplication.php">Apply for Course</a>
+                        <a class="nav-link active" href="../student/UserApplication.php">Home</a>
                     </li>
                     <li class="nav-item">
                         
@@ -111,19 +108,12 @@
                                         <input type="file" 
                                                 name="uploadfile" 
                                                 value="" />
-
-                                        <div>
-                                            <button type="submit"
-                                                    name="upload">
-                                                UPLOAD
-                                            </button>
-                                        </div>
                                     </form>
                                     </div>
                                 </div>
                                 <div class="col-sm-10 ">
                                     <br>
-                                    <button type="button" class="btn btn-dark" data-placement="right">Status</button>
+                                    <button type="submit" class="btn btn-dark" name="upload" data-placement="right">Upload</button>
                                 </div>
                             </div><br>
                         </div>
@@ -144,10 +134,16 @@
                                     <div class="tab-pane fade show active" id="studinfo" role="tabpanel">
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <label>Full Name</label>
+                                                <label>First Name</label>
                                             </div>
                                             <div class="col-md-8">
-                                                <p><?php echo $arr['name']?></p>
+                                                <p><?php echo $arr['fname']?></p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Last Name</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p><?php echo $arr['lname']?></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -164,6 +160,14 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <p><?php echo $arr['username']?></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>User Type</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p><?php echo $arr['user_type']?></p>
                                             </div>
                                         </div>
                                     </div>

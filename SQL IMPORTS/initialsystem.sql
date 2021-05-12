@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2021 at 09:18 PM
+-- Generation Time: May 12, 2021 at 08:22 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -40,6 +40,30 @@ CREATE TABLE `admissiondatetbl` (
 
 INSERT INTO `admissiondatetbl` (`id`, `start_date`, `end_date`, `is_active`) VALUES
 (1, '2022-01-01', '2022-01-20', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attachment`
+--
+
+CREATE TABLE `attachment` (
+  `id` int(11) NOT NULL,
+  `cet_path` text NOT NULL,
+  `gmoral_path` text NOT NULL,
+  `gpa_path` text NOT NULL,
+  `shiftee_path` text DEFAULT NULL,
+  `user_id` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `attachment`
+--
+
+INSERT INTO `attachment` (`id`, `cet_path`, `gmoral_path`, `gpa_path`, `shiftee_path`, `user_id`) VALUES
+(6, 'love letter (3).docx', 'love letter (2).docx', 'love letter (1).docx', NULL, 8),
+(7, 'meeeeeeeeh.png', 'Concept-map.docx', 'Act2Thesis.docx', NULL, 12),
+(8, 'mozambique.jpg', '', 'mozambique.jpg', NULL, 12);
 
 -- --------------------------------------------------------
 
@@ -135,25 +159,6 @@ INSERT INTO `coursestbl` (`course_id`, `course_name`, `course_description`, `col
 -- --------------------------------------------------------
 
 --
--- Table structure for table `file`
---
-
-CREATE TABLE `file` (
-  `id` int(11) NOT NULL,
-  `cet_name` varchar(50) NOT NULL,
-  `gmoral_name` varchar(50) NOT NULL,
-  `gpa_name` varchar(50) NOT NULL,
-  `shiftee_name` varchar(50) DEFAULT NULL,
-  `cet_path` text NOT NULL,
-  `gmoral_path` text NOT NULL,
-  `gpa_path` text NOT NULL,
-  `shiftee_path` text DEFAULT NULL,
-  `user_id` int(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `interviewertbl`
 --
 
@@ -197,27 +202,6 @@ INSERT INTO `quotatbl` (`quota_id`, `quota_college`, `quota_course`, `quota`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `requirementtbl`
---
-
-CREATE TABLE `requirementtbl` (
-  `id` int(255) NOT NULL,
-  `college` varchar(255) NOT NULL,
-  `cet` int(50) NOT NULL,
-  `gpa` int(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `requirementtbl`
---
-
-INSERT INTO `requirementtbl` (`id`, `college`, `cet`, `gpa`) VALUES
-(1, 'ics', 90, 90),
-(2, 'coe', 80, 90);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `selectedcourse`
 --
 
@@ -227,6 +211,15 @@ CREATE TABLE `selectedcourse` (
   `course_id` int(11) NOT NULL,
   `file_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `selectedcourse`
+--
+
+INSERT INTO `selectedcourse` (`id`, `user_id`, `course_id`, `file_id`) VALUES
+(1, 8, 11, 6),
+(2, 12, 45, 7),
+(3, 12, 13, 8);
 
 -- --------------------------------------------------------
 
@@ -254,8 +247,11 @@ INSERT INTO `users` (`id`, `username`, `fname`, `lname`, `email`, `user_type`, `
 (5, 'teal', '', '', 'teal@gmail.com', 'admin', '3c4184e82bb3be8fa32669800fb7373c'),
 (6, 'cyan', '', '', 'cyan@gmail.com', 'evaluator', '6411532ba4971f378391776a9db629d3'),
 (7, 'gold', '', '', 'gold@gmail.com', 'ao', 'e07e81c20cf5935f5225765f0af81755'),
-(8, 'silver', '', '', 'silver@gmail.com', 'user', '97f014516561ef487ec368d6158eb3f4'),
-(9, 'grey', '', '', 'grey@gmail.com', 'user', 'ca50000a180a293de0b27acb67a695cb');
+(8, 'silver', 'ronald ', 'fuentebella', 'silver@gmail.com', 'user', '97f014516561ef487ec368d6158eb3f4'),
+(9, 'grey', 'jayson', 'beltran', 'grey@gmail.com', 'user', 'ca50000a180a293de0b27acb67a695cb'),
+(10, 'mark', 'mark', 'tubat', 'mark@gmail.com', 'user', 'ea82410c7a9991816b5eeeebe195e20a'),
+(11, 'josh', 'josh', 'habil', 'josh@gmail.com', 'user', 'f94adcc3ddda04a8f34928d862f404b4'),
+(12, 'Ken', 'Kenneth', 'Emmanuel', 'Ken@gmail.com', 'user', '202cb962ac59075b964b07152d234b70');
 
 --
 -- Indexes for dumped tables
@@ -266,6 +262,13 @@ INSERT INTO `users` (`id`, `username`, `fname`, `lname`, `email`, `user_type`, `
 --
 ALTER TABLE `admissiondatetbl`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `attachment`
+--
+ALTER TABLE `attachment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userid` (`user_id`);
 
 --
 -- Indexes for table `college`
@@ -281,13 +284,6 @@ ALTER TABLE `coursestbl`
   ADD KEY `collegeid` (`college_id`);
 
 --
--- Indexes for table `file`
---
-ALTER TABLE `file`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `userid` (`user_id`);
-
---
 -- Indexes for table `interviewertbl`
 --
 ALTER TABLE `interviewertbl`
@@ -298,12 +294,6 @@ ALTER TABLE `interviewertbl`
 --
 ALTER TABLE `quotatbl`
   ADD PRIMARY KEY (`quota_id`);
-
---
--- Indexes for table `requirementtbl`
---
-ALTER TABLE `requirementtbl`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `selectedcourse`
@@ -331,6 +321,12 @@ ALTER TABLE `admissiondatetbl`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `attachment`
+--
+ALTER TABLE `attachment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `college`
 --
 ALTER TABLE `college`
@@ -341,12 +337,6 @@ ALTER TABLE `college`
 --
 ALTER TABLE `coursestbl`
   MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
-
---
--- AUTO_INCREMENT for table `file`
---
-ALTER TABLE `file`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `interviewertbl`
@@ -361,26 +351,26 @@ ALTER TABLE `quotatbl`
   MODIFY `quota_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `requirementtbl`
---
-ALTER TABLE `requirementtbl`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
 -- AUTO_INCREMENT for table `selectedcourse`
 --
 ALTER TABLE `selectedcourse`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `attachment`
+--
+ALTER TABLE `attachment`
+  ADD CONSTRAINT `userid` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `coursestbl`
@@ -389,17 +379,11 @@ ALTER TABLE `coursestbl`
   ADD CONSTRAINT `collegeid` FOREIGN KEY (`college_id`) REFERENCES `college` (`college_id`);
 
 --
--- Constraints for table `file`
---
-ALTER TABLE `file`
-  ADD CONSTRAINT `userid` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
 -- Constraints for table `selectedcourse`
 --
 ALTER TABLE `selectedcourse`
   ADD CONSTRAINT `courseid` FOREIGN KEY (`course_id`) REFERENCES `coursestbl` (`course_id`),
-  ADD CONSTRAINT `fileid` FOREIGN KEY (`file_id`) REFERENCES `file` (`id`),
+  ADD CONSTRAINT `fileid` FOREIGN KEY (`file_id`) REFERENCES `attachment` (`id`),
   ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
