@@ -9,10 +9,6 @@
   --page-content-bgColor: #f0f1f6;
   --page-content-txtColor: #171616;
   --page-content-blockColor: #fff;
-  --white: #fff;
-  --black: #333;
-  --blue: #00b9eb;
-  --red: #ec1848;
   --border-radius: 4px;
   --box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.075);
 }
@@ -36,7 +32,6 @@ a {
 }
 
 button {
-  background: none;
   cursor: pointer;
 }
 
@@ -157,9 +152,7 @@ body {
 }
 
 .page-header .admin-menu a:hover,
-.page-header .admin-menu a:focus/*,
-.page-header .admin-menu button:hover,
-.page-header .admin-menu button:focus*/ {
+.page-header .admin-menu a:focus {
   background: var(--page-header-bgColor-hover);
   outline: none;
 }
@@ -175,87 +168,88 @@ body {
   background: var(--page-content-bgColor);
 }
 
-.btn-group {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-column-gap: 0px;
-  align-items: center;
-  background: var(--page-content-bgColor);
-  margin-bottom: 25px;
-}
-
-.btn-group .buttons {
-  display: flex;
-  align-items: center;
-}
-
-.btn-group .buttons {
-  justify-content: flex-end;
-}
-
-.btn-group .buttons .btn-warning {
-  color: black;
-  width: 85px;
-  margin: 0 10px 10px;
-  outline: none;
-}
-
-.btn-group .buttons .btn-danger {
-  width: 85px;
-  margin: 0 0 10px;
-  outline: none;
-}
-
-.btn-group .buttons .toggle-more-menu i {
-  width: 30px;
-  height: 30px;
-  margin: 0 0 0 15px;
-}
-
-.btn-group .buttons .toggle-more-menu {
-  outline: none;
-}
-
-.btn-group .buttons .dropdown-menu {
-  background-color: var(--page-header-bgColor);
-}
-
-.btn-group .buttons .dropdown-menu .dropdown-item {
-  color: var(--page-header-txtColor);
-}
-
-.btn-group .buttons .dropdown-menu .dropdown-item:hover {
-  background-color: var(--page-header-bgColor-hover);
-  color: var(--white);
-}
-
-
-.btn-group .buttons .label {
-  font-size: 13px;
-}
-
 .btn-group .section-name {
   font-size: 25px;
 }
 
 .page-content .grid .thead {
-    background-color: var(--page-header-bgColor);
-    color: white;
-    font-size: 12px;
+  background-color: var(--page-header-bgColor);
+  color: white;
+  font-size: 12px;
 }
 .page-content .grid .tbody {
-    font-size: 12px;
+  font-size: 12px;
 }
-.page-content .grid > article {
+
+/*---------Here Goes Setting design--------*/
+
+.page-content .grid .setting .options .setting-menu {
   display: flex;
-  /*height: 300px;*/
-  /*height: 100vh;*/
-  min-height: 70vh;
-  height: 100%;
-  background: var(--page-content-blockColor);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  flex-direction: column;
+  flex-grow: 1;
+  margin-top: 20px;
 }
+
+.page-content .grid .setting .options {
+  width: 25%;
+  background-color: var(--page-header-bgColor);
+  color: white;
+  text-align: start;
+  margin-right: 3%;
+  border-bottom-left-radius: var(--border-radius);
+  border-top-left-radius: var(--border-radius);
+}
+
+.page-content .grid .setting .options .setting-menu .list-group .list-group-item{
+  text-decoration: none;
+  padding: 14px 15px;
+  background-color: var(--page-header-bgColor);
+  color: var(--page-header-txtColor);
+}
+
+.page-content .grid .setting .options .setting-menu .list-group .list-group-item.active, .list-group-item:focus {
+  background-color: var(--page-header-bgColor-hover);
+  border-color: transparent;
+}
+
+#message {
+  color: teal;
+}
+
+#warning {
+  color: rgb(88, 2, 2);
+}
+
+#setting-content-container {
+  position: absolute;
+  width: 550px;
+  margin: 0;
+  top: 35%;
+  left: 65%;
+  margin-right: -50%;
+  transform: translate(-65%, -35%);
+}
+
+.page-content .grid > article {
+display: flex;
+min-height: 80vh;
+height: 100%;
+background: var(--page-content-blockColor);
+border-radius: var(--border-radius);
+box-shadow: var(--box-shadow);
+}
+
+/*-------------------end---------------*/
+
+#allSettingButtons {
+  background-color: var(--page-header-bgColor);
+  color: white;
+}
+
+#allSettingButtons:hover {
+  background-color: var(--page-header-bgColor-hover);
+}
+
 
 /*Adjustment----------------------------------–––––––––––––––––––––––––––––––––––––––––––––––––– */
 @media screen and (max-width: 767px) {
@@ -283,10 +277,6 @@ body {
     padding-left: 15px;
     height: 35px;
   }
-
-  /*.page-header .toggle-mob-menu {
-    display: block;
-  }*/
 
   .page-header .toggle-mob-menu{
     display: block;
@@ -319,47 +309,6 @@ body {
   .page-content .grid {
     grid-gap: 10px;
   }
-
-  /*.search-and-user {
-    position: absolute;
-    left: 131px;
-    top: 10px;
-    padding: 0;
-    grid-column-gap: 5px;
-    width: calc(100% - 141px);
-    border-radius: var(--border-radius);
-    background: transparent;
-  }
-
-  .search-and-user .admin-profile .notifications i {
-    width: 30px;
-    height: 15px;
-    color: var(--white);
-    margin-right: 0px;
-    margin-left: 3px;
-    margin-top: 8px;
-    transition: fill 0.2s;
-  }*/
-
-/*  .search-and-user input[type="search"] {
-    font-size: 1rem;
-    height: 35px;
-  }
-*/
-  /*.search-and-user form svg {
-    width: 18px;
-    height: 18px;
-  }*/
-
-  /*.search-and-user .admin-profile svg {
-    fill: var(--white);
-  }*/
-  
-/*this one is optional, move nia lang to the right c profile*/
-
-  /*.search-and-user .admin-profile {
-      justify-content: flex-end;
-  }*/
 
   .page-content .grid .setting .accordion .card .collapse .card-body .form-control {
     width: 100%;
@@ -402,10 +351,6 @@ body {
 }
 
 @media screen and (min-width: 768px) {
-  /*.collapsed .page-header {
-    width: 40px;
-  }*/
-
   .collapsed .page-header .admin-menu li > * {
     padding: 10px;
   }
@@ -424,10 +369,6 @@ body {
     transform: rotate(180deg);
   }
 
-  /*.collapsed .page-content {
-    left: 40px;
-    width: calc(100% - 40px);
-  }*/
 }
 
 /*SETTINGS-----------------------------------------------------------------------------------------*/

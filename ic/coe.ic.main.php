@@ -1,19 +1,11 @@
 <?php 
 include('../functions.php');
 
-  if (isset($_GET['logout'])) {
-    session_destroy();
-    unset($_SESSION['user']);
-  	header("location: ../index.php");
-
-  }
-  if (isset($_POST['approve'])){
-    $id=$_POST['id'];
-    $status=$_POST['status'];
-    
-    
-    $query="UPDATE applicants SET status='approve' WHERE id='$id'";
-  }
+if (isset($_GET['logout'])) {
+	session_destroy();
+	unset($_SESSION['user']);
+	header("location: ../index.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -21,12 +13,12 @@ include('../functions.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evaluator - ICS</title>
-    <link rel="icon" href="../seal/logo.png" sizes="32x32" type="image/png">
+    <title>Interviewer Commitee - COE</title>
+    <link rel="icon" href="../seal/coe-logo.png" sizes="32x32" type="image/png">
 
     <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">          
-    <link rel="stylesheet" href="../css/ics.style.css">
+    <link rel="stylesheet" href="../css/coe.style.css">
     <link rel="stylesheet" type="text/css" href="../DataTables/datatables.css">
 
 </head>
@@ -38,25 +30,15 @@ include('../functions.php');
             <i class="fa fa-bars"></i>
           </button>
           <a href="../index.html">
-            <img class="logo mx-auto" src="../seal/logo.png" alt="ics logo">
+            <img class="logo mx-auto" src="../seal/coe-logo.png" alt="ics logo">
           </a>
           <ul class="admin-menu">
             <li class="menu-heading">
               <h3>Dashboard</h3>
             </li>
             <li>
-              <a href="evaluator.main.php" class="active">
-                <i class="fa fa-list" aria-hidden="true"><span>Applicants</span></i>
-              </a>
-            </li>
-            <li>
-              <a href="evaluator.pre.php">
-                <i class="fa fa-check" aria-hidden="true"><span>Prequalified</span></i>
-              </a>
-            </li>
-            <li>
-              <a href="evaluator.rej.php">
-                <i class="fa fa-thumbs-o-down" aria-hidden="true"><span>Rejected</span></i>
+              <a href="coe.ic.main.php" class="active">
+                <i class="fa fa-list" aria-hidden="true"><span>Prequalified</span></i>
               </a>
             </li>
             <li>
@@ -70,29 +52,26 @@ include('../functions.php');
       </header>
       <?php endif ?>
       <section class="page-content">
-        
         <section class="btn-group">
-          <p class="section-name">Applicant's List</p>
+          <p class="section-name">Pre-qualified List</p>
           <div class="buttons">
-            <button class="btn-success" type="button"><span class="label">Verify</span></button>
-            <button class="btn-danger" type="button"><span class="label">Reject</span></button>
+            <button class="btn btn-warning" type="submit"><span class="label">Submit</span></button>
             <button class="toggle-more-menu" id="dropdown-more-buttons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-bars"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdown-more-buttons">
               <button class="dropdown-item" type="button">Print</button>
+              <button class="dropdown-item" type="button">Set Schedule</button>
             </div>
           </div>
         </section>
-
         <section class="grid">
           <article>
               <div class="table table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mx-3 my-3">
                 <table class="table table-sm table-striped table-bordered table-hover" id="printable-table">
                     <thead class="thead">
-
-                        <?php $results = mysqli_query($db, "SELECT * FROM applicants WHERE status='pending'"); ?>
                         <tr>
+                            <th><input type="checkbox" onclick="toggle(this)"></th>
                             <th>FirstName</th>
                             <th>LastName</th>
                             <th>BirthDate</th>
@@ -101,27 +80,64 @@ include('../functions.php');
                             <th>Email</th>
                             <th>Cet</th>
                             <th>Gpa</th>
+                            <th>Interview Score</th>
+                            <th>Overall Score</th>
                         </tr>
                     </thead>
                     <tbody class="tbody">
-                    <?php while ($row = mysqli_fetch_array($results)) { ?>
                         <tr>
-                          <td><?php echo $row['name']; ?></td>
-                          <td><?php echo $row['birthdate']; ?></td>
-                          <td><?php echo $row['address']; ?></td>
-                          <td><?php echo $row['contact']; ?></td>
-                          <td><?php echo $row['email']; ?></td>
-                          <td><?php echo $row['cet_name']; ?></td>
-                          <td><?php echo $row['status']; ?></td>
-                          <td>
-                            <a href="evaluator.pre.php?approve=<?php echo $row['id']; ?>" class="edit_btn" >Approve</a>
-                          </td>
-                          <td>
-                            <a href="evaluator.rej.php?reject=<?php echo $row['id']; ?>" class="del_btn">Reject</a>
-                          </td>
+                            <td><input type="checkbox" name="selected"></td>
+                            <td>Adz</td>
+                            <td>Kalnain</td>
+                            <td>December 16,1998</td>
+                            <td>Mampang Z.C.</td>
+                            <td>09666319676</td>
+                            <td>adzgreen2017@gmail.com</td>
+                            <td>92%</td>
+                            <td>92%</td>
+                            <td><input type="number"></td>
+                            <td></td>
                         </tr>
-                    <?php } ?>
-
+                        <tr>
+                          <td><input type="checkbox" name="selected"></td>
+                          <td>Josh</td>
+                          <td>Habil</td>
+                          <td>December 16,1998</td>
+                          <td>Mampang Z.C.</td>
+                          <td>09666319676</td>
+                          <td>adzgreen2017@gmail.com</td>
+                          <td>92%</td>
+                          <td>92%</td>
+                          <td><input type="number"></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" name="selected"></td>
+                          <td>Jason</td>
+                          <td>Beltran</td>
+                          <td>December 16,1998</td>
+                          <td>Mampang Z.C.</td>
+                          <td>09666319676</td>
+                          <td>adzgreen2017@gmail.com</td>
+                          <td>92%</td>
+                          <td>92%</td>
+                          <td><input type="number"></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" name="selected"></td>
+                          <td>Migfren</td>
+                          <td>Limen</td>
+                          <td>December 16,1998</td>
+                          <td>Mampang Z.C.</td>
+                          <td>09666319676</td>
+                          <td>adzgreen2017@gmail.com</td>
+                          <td>92%</td>
+                          <td>92%</td>
+                          <td><input type="number"></td>
+                          <td></td>
+                        </tr>
+             
                     </tbody>
                 </table>
               </div>
