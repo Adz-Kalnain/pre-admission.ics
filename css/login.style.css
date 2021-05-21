@@ -1,0 +1,84 @@
+.navbar{
+    background-color:rgba(0, 128, 128, 0.808);
+}
+.navbar .navbar-brand img{
+    width: 90px;
+    border-radius: 60px;
+    margin-right: 10px;
+}
+.navbar .navbar-collapse ul li a.active{
+    border-bottom: 2px solid white;
+}
+@media (max-width: 520px){
+    .navbar .navbar-brand img{
+        width: 60px;
+    }
+    .navbar .navbar-brand{
+        font-size: 16px;
+        font-weight: 200px;
+    }
+}
+.container {
+    max-width: 760px;
+}
+.container main div img{
+    width: 120px;
+    border-radius: 60px;
+}
+.container main #form-body{
+    background-color: white;
+    padding-left: 35px;
+    padding-right: 35px;
+    margin: auto;
+}
+.container main #form-body .register{
+    text-decoration: none;
+    color: grey;
+}
+.container main #form-body .register .pressMe{
+    color: teal;
+}
+#email,#pass{
+    border: none;
+    border-bottom: 2px solid rgb(99, 95, 95);
+    text-align: center;
+    border-radius: 0;
+}
+.form-label{
+    color: rgb(87, 85, 85);
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+h4{
+    color: rgb(85, 84, 84);
+}
+.btn-login{
+    background-color: teal;
+    color: white;
+}
+.btn-login:hover{
+    background-color: rgb(4, 116, 116);
+    color: whitesmoke;
+}
+.btn-cancel{
+    background-color: grey;
+}
+.btn.btn-cancel a{
+    text-decoration: none;
+    color: white;
+    padding: 5px 60px 5px 60px;
+}
+.btn.btn-cancel:hover{
+    background-color: rgb(102, 101, 101);
+}
+@media (max-width: 375px){
+    .h2{
+        font-size: 20px;
+    }
+    .form-label{
+        font-size: 15px;
+    }
+    .container main #form-body .register{
+        font-size: 13px;
+    }
+}
