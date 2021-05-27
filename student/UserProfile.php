@@ -75,7 +75,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="../student/UserApplication.php">Home</a>
+                        <a class="nav-link active" href="../student/UserApplication.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         
@@ -189,6 +189,47 @@
             </div>
         </div>
     </main>
+   <div class="col-lg-12">
+    <table class="table table-sm table-striped table-bordered table-hover" id="printable-table">
+                    <thead class="thead">
+                    <?php $results = mysqli_query($db, "SELECT * from selectedcourse LEFT JOIN users ON selectedcourse.user_id = users.id
+                     LEFT JOIN coursestbl ON selectedcourse.course_id = coursestbl.course_id
+                     LEFT JOIN attachment ON selectedcourse.file_id = attachment.id WHERE username =  '".$arr['username']."'")?>
+                        <tr>
+                              <th>STATUS</th>
+                            <th>Course</th>
+                            <th>FirstName</th>
+                            <th>LastName</th>
+                            <th> CET </th>
+                            <th> GPA </th>
+                            <th>Cet Attachment</th>
+                            <th>Good Moral Attachment</th>
+                            <th>Gpa Attachment</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody">
+                 <?php   while ($row = mysqli_fetch_array($results)) { ?>
+                            <tr>
+                            <td><?php echo $row['status']; ?></td> 
+                           <td><?php echo $row['course_name']; ?></td> 
+                          <td><?php echo $row['fname']; ?> </td>
+                          <td><?php echo $row['lname']; ?> </td>
+                          <td><?php echo $row['cetValue']; ?></td>
+                          <td><?php echo $row['cetValue']; ?></td>
+                          <td> <a href="../files_upload/attachment/<?php echo $row['cet_path']; ?>" ><?php echo $row['cet_path']; ?> </td>
+                          <td> <a href="../files_upload/attachment/<?php echo $row['gmoral_path']; ?>" ><?php echo $row['gmoral_path']; ?> </td>
+                          <td> <a href="../files_upload/attachment/<?php echo $row['gpa_path']; ?>" ><?php echo $row['gpa_path']; ?> </td>
+            
+                              
+                          <?php 
+                        }
+                         ?>
+
+
+
+                    </tbody>
+                </table>
+                </div>
 
     <section class="container-fluid justify-content-center" id="Ready">
         <div class="row">

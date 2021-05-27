@@ -4,7 +4,7 @@ include('../functions.php');
 if (isset($_GET['logout'])) {
 	session_destroy();
 	unset($_SESSION['user']);
-	header("location: ../index.php");
+	header("location: ../login-page.php");
 }
 ?>
 
@@ -13,12 +13,12 @@ if (isset($_GET['logout'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interviewer Commitee - ICS</title>
+    <title>Interviewer Commitee</title>
     <link rel="icon" href="../svgs/logo.png" sizes="32x32" type="image/png">
 
     <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">          
-    <link rel="stylesheet" href="../css/ics.style.css">
+    <link rel="stylesheet" href="../css/admin.style.css">
     <link rel="stylesheet" type="text/css" href="../DataTables/datatables.css">
 
 </head>
@@ -41,8 +41,21 @@ if (isset($_GET['logout'])) {
                 <i class="fa fa-list" aria-hidden="true"><span>Prequalified</span></i>
               </a>
             </li>
+            <!--<li class="menu-heading">
+              <h3>Settings</h3>
+            </li>
             <li>
-              <a href="../index.php?logout='1'">
+              <a href="#0">
+                <i class="fa fa-cog" aria-hidden="true"><span>Settings</span></i>
+              </a>
+            </li>-->
+            <!--<li>
+              <a href="#0">
+                <i class="fa fa-list-alt" aria-hidden="true"><span>Criteria</span></i>
+              </a>
+            </li>-->
+            <li>
+              <a href="../login-page.php?logout='1'">
                 <i class="fa fa-sign-out"><span>Logout</span></i>
                 
               </a>
@@ -52,7 +65,7 @@ if (isset($_GET['logout'])) {
       </header>
       <?php endif ?>
       <section class="page-content">
-        <!--<section class="search-and-user">
+        <section class="search-and-user">
           <div class="admin-profile">
             <div class="notifications">
                 <i class="fa fa-bell" aria-hidden="true"></i>
@@ -68,7 +81,7 @@ if (isset($_GET['logout'])) {
                 <span class="badge">11</span>
               </div>
           </div>
-        </section>-->
+        </section>
         <section class="btn-group">
           <p class="section-name">Pre-qualified List</p>
           <div class="buttons">
@@ -117,8 +130,8 @@ if (isset($_GET['logout'])) {
                         </tr>
                         <tr>
                           <td><input type="checkbox" name="selected"></td>
-                          <td>Josh</td>
-                          <td>Habil</td>
+                          <td>Adz</td>
+                          <td>Kalnain</td>
                           <td>December 16,1998</td>
                           <td>Mampang Z.C.</td>
                           <td>09666319676</td>
@@ -130,8 +143,8 @@ if (isset($_GET['logout'])) {
                         </tr>
                         <tr>
                           <td><input type="checkbox" name="selected"></td>
-                          <td>Jason</td>
-                          <td>Beltran</td>
+                          <td>Adz</td>
+                          <td>Kalnain</td>
                           <td>December 16,1998</td>
                           <td>Mampang Z.C.</td>
                           <td>09666319676</td>
@@ -143,8 +156,8 @@ if (isset($_GET['logout'])) {
                         </tr>
                         <tr>
                           <td><input type="checkbox" name="selected"></td>
-                          <td>Migfren</td>
-                          <td>Limen</td>
+                          <td>Adz</td>
+                          <td>Kalnain</td>
                           <td>December 16,1998</td>
                           <td>Mampang Z.C.</td>
                           <td>09666319676</td>

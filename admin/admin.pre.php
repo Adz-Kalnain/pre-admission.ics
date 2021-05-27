@@ -93,44 +93,41 @@ if (isset($_GET['logout'])) {
               <div class="table table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mx-3 my-3">
                 <table class="table table-sm table-striped table-bordered table-hover" id="printable-table">
                     <thead class="thead">
+                    <?php $results = mysqli_query($db, "SELECT * from selectedcourse LEFT JOIN users ON selectedcourse.user_id = users.id
+                     LEFT JOIN coursestbl ON selectedcourse.course_id = coursestbl.course_id
+                     LEFT JOIN attachment ON selectedcourse.file_id = attachment.id WHERE userStatus='VERIFIED'")?>
                         <tr>
-                            <th><input type="checkbox" onclick="toggle(this)"></th>
+               
                             <th>FirstName</th>
                             <th>LastName</th>
-                            <th>BirthDate</th>
-                            <th>Address</th>
-                            <th>ContactNo</th>
-                            <th>Email</th>
                             <th>Course</th>
-                            <th>Cet</th>
-                            <th>Gpa</th>
+                            <th>Action </th>
+
                         </tr>
                     </thead>
                     <tbody class="tbody">
-                        <tr>
-                            <td><input type="checkbox" name="selected"></td>
-                            <td>Adz</td>
-                            <td>Kalnain</td>
-                            <td>December 16,1998</td>
-                            <td>Mampang Z.C.</td>
-                            <td>09666319676</td>
-                            <td>adzgreen2017@gmail.com</td>
-                            <td>CS</td>
-                            <td>92%</td>
-                            <td>92%</td>
-                        </tr>
-                        <tr>
-                          <td><input type="checkbox" name="selected"></td>
-                          <td>Adz</td>
-                          <td>Kalnain</td>
-                          <td>December 16,1998</td>
-                          <td>Mampang Z.C.</td>
-                          <td>09666319676</td>
-                          <td>adzgreen2017@gmail.com</td>
-                          <td>IT</td>
-                          <td>92%</td>
-                          <td>92%</td>
-                      </tr>
+                 <?php   while ($row = mysqli_fetch_array($results)) { ?>
+                            <tr>
+                   
+                          <td><?php echo $row['fname']; ?> </td>
+                          <td><?php echo $row['lname']; ?> </td>
+                          <td><?php echo $row['course_name']; ?></td>   
+                           
+                          <td style="display:none" ><?php echo $row['cet_path']; ?></td>  
+                          <td style="display:none"><?php echo $row['gmoral_path']; ?></td>  
+                          <td style="display:none"><?php echo $row['gpa_path']; ?></td>  
+                          <td style="display:none"><?php echo $row['cetValue']; ?></td>  
+                          <td style="display:none"><?php echo $row['gpaValue']; ?></td>  
+                          <td style="display:none" ><?php echo $row['user_id']; ?> </td>
+                          <td>
+                          <button type="button" class ="btn btn-info actionbtn"> ACTION </button>
+                         </td>       
+                          <?php 
+                        }
+                         ?>
+
+
+
                     </tbody>
                 </table>
               </div>

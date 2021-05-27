@@ -86,8 +86,6 @@ if (isset($_GET['logout'])) {
         <section class="btn-group">
           <p class="section-name">Applicant's List</p>
           <div class="buttons">
-            <button class="btn btn-primary mr-2 pl-3 pr-3"><span class="label">Verify</span></button>
-            <button class="btn btn-danger pl-3 pr-3"><span class="label">Reject</span></button>
             <button class="toggle-more-menu" id="dropdown-more-buttons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-bars"></i>
             </button>
@@ -103,29 +101,33 @@ if (isset($_GET['logout'])) {
                     <thead class="thead">
                     <?php $results = mysqli_query($db, "SELECT * from selectedcourse LEFT JOIN users ON selectedcourse.user_id = users.id
                      LEFT JOIN coursestbl ON selectedcourse.course_id = coursestbl.course_id
-                     LEFT JOIN attachment ON selectedcourse.file_id = attachment.id ")?>
+                     LEFT JOIN attachment ON selectedcourse.file_id = attachment.id WHERE userStatus='PENDING'")?>
                         <tr>
-                            <th><input type="checkbox" onclick="toggle(this)"></th>
+               
                             <th>FirstName</th>
                             <th>LastName</th>
                             <th>Course</th>
-                            <th>Cet</th>
-                            <th>Good Moral</th>
-                            <th>Gpa</th>
+                            <th>Action </th>
+
                         </tr>
                     </thead>
                     <tbody class="tbody">
                  <?php   while ($row = mysqli_fetch_array($results)) { ?>
                             <tr>
-                            <td> </td>
+                   
                           <td><?php echo $row['fname']; ?> </td>
                           <td><?php echo $row['lname']; ?> </td>
-                          <td><?php echo $row['course_name']; ?></td>
-                          <td> <a href="../files_upload/attachment/<?php echo $row['cet_path']; ?>" ><?php echo $row['cet_path']; ?> </td>
-                          <td> <a href="../files_upload/attachment/<?php echo $row['gmoral_path']; ?>" ><?php echo $row['gmoral_path']; ?> </td>
-                          <td> <a href="../files_upload/attachment/<?php echo $row['gpa_path']; ?>" ><?php echo $row['gpa_path']; ?> </td>
-            
-                              
+                          <td><?php echo $row['course_name']; ?></td>   
+                           
+                          <td style="display:none" ><?php echo $row['cet_path']; ?></td>  
+                          <td style="display:none"><?php echo $row['gmoral_path']; ?></td>  
+                          <td style="display:none"><?php echo $row['gpa_path']; ?></td>  
+                          <td style="display:none"><?php echo $row['cetValue']; ?></td>  
+                          <td style="display:none"><?php echo $row['gpaValue']; ?></td>  
+                          <td style="display:none" ><?php echo $row['user_id']; ?> </td>
+                          <td>
+                          <button type="button" class ="btn btn-info actionbtn"> ACTION </button>
+                         </td>       
                           <?php 
                         }
                          ?>
@@ -156,17 +158,97 @@ if (isset($_GET['logout'])) {
         } );
     </script>
 
-    <script>
-      function toggle(source){
-          checkboxes = document.getElementsByName('selected');
-          for (var i=0, n=checkboxes.length; i<n; i++){
-              checkboxes[i].checked = source.checked;
-          }
-      }
-    </script>
 
 </html>
 
+
+
+
+<!-- DONE ACTION -->
+<div class="modal fade" id="adminAction" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ACTION</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="adminFunction.php" method="POST">
+
+        <div class="modal-body">
+
+
+        <input style="display: none;" type="id"   name="userID" id="userID"  class="form-control" >
+
+        <div class="form-group">
+                <label>First Name :</label>
+                <input type="id"   disabled="disabled"   name="firstname" id="firstname"  class="form-control" >
+            </div>
+        <div class="form-group">
+                <label>Last name :</label>
+                <input type="name" name="sender" disabled="disabled"  id="lastname" class="form-control" >
+            </div>
+            
+            <div class="form-group">
+                <label> Course Selected </label>
+                <input type="text" name="username" disabled="disabled" class="form-control" id="coursename" >
+            </div>
+            <div class="form-group">
+                <label>CET  :</label>
+                <input type="name" name="sender" disabled="disabled"  id="cetValue" class="form-control" >
+            </div>
+            
+            <div class="form-group">
+                <label> GPA </label>
+                <input type="text" name="username" disabled="disabled" class="form-control" id="gpaValue" >
+            </div>
+            <div class="form-group">
+                <label> GPA </label>
+                <input type="text" name="username" disabled="disabled" class="form-control" id="cet_path" >
+            </div>
+
+
+       
+        </div>
+        <div class="modal-footer">    
+        <button type="accept" name="accept" id="accept" class="btn btn-success">VERIFY</button>
+        <button type="accept" name="reject" id="reject" class="btn btn-success">REJECT</button>
+
+        </div>
+      </form>
   
-  
-  
+    </div>
+  </div>
+</div>
+
+
+<script>
+        $(document).ready(function () {
+            $('.actionbtn').on('click', function () {
+
+
+              $('#adminAction').modal('show');
+              $tr = $(this).closest('tr');
+
+                  var data =$tr.children("td").map(function(){
+                    return $(this).text();
+                  }).get();
+                  $('#firstname').val(data[0]);
+                  $('#lastname').val(data[1]);
+                  $('#coursename').val(data[2]);
+                  $('#cet_path').val(data[3]);
+                  $('#gmoral_path').val(data[4]);
+                  $('#cpa_path').val(data[5]);
+                  $('#cetValue').val(data[6]);
+                  $('#gpaValue').val(data[7]);
+                  $('#userID').val(data[8]);
+                    
+        
+             
+
+            });
+           
+        });
+    </script>
+

@@ -256,6 +256,12 @@ body {
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
 }
+/*
+.page-content .grid > article:first-child,
+.page-content .grid > article:last-child {
+  grid-column: 1 / -1;
+}*/
+
 
 /*Adjustment----------------------------------–––––––––––––––––––––––––––––––––––––––––––––––––– */
 @media screen and (max-width: 767px) {

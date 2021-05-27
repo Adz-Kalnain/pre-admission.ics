@@ -8,19 +8,28 @@
  $arr = mysqli_fetch_array($query);
  $userid = $arr['id'];
 
+
+
+
+
  if (isset($_POST['send'])) { // if save button on the form is clicked
     // name of the uploaded file
 
 
     $courseID = $_POST['id'];
+    $cetValue = $_POST['cetValue'];
+    $gpaValue = $_POST['gpaValue'];
     $id = $arr['id'];
+    $date = date("Ymd");
+    $today = date('Y:m:d', strtotime($date));
  //   $created_at = date('m/d/Y h:i:s a', time()); 
 
     
     $cet = $_FILES['cet']['name'];
     $moral = $_FILES['moral']['name'];
     $gpa = $_FILES['gpa']['name'];
-  //  $shiftee = $_FILES['shiftee']['name'];
+     $shiftee = $_FILES['shiftee']['name'];
+
 
     // destination of the file on the server
     $destination = '../files_upload/attachment/' . $cet;
@@ -38,11 +47,19 @@
     $file1 = $_FILES['cet']['tmp_name'];
     $file2 = $_FILES['moral']['tmp_name'];
     $file3 = $_FILES['gpa']['tmp_name'];
-
-
     $size = $_FILES['cet']['size'];
 
-    if (!in_array($extension1, ['zip', 'pdf', 'docx', 'jpeg', 'jpg', 'png'])) {
+
+
+    $checking = "SELECT * FROM selectedcourse WHERE user_id='$id'";
+    $res_checking = mysqli_query($db, $checking);
+
+
+    if (mysqli_num_rows($res_checking) > 0) {
+        header("location:../student/UserApplication.php");
+        $_SESSION['error'] = 'error';
+    }
+    else if (!in_array($extension1, ['zip', 'pdf', 'docx', 'jpeg', 'jpg', 'png'])) {
         echo "You file extension must be .zip, .pdf, .docx , .jpeg, .jpg, or .png";
     } elseif ($_FILES['cet']['size'] > 10000000) { // file shouldn't be larger than 10Megabyte
         echo "File too large!";
@@ -52,16 +69,15 @@
         move_uploaded_file($file3, $destination3);
         if (move_uploaded_file($file1, $destination)) {
             
-            $sql = "INSERT INTO attachment (cet_path,gpa_path,gmoral_path,user_id) VALUES ('$cet','$moral','$gpa','$id')";
+            $sql = "INSERT INTO attachment (cet_path,gpa_path,gmoral_path,user_id,cetValue,gpaValue) VALUES ('$cet','$moral','$gpa','$id','$cetValue','$gpaValue')";
             if (mysqli_query($db, $sql)) {
                 $file_id = mysqli_insert_id($db);
-               $query1= mysqli_query($db,"INSERT INTO selectedcourse (user_id,course_id,file_id) VALUES ('$id','$courseID','$file_id')") ;
-             //  $_SESSION['message'] = $tracking_code; 
-            //header("Location: ../../pages/user/send_docu.php");    
-            echo $courseID;
-            echo $id;
-
-
+               $query1= mysqli_query($db,"INSERT INTO selectedcourse (user_id,course_id,file_id,date,userStatus) VALUES ('$id','$courseID','$file_id','$today','PENDING')") ;   
+            //echo $courseID;
+            //echo $id;
+            
+            header("location:../student/UserApplication.php");
+            $_SESSION['message'] = 'Successful';
             }
         } else {
             echo "Failed to upload file.";

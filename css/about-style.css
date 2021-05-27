@@ -1,0 +1,140 @@
+/*.menu-item-group{
+    background-color: rgba(0, 128, 128, 0.808);
+}
+.menu-item-group .icon img{
+    width: 40px;
+    padding: 8px;
+}
+.menu-item-group .icon img:hover{
+    background-color: grey;
+}
+.menu-item-group .dropdown-menu{
+    background-color: grey;
+}
+.menu-item-group .dropdown-menu a{
+    line-height: 50px;
+    font-weight: 300px;
+    color: white;
+}
+.menu-item-group .dropdown-menu i{
+    width: 15px;
+    padding-right: 25px;
+    color: white;
+}
+.menu-item-group .dropdown-menu .active{
+    color: white;
+    background: teal;
+}
+.menu-item-group .dropdown-menu .dropdown-item:hover{
+    background-color: rgba(7, 207, 207, 0.301);
+    color: white;
+}*/
+.navbar{
+    background-color: rgba(0, 128, 128, 0.808);
+    color: white;
+}
+.navbar .navbar-brand img{
+    width: 90px;
+    border-radius: 60px;
+    margin-right: 10px;
+}
+.navbar .navbar-collapse ul li a.active{
+    border-bottom: 2px solid white;
+}
+@media (max-width: 520px){
+    .navbar .navbar-brand img{
+        width: 60px;
+    }
+    .navbar .navbar-brand{
+        font-size: 16px;
+        font-weight: 200px;
+    }
+}
+.navbar .container a h3{
+    text-decoration: none;
+    color: white;
+}
+nav .nav-pills a{
+    margin-top: 2px;
+        text-decoration: none;
+        color: black;
+}
+nav .nav-pills .active{
+    background-color: teal !important;
+}
+nav .nav-pills abbr{
+    text-decoration: none;
+}
+.tab-content .tab-pane .container form input{
+    border: none;
+    border-bottom: 2px solid teal;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding: 5px 5px;
+    width: 100%;
+}
+.tab-content .tab-pane .container h3{
+    text-align: center;
+    font-weight: 300px;
+}
+.tab-content .tab-pane .container textarea{
+    border: none;
+    border-bottom: 2px solid teal;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding: 5px 5px;
+}
+.tab-content .tab-pane .container form{
+    padding: 20px 10px;
+    border-radius: 5px;
+}
+.tab-content .tab-pane .container ul li img{
+    width: 17px;
+}
+.tab-content .tab-pane .container ul li .title{
+    line-height: 30px;
+}
+@media (max-width: 700px){
+    .navbar .container a h3{
+        text-decoration: none;
+        color: white;
+        font-size: 20px;
+    }   
+    nav .nav-tabs a{
+        text-decoration: none;
+        font-size: 14px;
+        color: black;
+    }
+    nav .nav-pills abbr::before{
+        content: attr(title);
+    }
+    nav .nav-pills abbr span{
+        display: none;
+    }
+}
+@media (max-width: 440px){
+    .navbar .container a h3{
+        text-decoration: none;
+        color: white;
+        font-size: 15px;
+    }
+    .navbar .navbar-brand {
+        font-size: 15px;
+        font-weight: 600;
+    }
+    .navbar .navbar-brand img{
+        width: 30px;
+        margin-right: 2px;
+    }
+    #navbar-header .container .row a h5{
+        font-size: 15px;
+        font-weight: 350;
+        line-height: 40px;
+    }
+    .tab-content .tab-pane .container p{
+        font-size: 14px;
+    }
+    .tab-content .tab-pane .container ul li{
+        font-size: 14px;
+    }
+}
