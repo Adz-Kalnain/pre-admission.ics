@@ -52,7 +52,7 @@ if (isset($_GET['logout'])) {
                 </a>
             </li>
             <li>
-                <a href="admin.admit.php">
+                <a href="admin.admit.php" class="active">
                 <i class="fa fa-gavel" aria-hidden="true"><span>Admitted</span></i>
                 </a>
             </li>
@@ -62,7 +62,7 @@ if (isset($_GET['logout'])) {
                 </a>
             </li>
             <li>
-              <a href="admin.rej.php" class="active">
+              <a href="admin.rej.php">
                 <i class="fa fa-thumbs-o-down" aria-hidden="true"><span>Rejected</span></i>
               </a>
             </li>
@@ -91,34 +91,35 @@ if (isset($_GET['logout'])) {
       <?php endif ?>
       <section class="page-content">
         <section class="btn-group">
-          <p class="section-name">Rejected List</p>
-          <!-- <div class="buttons">
-            <button class="toggle-more-menu" id="dropdown-more-buttons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <p class="section-name">Admitted List</p>
+          <div class="buttons">
+            <!-- <button class="toggle-more-menu" id="dropdown-more-buttons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-bars"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdown-more-buttons">
               <button class="dropdown-item" type="button">Print</button>
-            </div>
-          </div> -->
+            </div> -->
+          </div>
         </section>
         <section class="grid">
           <article>
               <div class="table table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mx-3 my-3">
                 <table class="table table-sm table-striped table-bordered table-hover" id="printable-table">
-                    <thead class="thead">
-                        <tr>
-                            <th>Name</th>
-                            <th>Cet</th>
-                            <th>Gpa</th>
-                            <th>Student Type</th>
-                            <th>Course</th>
-                        </tr>
-                    </thead>
-                    <tbody class="tbody">
-                        <tr>
-                            <!-- CONTENT GOES HERE -->
-                      </tr>
-                    </tbody>
+                  <thead class="thead">
+                    <tr>
+                        <th>Name</th>
+                        <th>Cet</th>
+                        <th>Gpa</th>
+                        <th>Student Type</th>
+                        <th>Course</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody">
+                    <tr>
+                      <!-- CONTENT GOES HERE -->
+                    </tr>
+         
+                </tbody>
                 </table>
               </div>
           </article>

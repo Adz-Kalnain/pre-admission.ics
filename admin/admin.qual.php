@@ -34,7 +34,7 @@ if (isset($_GET['logout'])) {
           </a>
           <ul class="admin-menu">
             <li class="menu-heading">
-              <h3>Dashboard</h3>
+              <h3>APPLICANTS LIST</h3>
             </li>
             <li>
                 <a href="admin.main.php">
@@ -52,8 +52,23 @@ if (isset($_GET['logout'])) {
                 </a>
             </li>
             <li>
+                <a href="admin.admit.php">
+                <i class="fa fa-gavel" aria-hidden="true"><span>Admitted</span></i>
+                </a>
+            </li>
+            <li>
+                <a href="admin.wait.php">
+                <i class="fa fa-clock-o" aria-hidden="true"><span>Waiting</span></i>
+                </a>
+            </li>
+            <li>
               <a href="admin.rej.php">
                 <i class="fa fa-thumbs-o-down" aria-hidden="true"><span>Rejected</span></i>
+              </a>
+            </li>
+            <li>
+              <a href="admin.cancel.php">
+              <i class="fa fa-ban" aria-hidden="true"><span>Cancelled</span></i>
               </a>
             </li>
             <li class="menu-heading">
@@ -95,12 +110,12 @@ if (isset($_GET['logout'])) {
         <section class="btn-group">
           <p class="section-name">Qualified List</p>
           <div class="buttons">
-            <button class="toggle-more-menu" id="dropdown-more-buttons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <!-- <button class="toggle-more-menu" id="dropdown-more-buttons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-bars"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdown-more-buttons">
               <button class="dropdown-item" type="button">Print</button>
-            </div>
+            </div> -->
           </div>
         </section>
         <section class="grid">
@@ -109,76 +124,16 @@ if (isset($_GET['logout'])) {
                 <table class="table table-sm table-striped table-bordered table-hover" id="printable-table">
                   <thead class="thead">
                     <tr>
-                        <th><input type="checkbox" onclick="toggle(this)"></th>
-                        <th>#</th>
-                        <th>FirstName</th>
-                        <th>LastName</th>
-                        <th>BirthDate</th>
-                        <th>Address</th>
-                        <th>ContactNo</th>
-                        <th>Email</th>
+                        <th>Name</th>
                         <th>Cet</th>
                         <th>Gpa</th>
-                        <th>Interview Score</th>
-                        <th>Overall Score</th>
+                        <th>Student Type</th>
+                        <th>Course</th>
                     </tr>
                 </thead>
                 <tbody class="tbody">
                     <tr>
-                        <td><input type="checkbox" name="selected"></td>
-                        <td>1</td>
-                        <td>Adz</td>
-                        <td>Kalnain</td>
-                        <td>December 16,1998</td>
-                        <td>Mampang Z.C.</td>
-                        <td>09666319676</td>
-                        <td>adzgreen2017@gmail.com</td>
-                        <td>92%</td>
-                        <td>92%</td>
-                        <td>9</td>
-                        <td>92</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" name="selected"></td>
-                      <td>2</td>
-                      <td>Adz</td>
-                      <td>Kalnain</td>
-                      <td>December 16,1998</td>
-                      <td>Mampang Z.C.</td>
-                      <td>09666319676</td>
-                      <td>adzgreen2017@gmail.com</td>
-                      <td>92%</td>
-                      <td>92%</td>
-                      <td>9</td>
-                      <td>91</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" name="selected"></td>
-                      <td>3</td>
-                      <td>Adz</td>
-                      <td>Kalnain</td>
-                      <td>December 16,1998</td>
-                      <td>Mampang Z.C.</td>
-                      <td>09666319676</td>
-                      <td>adzgreen2017@gmail.com</td>
-                      <td>92%</td>
-                      <td>92%</td>
-                      <td>9</td>
-                      <td>92</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" name="selected"></td>
-                      <td>4</td>
-                      <td>Adz</td>
-                      <td>Kalnain</td>
-                      <td>December 16,1998</td>
-                      <td>Mampang Z.C.</td>
-                      <td>09666319676</td>
-                      <td>adzgreen2017@gmail.com</td>
-                      <td>92%</td>
-                      <td>92%</td>
-                      <td>9</td>
-                      <td>92</td>
+                      <!-- CONTENT GOES HERE -->
                     </tr>
          
                 </tbody>

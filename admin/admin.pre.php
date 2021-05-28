@@ -34,7 +34,7 @@ if (isset($_GET['logout'])) {
           </a>
           <ul class="admin-menu">
             <li class="menu-heading">
-              <h3>Dashboard</h3>
+              <h3>APPLICANTS LIST</h3>
             </li>
             <li>
                 <a href="admin.main.php">
@@ -52,8 +52,23 @@ if (isset($_GET['logout'])) {
                 </a>
             </li>
             <li>
+                <a href="admin.admit.php">
+                <i class="fa fa-gavel" aria-hidden="true"><span>Admitted</span></i>
+                </a>
+            </li>
+            <li>
+                <a href="admin.wait.php">
+                <i class="fa fa-clock-o" aria-hidden="true"><span>Waiting</span></i>
+                </a>
+            </li>
+            <li>
               <a href="admin.rej.php">
                 <i class="fa fa-thumbs-o-down" aria-hidden="true"><span>Rejected</span></i>
+              </a>
+            </li>
+            <li>
+              <a href="admin.calcel.php">
+              <i class="fa fa-ban" aria-hidden="true"><span>Cancelled</span></i>
               </a>
             </li>
             <li class="menu-heading">
@@ -78,14 +93,14 @@ if (isset($_GET['logout'])) {
         <section class="btn-group">
           <p class="section-name">Pre-qualified List</p>
           <div class="buttons">
-            <button class="btn btn-primary pl-3 pr-3" type="submit"><span class="label">Submit</span></button>
+            <!-- <button class="btn btn-primary pl-3 pr-3" type="submit"><span class="label">Submit</span></button>
             <button class="toggle-more-menu" id="dropdown-more-buttons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-bars"></i>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdown-more-buttons">
               <button class="dropdown-item" type="button">Print</button>
               <button class="dropdown-item" type="button">Set Schedule</button>
-            </div>
+            </div> -->
           </div>
         </section>
         <section class="grid">

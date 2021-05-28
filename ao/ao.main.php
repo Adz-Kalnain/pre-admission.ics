@@ -37,12 +37,12 @@ if (isset($_GET['logout'])) {
               <h3>Dashboard</h3>
             </li>
             <li>
-              <a href="ao.main.php">
+              <a href="ao.main.php" class="active">
                 <i class="fa fa-list" aria-hidden="true"><span>Prequalified</span></i>
               </a>
             </li>
             <li>
-            <a href="ao.qual.php" class="active">
+            <a href="ao.qual.php">
                 <i class="fa fa-thumbs-o-up" aria-hidden="true"><span>Qualified</span></i>
               </a>
             </li>
@@ -50,7 +50,7 @@ if (isset($_GET['logout'])) {
               <h3>Settings</h3>
             </li>
             <li>
-              <a href="">
+              <a href="#0">
                 <i class="fa fa-cog" aria-hidden="true"><span>Settings</span></i>
               </a>
             </li>-->
@@ -66,8 +66,7 @@ if (isset($_GET['logout'])) {
               </li>-->
             <li>
               <a href="../index.php?logout='1'">
-                <i class="fa fa-sign-out"><span>Logout</span></i>
-                
+                <i class="fa fa-sign-out"><span>logout</span></i>
               </a>
             </li>
           </ul>
@@ -75,9 +74,9 @@ if (isset($_GET['logout'])) {
       </header>
       <?php endif ?>
       <section class="page-content">
-      
+        
         <section class="btn-group">
-          <p class="section-name">Qualified List</p>
+          <p class="section-name">Pre-qualified List</p>
           <div class="buttons">
               <button class="btn btn-primary mr-2 pl-3 pr-3" onclick="myTable1.printApplicantTable()">
                 <i class="fa fa-print" aria-hidden="true"></i>
@@ -91,7 +90,6 @@ if (isset($_GET['logout'])) {
                   <thead class="thead">
                     <tr>
                         <th><input type="checkbox" onclick="toggle(this)"></th>
-                        <th>#</th>
                         <th>FirstName</th>
                         <th>LastName</th>
                         <th>BirthDate</th>
@@ -107,7 +105,6 @@ if (isset($_GET['logout'])) {
                 <tbody class="tbody">
                     <tr>
                         <td><input type="checkbox" name="selected"></td>
-                        <td>1</td>
                         <td>Adz</td>
                         <td>Kalnain</td>
                         <td>December 16,1998</td>
@@ -116,52 +113,10 @@ if (isset($_GET['logout'])) {
                         <td>adzgreen2017@gmail.com</td>
                         <td>92%</td>
                         <td>92%</td>
-                        <td>9</td>
-                        <td>92</td>
+                        <td><input type="number"></td>
+                        <td></td>
                     </tr>
-                    <tr>
-                      <td><input type="checkbox" name="selected"></td>
-                      <td>2</td>
-                      <td>Adz</td>
-                      <td>Kalnain</td>
-                      <td>December 16,1998</td>
-                      <td>Mampang Z.C.</td>
-                      <td>09666319676</td>
-                      <td>adzgreen2017@gmail.com</td>
-                      <td>92%</td>
-                      <td>92%</td>
-                      <td>9</td>
-                      <td>91</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" name="selected"></td>
-                      <td>3</td>
-                      <td>Adz</td>
-                      <td>Kalnain</td>
-                      <td>December 16,1998</td>
-                      <td>Mampang Z.C.</td>
-                      <td>09666319676</td>
-                      <td>adzgreen2017@gmail.com</td>
-                      <td>92%</td>
-                      <td>92%</td>
-                      <td>9</td>
-                      <td>92</td>
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" name="selected"></td>
-                      <td>4</td>
-                      <td>Adz</td>
-                      <td>Kalnain</td>
-                      <td>December 16,1998</td>
-                      <td>Mampang Z.C.</td>
-                      <td>09666319676</td>
-                      <td>adzgreen2017@gmail.com</td>
-                      <td>92%</td>
-                      <td>92%</td>
-                      <td>9</td>
-                      <td>92</td>
-                    </tr>
-         
+                    
                 </tbody>
                 </table>
               </div>

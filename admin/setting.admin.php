@@ -35,7 +35,7 @@ if (isset($_GET['logout'])) {
           </a>
           <ul class="admin-menu">
             <li class="menu-heading">
-              <h3>Dashboard</h3>
+              <h3>APPLICANTS LIST</h3>
             </li>
             <li>
               <a href="admin.main.php">
@@ -85,12 +85,12 @@ if (isset($_GET['logout'])) {
               <div class="options">
                 <ul class="setting-menu" id="myTab">
                   <div class="list-group list-group-flush" id="list-tab" role="tablist">
-                    <a class="list-group-item list-group-item-action active" id="list-requirement-list" data-toggle="list" href="#list-requirement" role="tab" aria-controls="home">Requirement Management</a>
-                    <a class="list-group-item list-group-item-action" id="list-course-list" data-toggle="list" href="#list-course" role="tab" aria-controls="profile">Course Management</a>
-                    <a class="list-group-item list-group-item-action" id="list-admission-list" data-toggle="list" href="#list-admission" role="tab" aria-controls="messages">Admission</a>
-                    <a class="list-group-item list-group-item-action" id="list-quota-list" data-toggle="list" href="#list-quota" role="tab" aria-controls="settings">Quota Management</a>
-                    <a class="list-group-item list-group-item-action" id="list-schedule-list" data-toggle="list" href="#list-schedule" role="tab" aria-controls="settings">Schedule</a>
-                    <a class="list-group-item list-group-item-action" id="list-account-list" data-toggle="list" href="#list-account" role="tab" aria-controls="settings">Create new account</a>
+                    <a class="list-group-item list-group-item-action active" id="list-requirement-list" data-toggle="list" href="#list-requirement" role="tab" aria-controls="requirement">Requirement Management</a>
+                    <a class="list-group-item list-group-item-action" id="list-course-list" data-toggle="list" href="#list-course" role="tab" aria-controls="course">Course Management</a>
+                    <a class="list-group-item list-group-item-action" id="list-college-list" data-toggle="list" href="#list-college" role="tab" aria-controls="college">College Management</a>
+                    <a class="list-group-item list-group-item-action" id="list-admission-list" data-toggle="list" href="#list-admission" role="tab" aria-controls="admission">Admission</a>
+                    <a class="list-group-item list-group-item-action" id="list-quota-list" data-toggle="list" href="#list-quota" role="tab" aria-controls="quota">Quota Management</a>
+                    <a class="list-group-item list-group-item-action" id="list-account-list" data-toggle="list" href="#list-account" role="tab" aria-controls="account">Create new account</a>
                   </div>
                 </ul>
               </div>
@@ -114,12 +114,43 @@ if (isset($_GET['logout'])) {
                         <input type="number" name="gpa" class="form-control  mb-3" required>
                         <label for="cet">CET Score (College Entrance Test)</label>
                         <input type="number" name="cet" class="form-control" required>
-                        <label class="control-label mt-3" for="college">For College Of:</label>
-                        <select class="form-control input-sm" name="college" id="college" required>
-                          <option value="ics">Institute of Computer Studies</option>
-                          <option value="coe">College of Engineering</option> 
-                        </select>
-                        <input type="submit" class="btn mt-3" name="submit" value="submit" id="allSettingButtons">
+                        <div class="row">
+                          <div class="col-6">
+
+                              <?php  
+                                  $query = "SELECT * FROM college";
+                                  $result = mysqli_query($db, $query);
+                                  $options = "";
+                                  while ($row = mysqli_fetch_array($result)){
+                                    $options = $options."<option value='$row[0]'>$row[1]</option>";
+                                  }
+                              ?>
+
+                              <label class="control-label mt-3" for="college">Select College:</label>
+                              <select class="form-control input-sm" name="college" id="college_req" required onchange="course_reqChange()" >
+                                  <option value="empty"disabled selected>Select a college</option>
+                                  <?php echo $options; ?>
+                              </select>
+                          </div>
+                          <div class="col-6">
+                              
+                              <?php  
+                                  $query2 = "SELECT * FROM coursestbl";
+                                  $result2 = mysqli_query($db, $query2);
+                                  $options2 = "";
+                                  while ($row2 = mysqli_fetch_array($result2)){
+                                    $options2 = $options2."<option>$row2[1]</option>";
+                                  }
+                              ?>
+                              
+                              <label class="control-label mt-3" for="course">Select Course:</label>
+                              <select class="form-control input-sm" name="course" id="course_req" required>
+                                  <option value=""disbaled selected>Select a course</option>
+                                  <?php echo $options2; ?> 
+                              </select>
+                          </div>
+                          <input type="submit" class="btn mt-3 ml-3" name="submit" value="Save" id="allSettingButtons">
+                        </div>
                       </form>
                     </div>
                     
@@ -140,15 +171,40 @@ if (isset($_GET['logout'])) {
                       <form action="setting.admin.php" method="post" class="form">
                           <label for="courseName">Course Name:</label>
                           <input type="text" name="courseName" class="form-control  mb-3" required>
+                          
                           <label for="courseDescription">Course Description</label>
                           <textarea class="form-control" name="courseDescription" id="" cols="20" rows="5" required></textarea>
-                          <label class="control-label mt-3" for="college">For College Of:</label>
-                          <select class="form-control input-sm" name="college" id="college" required>
-                            <option value="ics">Institute of Computer Studies</option>
-                            <option value="coe">College of Engineering</option> 
-                          </select>
-                          <input type="submit" class="btn mt-3" name="courseSubmit" value="submit" id="allSettingButtons">
+                          
+                          <div class="row">
+                            <div class="col-12">
+
+                            <?php  
+                                $query = "SELECT * FROM college";
+                                $result = mysqli_query($db, $query);
+                                $options = "";
+                                while ($row = mysqli_fetch_array($result)){
+                                  $college_id = 'college_id';
+                                  $options = $options."<option value='$row[0]'>$row[1]</option>";
+                                }
+                            ?>
+
+                            <label class="control-label mt-3" for="college">For College Of:</label>
+                            <select class="form-control input-sm" name="college" id="college" required>
+                              <option value="empty"disabled selected>Select a college</option>
+                              <?php echo $options; ?>
+                              <!-- <option value="1">Institute of Computer Studies</option>
+                              <option value="2">College of Engineering</option>  -->
+                            </select>
+                            </div>
+                            <!-- <div class="col-6">
+                              <label for="courseLogo" class="control-label mt-3">Course Logo:(optional)</label>
+                              <input type="file" name="courseLogo" class="form-control mb-3">
+                            </div> -->
+                          </div>
+                          
+                          <input type="submit" class="btn mt-3" name="courseSubmit" value="Save" id="allSettingButtons">
                           <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#courseModal" id="allSettingButtons">View all created courses here</button>
+                      
                       </form>
                   </div>
 
@@ -178,10 +234,79 @@ if (isset($_GET['logout'])) {
                                         <?php while ($row = mysqli_fetch_array($course_results)) { ?>
                                           <tr>
                                             <td><?php echo $row['course_name']; ?></td>
-                                            <td><?php echo $row['course_description']; ?></td>
-                                            <td><?php echo $row['college']; ?></td>
+                                            <td><p><?php echo $row['course_description']; ?></p></td>
+                                            <td><?php echo $row['college_id']; ?></td>
                                             <td>
                                               <a class="btnDelete" href="delete.php?course_id=<?php echo $row['course_id']; ?>">Delete</a>
+                                            </td>
+                                          </tr>
+                                        <?php } ?>
+                                        </tbody>
+                                  </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button class="btn btn-danger" data-dismiss="modal" id="allSettingButtons">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+
+                  <!--COLLEGE-->
+                  <div class="tab-pane fade" id="list-college" role="tabpanel" aria-labelledby="list-college-list">
+                    
+                    <div class="college" id="setting-content-container">
+                      <h4 class="sett-name mb-2">College
+                          <?php if (isset($college_message1)): ?>
+                            <span class="message" id="message"><?php echo $course_message1; ?></span>
+                          <?php endif ?>
+                          <?php if (isset($college_message2)): ?>
+                            <span class="message" id="message"><?php echo $course_message2; ?></span>
+                          <?php endif ?>
+                      </h4>
+                      <form action="setting.admin.php" method="post" class="form">
+                          <label for="collegeName">College Name:</label>
+                          <input type="text" name="collegeName" class="form-control  mb-3" required>
+                          
+                          <label for="collegeDescription">College Description</label>
+                          <textarea class="form-control" name="collegeDescription" id="" cols="20" rows="5" required></textarea>
+                          
+                          
+                          <input type="submit" class="btn mt-3" name="collegeSubmit" value="Save" id="allSettingButtons">
+                          <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#collegeModal" id="allSettingButtons">View all created colleges here</button>
+                      
+                      </form>
+                    </div>
+
+                  <!--MODAL COLLEGE-->
+                  <div class="modal fade" id="collegeModal" tabindex="-1" role="dialog" aria-labelledby="collegeModalTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="collegeModalTitle">Colleges and Descriptions</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="table table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+                                  <table class="table table-sm table-striped table-bordered table-hover" id="#printable-table">
+                                      <thead class="thead">
+                                      <?php $course_results = mysqli_query($db, "SELECT * FROM college"); ?>
+                                          <tr class="bg-danger" style="color: white;">
+                                              <th>College Name</th>
+                                              <th>College Description</th>
+                                              <th>Action</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody class="tbody">
+                                        <?php while ($row = mysqli_fetch_array($course_results)) { ?>
+                                          <tr>
+                                            <td><?php echo $row['college_name']; ?></td>
+                                            <td><?php echo $row['college_description']; ?></td>
+                                            <td>
+                                              <a class="btnDelete" href="delete.php?college_id=<?php echo $row['college_id']; ?>">Delete</a>
                                             </td>
                                           </tr>
                                         <?php } ?>
@@ -200,21 +325,22 @@ if (isset($_GET['logout'])) {
                   <!--ADMISSION-->
                   <div class="tab-pane fade" id="list-admission" role="tabpanel" aria-labelledby="list-admission-list">
                     <div class="admission" id="setting-content-container">
-                        <h4 class="sett-name mb-5">Requirement
+                        <h4 class="sett-name mb-5">Admission
                           <?php if (isset($admission_message1)): ?>
                             <span class="message" id="message"><?php echo $admission_message1; ?></span>
                           <?php endif ?>
-                          <?php if (isset($admission_message2)): ?>
-                            <span class="message" id="message"><?php echo $admission_message2; ?></span>
-                          <?php endif ?>
                         </h4>
                         <form action="setting.admin.php" method="POST" class="form">
-                          <label for="startingdate">Set the starting date of Admission :</label>
+                          <label for="startingdate">Start receiving applicant on :</label>
                           <input type="date" name="startingdate" class="form-control mb-3">
-                          <label for="endingdate">Set the End date of Admission :</label>
-                          <input type="date" name="endingdate" class="form-control mb-3">
                           
-                          <input type="submit" class="btn mt-3" name="admissionSubmit" value="submit" id="allSettingButtons">
+                          <label for="endingdate">Stop receiving application on :</label>
+                          <input type="date" name="endingdate" class="form-control mb-3">
+
+                          <label for="sy">School year :</label>
+                          <input type="text" name="sy" class="form-control mb-3">
+                          
+                          <input type="submit" class="btn mt-3" name="admissionSubmit" value="Save" id="allSettingButtons">
                       </form>
                     </div>
                   </div>
@@ -231,109 +357,54 @@ if (isset($_GET['logout'])) {
                           <?php endif ?>
                         </h4>
                         <form action="setting.admin.php" method="POST" class="form">
-                          <div class="row">
-                              <div class="col-6">
-                                <label class="control-label mt-3" for="college">Select College:</label>
-                                <select class="form-control input-sm" name="college_result" id="college_dept" required onchange="courseChange()" >
+                        <div class="row">
+                          <div class="col-6">
+
+                              <?php  
+                                  $query = "SELECT * FROM college";
+                                  $result = mysqli_query($db, $query);
+                                  $options = "";
+                                  while ($row = mysqli_fetch_array($result)){
+                                    $options = $options."<option value='$row[0]'>$row[1]</option>";
+                                  }
+                              ?>
+
+                              <label class="control-label mt-3" for="college_dept">Select College:</label>
+                              <select class="form-control input-sm" name="college_dept" id="college_dept" onchange="courseChange()" required>
                                   <option value="empty"disabled selected>Select a college</option>
-                                  <option value="ics" name="ics-college">ics</option>
-                                  <option value="coe" name="coe-college">coe</option>
-                                </select>
-                              </div>
-                              <div class="col-6">
-                                <label class="control-label mt-3" for="course">Select Course:</label>
-                                <select class="form-control input-sm" name="course" id="course" required>
-                                  <option value=""disbaled selected>Select a course</option> 
-                                </select>
-                              </div>
+                                  <?php echo $options; ?>
+                                  <!-- <option value="1" name="ics-college">ics</option>
+                                  <option value="2" name="coe-college">coe</option> -->
+                              </select>
                           </div>
-                          
-                          <label for="quotaInput" class="control-label mt-3">Input quota for the selected course:</label>
-                          <input type="number" name="quotaInput" value="quota" class="form-control">
+                          <div class="col-6">
 
-                          <input type="submit" class="btn mt-3" name="quotaSubmit" value="submit" id="allSettingButtons">
-                        </form>
-                      </div>
-                  </div>
-                  
-                  <!--SCHEDULE-->
-                  <div class="tab-pane fade" id="list-schedule" role="tabpanel" aria-labelledby="list-schedule-list">
-                    <div class="schedule" id="setting-content-container">
-                        <h4 class="sett-name mb-2 mt-4">Schedule
-                          <?php if (isset($sched_message1)): ?>
-                          <span class="message" id="message"><?php echo $sched_message1; ?></span>
-                          <?php endif ?>
-                          <?php if (isset($sched_message2)): ?>
-                          <span class="message" id="message"><?php echo $sched_message2; ?></span>
-                          <?php endif ?>
-                          <?php if (isset($sched_message3)): ?>
-                          <span class="message" id="message"><?php echo $sched_message3; ?></span>
-                          <?php endif ?>
-                        </h4>
-                        <form action="setting.admin.php" method="POST" name="interviewSched">
-                            <label for="setInterviewer">Set Interviewer Name</label>
-                            <input type="text" name="setInterviewer" class="form-control">
-                            <label for="setScheddate">Set Interview Date</label>
-                            <input type="date" name="setScheddate" class="form-control" required>
-                            <label for="setSchedTimeFrom">Set Interview Time From:</label>
-                            <input type="time" name="setSchedTimeFrom" class="form-control" required>
-                            <label for="setSchedTimeTo">Set Interview Time To:</label>
-                            <input type="time" name="setSchedTimeTo" class="form-control" required>
-                            <label class="control-label mt-3" for="college">For College Of:</label>
-                            <select class="form-control input-sm" name="college" id="college" required>
-                              <option value="ics">Institute of Computer Studies</option>
-                              <option value="coe">College of Engineering</option> 
-                            </select>
+                              <?php  
+                                  $query2 = "SELECT * FROM coursestbl";
+                                  $result2 = mysqli_query($db, $query2);
+                                  $options2 = "";
+                                  while ($row2 = mysqli_fetch_array($result2)){
+                                    $options2 = $options2."<option value='$row2[0]'>$row2[1]</option>";
+                                  }
+                              ?>
+
+                              <label class="control-label mt-3" for="course_sel">Select Course:</label>
+                              <select class="form-control input-sm" name="course_sel" id="course_sel" required>
+                                  <option value="" disbaled selected>Select a course</option>
+                                  <?php echo $options2 ?> 
+                              </select>
+                          </div>
+                        </div>
                             
-                            <input type="submit" class="btn mt-3" name="schedSubmit" value="submit" id="allSettingButtons">
-                            <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#scheduleModal" id="allSettingButtons">View all created schedules here</button>
+                          <label for="quotaInput" class="control-label mt-3">Accepting applicants:</label>
+                          <input type="number" name="quotaInput" value="quota" class="form-control" required>
+
+                          <label for="waitingInput" class="control-label mt-3">Waiting List:</label>
+                          <input type="number" name="waitingInput" value="waiting" class="form-control" required>
+
+                          <input type="submit" class="btn mt-3" name="quotaSubmit" value="Save" id="allSettingButtons">
                         </form>
-
                       </div>
-                      <!--SCHEDULE MODAL-->
-                      <div class="modal fade" id="scheduleModal" tabindex="-1" role="dialog" aria-labelledby="scheduleModalTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="scheduleModalTitle">Schedules and Interviewer</h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="table table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
-                                      <table class="table table-sm table-striped table-bordered table-hover">
-                                          <thead class="thead">
-                                          <?php $results = mysqli_query($db, "SELECT * FROM interviewertbl"); ?>
-                                              <tr class="bg-danger" style="color: white;">
-                                                  <th>Interviewer</th>
-                                                  <th>Date</th>
-                                                  <th>Time</th>
-                                                  <th>Action</th>
-                                              </tr>
-                                            </thead>
-                                            <tbody class="tbody">
-                                            <?php while ($row = mysqli_fetch_array($results)) { ?>
-                                              <tr>
-                                                <td><?php echo $row['ic_name']; ?></td>
-                                                <td><?php echo $row['ic_date']; ?></td>
-                                                <td><?php echo $row['ic_timefrom']; ?> -- <?php echo $row['ic_timeto']; ?></td>
-                                                <td>
-                                                  <a class="btnDelete" href="delete.php?id=<?php echo $row['id']; ?>">Delete</a>
-                                                </td>
-                                              </tr>
-                                            <?php } ?>
-                                            </tbody>
-                                      </table>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                  <button class="btn btn-danger" data-dismiss="modal" id="allSettingButtons">Close</button>
-                                </div>
-                              </div>
-                            </div>
-                      </div>
-
                   </div>
                   
                   <!--CREATE ACCOUNT-->
@@ -350,9 +421,14 @@ if (isset($_GET['logout'])) {
                           <form action="setting.admin.php" method="POST" name="createAccount">
                             <div class="row">
                               <div class="col-6">
-                                <label for="name" class="form-label">Full Name</label>
-                                <input type="text" class="form-control mb-3" id="name" name="name" placeholder="Full Name" required>
+                                <label for="fname" class="form-label">First Name</label>
+                                <input type="text" class="form-control mb-3" id="fname" name="fname" placeholder="First Name" required>
                               </div>
+                              <div class="col-6">
+                                <label for="lname" class="form-label">Last Name</label>
+                                <input type="text" class="form-control mb-3" id="lname" name="lname" placeholder="Last Name" required>
+                              </div>
+
                               <div class="col-6">
                                 <label for="username" class="form-label">Username</label>
                                 <div <?php if (isset($name_error)): ?> class="form_error" <?php endif ?> >
@@ -362,8 +438,8 @@ if (isset($_GET['logout'])) {
                                   <?php endif ?>
                                 </div>
                               </div>
-                              
-                              <div class="col-12">
+                                
+                              <div class="col-6">
                                 <label for="email" class="form-label">Email</label>
                                 <div <?php if (isset($email_error)): ?> class="form_error" <?php endif ?> >
                                   <input type="email" class="form-control mb-3" id="email" name="email" placeholder="Email Adress" value="<?php echo $email; ?>" required>
@@ -371,22 +447,36 @@ if (isset($_GET['logout'])) {
                                   <span><?php echo $email_error; ?></span>
                                   <?php endif ?>
                                 </div>
+                              </div>
+
+                              <div class="col-12">
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" class="form-control" name="password" placeholder="Password" required>
                               </div>
 
                               <div class="col-6">
+
+                              <?php  
+                                  $query = "SELECT * FROM college";
+                                  $result = mysqli_query($db, $query);
+                                  $options = "";
+                                  while ($row = mysqli_fetch_array($result)){
+                                    $options = $options."<option value='$row[0]'>$row[1]</option>";
+                                  }
+                              ?>
+
                                 <label class="control-label mt-3" for="college">College:</label>
                                 <select class="form-control input-sm mb-3" name="college" id="college" required>
-                                  <option value="ics">Institute of Computer Studies</option>
-                                  <option value="coe">College of Engineering</option> 
+                                  <option value="" disabled selected>Select a college</option>
+                                  <?php echo $options ?>
+                                  <!-- <option value="ics">Institute of Computer Studies</option>
+                                  <option value="coe">College of Engineering</option>  -->
                                 </select>
                               </div>
 
                               <div class="col-6">
                                 <label class="control-label mt-3" for="role">Role:</label>
                                 <select class="form-control input-sm" name="role" id="role">
-                                  <option value="admin">Administrator</option>
                                   <option value="ao">Admission Officer</option>
                                   <option value="evaluator">Evaluator</option>
                                   <option value="ic">Interviewer</option> 
@@ -394,7 +484,7 @@ if (isset($_GET['logout'])) {
                               </div>
                               
                               <div class="col-12">
-                                <input type="submit" class="btn mt-3" name="accountSubmit" value="submit" id="allSettingButtons">
+                                <input type="submit" class="btn mt-3" name="accountSubmit" value="Save" id="allSettingButtons">
                               </div>
                               
                             </div>
@@ -448,36 +538,6 @@ if (isset($_GET['logout'])) {
             select: true
         } );
     </script>
-    
-    <!--SCRIPT for quota options-->
-    <script>
-        $(document).ready(function() {
-            $("#college_dept").change(function(){ 
-                var val = $(this).val();
-                <?php  
-                    $query1 = "SELECT * FROM coursestbl WHERE college = 'ics'";
-                    $result1 = mysqli_query($db, $query1);
-                    $options = "";
-                    while ($row1 = mysqli_fetch_array($result1)){
-                      $options = $options."<option>$row1[1]</option>";
-                    }
-                ?>
-                <?php  
-                    $query2 = "SELECT * FROM coursestbl WHERE college = 'coe'";
-                    $result2 = mysqli_query($db, $query2);
-                    $options2 = "";
-                    while ($row1 = mysqli_fetch_array($result2)){
-                      $options2 = $options2."<option>$row1[1]</option>";
-                    }
-                ?>
-                    if (val == "ics") {
-                      $("#course").html("<?php echo $options; ?>");
-                    } else if(val == "coe") {
-                      $("#course").html("<?php echo $options2; ?>");
-                    }
-                
-            });
-        });     
-    </script>
+
 
 </html>
