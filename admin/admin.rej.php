@@ -104,21 +104,44 @@ if (isset($_GET['logout'])) {
         <section class="grid">
           <article>
               <div class="table table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mx-3 my-3">
-                <table class="table table-sm table-striped table-bordered table-hover" id="printable-table">
+                  <table class="table table-sm table-striped table-bordered table-hover" id="printable-table">
                     <thead class="thead">
+                    <?php $results = mysqli_query($db, "SELECT * from selectedcourse 
+                      LEFT JOIN users ON selectedcourse.user_id = users.id
+                      LEFT JOIN coursestbl ON selectedcourse.course_id = coursestbl.course_id
+                      LEFT JOIN attachment ON selectedcourse.file_id = attachment.id WHERE userStatus='REJECT'")?>
                         <tr>
+               
                             <th>Name</th>
                             <th>Cet</th>
                             <th>Gpa</th>
-                            <th>Student Type</th>
                             <th>Course</th>
+                            <th>Action </th>
+
                         </tr>
                     </thead>
                     <tbody class="tbody">
-                        <tr>
-                            <!-- CONTENT GOES HERE -->
-                      </tr>
-                    </tbody>
+                        <?php while ($row = mysqli_fetch_array($results)) { ?>
+                            <tr>
+                    
+                          <td><?php echo $row['fname']; ?> <?php echo $row['lname']; ?></td>
+                          <td><?php echo $row['cetValue']; ?></td>  
+                          <td><?php echo $row['gpaValue']; ?></td>
+                          <td><?php echo $row['course_name']; ?></td>   
+                           
+                          <td style="display:none" ><?php echo $row['cet_path']; ?></td>  
+                          <td style="display:none"><?php echo $row['gmoral_path']; ?></td>  
+                          <td style="display:none"><?php echo $row['gpa_path']; ?></td>  
+                          <td style="display:none" ><?php echo $row['user_id']; ?> </td>
+                          <td>
+                            <button class="btn btn-success">
+                              <a class="btnDelete" href="action/accept.php?user_id=<?php echo $row['user_id']; ?>">Verify</a>
+                            </button>
+                          </td>       
+                        <?php 
+                          }
+                        ?>
+                  </tbody>
                 </table>
               </div>
           </article>

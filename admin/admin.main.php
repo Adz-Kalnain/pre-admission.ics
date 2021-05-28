@@ -142,7 +142,12 @@ if (isset($_GET['logout'])) {
                           <td style="display:none"><?php echo $row['gpa_path']; ?></td>  
                           <td style="display:none" ><?php echo $row['user_id']; ?> </td>
                           <td>
-                            <button type="button" class ="btn btn-info actionbtn">Actions</button>
+                            <a class="btnDelete" href="action/accept.php?user_id=<?php echo $row['user_id']; ?>">
+                              <button class="btn btn-success">Verify</button>
+                            </a>
+                            <a class="btnDelete" href="action/reject.php?user_id=<?php echo $row['user_id']; ?>">
+                              <button class="btn btn-danger">Disqualify</button>
+                            </a>
                           </td>       
                         <?php 
                           }
@@ -156,6 +161,7 @@ if (isset($_GET['logout'])) {
           </article>
         </section>
       </section>
+
 </body>
     <script src="../jquery/jquery.min.js"></script>
     <script src="../bootstrap4/js/bootstrap.bundle.min.js"></script>
@@ -174,78 +180,25 @@ if (isset($_GET['logout'])) {
         } );
     </script>
 
+    <script>
+      $(document).ready(function () {
+          $('.actionbtn').on('click', function () {
+
+
+            $('#adminAction').modal('show');
+            $tr = $(this).closest('tr');
+
+                var data =$tr.children("td").map(function(){
+                  return $(this).text();
+                }).get();
+                $('#firstname').val(data[0]);
+                $('#cetValue').val(data[1]);
+                $('#gpaValue').val(data[2]);
+                $('#coursename').val(data[3]);
+                  
+          });
+          
+      });
+    </script>
 
 </html>
-
-
-
-
-<!-- VERIFY ACTION -->
-<div class="modal fade" id="adminAction" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form action="adminFunction.php" method="POST">
-
-        <div class="modal-body">
-
-
-        <input style="display: none;" type="id"   name="userID" id="userID"  class="form-control" >
-
-        <div class="form-group">
-                <label>Name</label>
-                <input type="id"   disabled="disabled"   name="firstname" id="firstname"  class="form-control" >
-            </div>
-            <div class="form-group">
-                <label>Cet</label>
-                <input type="name" name="sender" disabled="disabled"  id="cetValue" class="form-control" >
-            </div>
-            
-            <div class="form-group">
-                <label>Gpa</label>
-                <input type="text" name="username" disabled="disabled" class="form-control" id="gpaValue" >
-            </div>
-            <div class="form-group">
-                <label>Course</label>
-                <input type="text" name="username" disabled="disabled" class="form-control" id="coursename" >
-            </div>
-
-
-       
-        </div>
-        <div class="modal-footer">    
-          <button type="accept" name="accept" id="accept" class="btn btn-success">Verify</button>
-          <button type="button" class ="btn btn-danger rejectbtn">Disqualify</button>
-        </div>
-      </form>
-  
-    </div>
-  </div>
-</div>
-
-
-<script>
-  $(document).ready(function () {
-      $('.actionbtn').on('click', function () {
-
-
-        $('#adminAction').modal('show');
-        $tr = $(this).closest('tr');
-
-            var data =$tr.children("td").map(function(){
-              return $(this).text();
-            }).get();
-            $('#firstname').val(data[0]);
-            $('#cetValue').val(data[1]);
-            $('#gpaValue').val(data[2]);
-            $('#coursename').val(data[3]);
-              
-      });
-      
-  });
-</script>
