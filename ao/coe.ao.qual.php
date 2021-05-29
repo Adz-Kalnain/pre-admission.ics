@@ -36,11 +36,11 @@ if (isset($_GET['logout'])) {
             <li class="menu-heading">
               <h3>APPLICANTS LIST</h3>
             </li>
-            <li>
+            <!-- <li>
               <a href="coe.ao.main.php">
                 <i class="fa fa-list" aria-hidden="true"><span>Prequalified</span></i>
               </a>
-            </li>
+            </li> -->
             <li>
             <a href="coe.ao.qual.php" class="active">
                 <i class="fa fa-thumbs-o-up" aria-hidden="true"><span>Qualified</span></i>
@@ -107,9 +107,8 @@ if (isset($_GET['logout'])) {
                   <thead class="thead">
                     <?php $results = mysqli_query($db, "SELECT * from selectedcourse LEFT JOIN users ON selectedcourse.user_id = users.id
                      LEFT JOIN coursestbl ON selectedcourse.course_id = coursestbl.course_id
-                     LEFT JOIN attachment ON selectedcourse.file_id = attachment.id WHERE userStatus='QUALIFIED' AND college_id='2'")?>
+                     LEFT JOIN attachment ON selectedcourse.file_id = attachment.id WHERE userStatus='VERIFIED' AND college_id='2'")?>
                     <tr>
-                        <th><input type="checkbox" onclick="toggle(this)"></th>
                         <th>Name</th>
                         <th>Cet</th>
                         <th>Gpa</th>
@@ -120,7 +119,6 @@ if (isset($_GET['logout'])) {
                   <tbody class="tbody">
                       <?php   while ($row = mysqli_fetch_array($results)) { ?>
                       <tr>
-                        <td><input type="checkbox" name="selected"></td>
                         <td><?php echo $row['fname']; ?> <?php echo $row['lname']; ?></td>
                         
                         <td><?php echo $row['cetValue']; ?></td>

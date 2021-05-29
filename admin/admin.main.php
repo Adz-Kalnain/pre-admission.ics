@@ -19,6 +19,7 @@ if (isset($_GET['logout'])) {
     <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">          
     <link rel="stylesheet" href="../css/admin.style.css">
+    <link rel="stylesheet" href="../css/btn.admin.css">
     <link rel="stylesheet" type="text/css" href="../DataTables/datatables.css">
 
 </head>
@@ -142,10 +143,10 @@ if (isset($_GET['logout'])) {
                           <td style="display:none"><?php echo $row['gpa_path']; ?></td>  
                           <td style="display:none" ><?php echo $row['user_id']; ?> </td>
                           <td>
-                            <a class="btnDelete" href="action/accept.php?user_id=<?php echo $row['user_id']; ?>">
+                            <a class="btnaction" href="action/accept.php?user_id=<?php echo $row['user_id']; ?>">
                               <button class="btn btn-success">Verify</button>
                             </a>
-                            <a class="btnDelete" href="action/reject.php?user_id=<?php echo $row['user_id']; ?>">
+                            <a class="btnaction" href="action/reject.php?user_id=<?php echo $row['user_id']; ?>">
                               <button class="btn btn-danger">Disqualify</button>
                             </a>
                           </td>       

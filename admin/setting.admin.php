@@ -38,23 +38,38 @@ if (isset($_GET['logout'])) {
               <h3>APPLICANTS LIST</h3>
             </li>
             <li>
-              <a href="admin.main.php">
-                <i class="fa fa-list" aria-hidden="true"><span>Applicants</span></i>
-              </a>
+                <a href="admin.main.php">
+                  <i class="fa fa-list" aria-hidden="true"><span>Applicants</span></i>
+                </a>
             </li>
             <li>
-              <a href="admin.pre.php">
-                <i class="fa fa-check" aria-hidden="true"><span>Prequalified</span></i>
-              </a>
+                <a href="admin.pre.php">
+                  <i class="fa fa-check" aria-hidden="true"><span>Prequalified</span></i>
+                </a>
             </li>
             <li>
-              <a href="admin.qual.php">
-                  <i class="fa fa-thumbs-o-up" aria-hidden="true"><span>Qualified</span></i>
-              </a>
+                <a href="admin.qual.php">
+                    <i class="fa fa-thumbs-o-up" aria-hidden="true"><span>Qualified</span></i>
+                </a>
+            </li>
+            <li>
+                <a href="admin.admit.php">
+                <i class="fa fa-gavel" aria-hidden="true"><span>Admitted</span></i>
+                </a>
+            </li>
+            <li>
+                <a href="admin.wait.php">
+                <i class="fa fa-clock-o" aria-hidden="true"><span>Waiting</span></i>
+                </a>
             </li>
             <li>
               <a href="admin.rej.php">
                 <i class="fa fa-thumbs-o-down" aria-hidden="true"><span>Rejected</span></i>
+              </a>
+            </li>
+            <li>
+              <a href="admin.cancel.php">
+              <i class="fa fa-ban" aria-hidden="true"><span>Cancelled</span></i>
               </a>
             </li>
             <li class="menu-heading">

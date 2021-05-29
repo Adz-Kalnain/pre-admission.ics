@@ -19,6 +19,7 @@ if (isset($_GET['logout'])) {
     <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">          
     <link rel="stylesheet" href="../css/admin.style.css">
+    <link rel="stylesheet" href="../css/btn.admin.css">
     <link rel="stylesheet" type="text/css" href="../DataTables/datatables.css">
 
 </head>
@@ -135,10 +136,12 @@ if (isset($_GET['logout'])) {
                           <td style="display:none"><?php echo $row['gpaValue']; ?></td>  
                           <td style="display:none" ><?php echo $row['user_id']; ?> </td>
                           <td>
-                          <button type="button" class ="btn btn-info actionbtn"> ACTION </button>
-                         </td>       
+                              <button class="btn btn-success selectbtn">Select</button>
+                         </td>
+                         <!-- data-toggle="modal" data-target="#selectAction" -->
+                        </tr>      
                           <?php 
-                        }
+                            }
                          ?>
 
 
@@ -149,6 +152,54 @@ if (isset($_GET['logout'])) {
           </article>
         </section>
       </section>
+
+      <!-- Modal -->
+<div class="modal fade" id="selectAction" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Assign Interviewer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+        <div class="modal-body">
+            
+            <table class="table table-sm table-striped table-bordered table-hover" id="printable-table">
+          
+                <thead class="thead">
+                <?php $results2 = mysqli_query($db, "SELECT * from users WHERE user_type = 'coe-ic' OR user_type='ics-ic'") ?>
+                      <tr>
+                        <th>Name</th>
+                        <th>Action</th>
+                      </tr>
+                </thead>
+                <tbody class="tbody">
+                <!-- Not working -->
+                <?php while ($row2 = mysqli_fetch_array($results2)) { ?>
+                      <tr>
+                        <td style="display: none;" id="userid"></td>
+                        <td><?php echo $row2['fname']; ?> <?php echo $row2['lname']; ?></td>
+                        <td>
+                            <a class="btnaction" href="action/assign.php?user_id=<?php echo $row['user_id'];?>name=<?php echo $row2['fname'] ?> <?php echo $row2['lname'] ?>">
+                              <button class="btn btn-success">Assign</button>
+                            </a>
+                        </td>
+                      </tr>
+                <?php
+                  }
+                ?>
+                <!--  -->
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+  </div>
+</div>
+
+
 </body>
     <script src="../jquery/jquery.min.js"></script>
     <script src="../bootstrap4/js/bootstrap.bundle.min.js"></script>
@@ -176,8 +227,21 @@ if (isset($_GET['logout'])) {
       }
     </script>
 
-</html>
+    <script>
+      $(document).ready(function () {
+          $('.selectbtn').on('click', function () {
 
-  
-  
-  
+
+            $('#selectAction').modal('show');
+            $tr = $(this).closest('tr');
+
+                var data =$tr.children("td").map(function(){
+                  return $(this).text();
+                }).get();
+                $('#userid').val(data[8]);
+          });
+          
+      });
+    </script>
+
+</html>

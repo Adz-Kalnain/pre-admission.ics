@@ -1,18 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
 /*latto font lng malakas*/
 :root {
-  --page-header-bgColor: rgb(148, 2, 2);
-  --page-header-bgColor-hover: rgb(88, 2, 2);
+  --page-header-bgColor: teal;
+  --page-header-bgColor-hover: rgb(3, 100, 100);
   --page-header-txtColor: white;
   --page-header-headingColor: rgb(202, 198, 198);
   --page-header-width: 220px;
   --page-content-bgColor: #f0f1f6;
   --page-content-txtColor: #171616;
   --page-content-blockColor: #fff;
-  --white: #fff;
-  --black: #333;
-  --blue: #00b9eb;
-  --red: #ec1848;
   --border-radius: 4px;
   --box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.075);
 }
@@ -21,7 +17,6 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  
 }
 
 ul {
@@ -37,7 +32,6 @@ a {
 }
 
 button {
-  background: none;
   cursor: pointer;
 }
 
@@ -48,13 +42,9 @@ button, input {
 i {
   display: block;
 }
-body{
+body {
   font: 16px/1.5 "Lato";
 }
-/* 
-body {
-  font: 16px/1.5 "Lato", sans-serif;
-} */
 
 /* HEADER/NAVBAR––––––––––––––––––––––––––––––------------------------–––––––––––––––––––– */
 .page-header {
@@ -69,6 +59,26 @@ body {
   color: var(--page-header-txtColor);
   background: var(--page-header-bgColor);
 }
+/*
+.dropdown-toggle::after{
+	display: block;
+	position: absolute;
+	right: 20%;
+	transform: translateY(-50%);
+}
+
+ul ul a{
+  margin: 0 !important;
+  padding: 0 !important;
+	font-size: 12px !important;
+	padding-left: 40px !important;
+	background: crimson;
+}
+
+ul ul a:hover {
+  background: white !important;
+  color: crimson !important;
+}*/
 
 .page-header nav {
   display: flex;
@@ -161,9 +171,7 @@ body {
 }
 
 .page-header .admin-menu a:hover,
-.page-header .admin-menu a:focus/*,
-.page-header .admin-menu button:hover,
-.page-header .admin-menu button:focus*/ {
+.page-header .admin-menu a:focus {
   background: var(--page-header-bgColor-hover);
   outline: none;
 }
@@ -179,92 +187,90 @@ body {
   background: var(--page-content-bgColor);
 }
 
-.btn-group {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-column-gap: 0px;
-  align-items: center;
-  background: var(--page-content-bgColor);
-  margin-bottom: 25px;
-}
-
-.btn-group .buttons {
-  display: flex;
-  align-items: center;
-}
-
-.btn-group .buttons {
-  justify-content: flex-end;
-}
-
-.btn-group .buttons .btn-warning {
-  color: black;
-  width: 85px;
-  margin: 0 10px 10px;
-  outline: none;
-}
-
-.btn-group .buttons .btn-danger {
-  width: 85px;
-  margin: 0 0 10px;
-  outline: none;
-}
-
-.btn-group .buttons .toggle-more-menu i {
-  width: 30px;
-  height: 30px;
-  margin: 0 0 0 15px;
-}
-
-.btn-group .buttons .toggle-more-menu {
-  outline: none;
-}
-
-.btn-group .buttons .dropdown-menu {
-  background-color: var(--page-header-bgColor);
-}
-
-.btn-group .buttons .dropdown-menu .dropdown-item {
-  color: var(--page-header-txtColor);
-}
-
-.btn-group .buttons .dropdown-menu .dropdown-item:hover {
-  background-color: var(--page-header-bgColor-hover);
-  color: var(--white);
-}
-
-
-.btn-group .buttons .label {
-  font-size: 13px;
-}
-
 .btn-group .section-name {
   font-size: 25px;
 }
+/*---------Here Goes Setting design--------*/
 
-.page-content .grid .thead {
-    background-color: var(--page-header-bgColor);
-    color: white;
-    font-size: 12px;
-}
-.page-content .grid .tbody {
-    font-size: 12px;
-}
-.page-content .grid > article {
+.page-content .grid .setting .options .setting-menu {
   display: flex;
-  /*height: 300px;*/
-  /*height: 100vh;*/
-  min-height: 70vh;
-  height: 100%;
-  background: var(--page-content-blockColor);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  flex-direction: column;
+  flex-grow: 1;
+  margin-top: 20px;
 }
-/*
-.page-content .grid > article:first-child,
-.page-content .grid > article:last-child {
-  grid-column: 1 / -1;
+/*ang alam ko yung * for all, dih kase e explain ng tutorial*/
+/*.page-content .grid .setting .options .setting-menu ul li > * {
+  padding: 14px 15px;
 }*/
+
+.page-content .grid .setting .options {
+  width: 25%;
+  background-color: var(--page-header-bgColor);
+  color: white;
+  text-align: start;
+  margin-right: 3%;
+  border-bottom-left-radius: var(--border-radius);
+  border-top-left-radius: var(--border-radius);
+}
+
+.page-content .grid .setting .options .setting-menu .list-group .list-group-item{
+  text-decoration: none;
+  padding: 14px 15px;
+  background-color: var(--page-header-bgColor);
+  color: var(--page-header-txtColor);
+}
+
+.page-content .grid .setting .options .setting-menu .list-group .list-group-item.active, .list-group-item:focus {
+  background-color: var(--page-header-bgColor-hover);
+  border-color: transparent;
+}
+
+#message {
+  color: teal !important;
+}
+
+#warning {
+  color: crimson;
+}
+
+#setting-content-container {
+  position: absolute;
+  width: 550px;
+  margin: 0;
+  top: 50%;
+  left: 65%;
+  margin-right: -50%;
+  transform: translate(-65%, -50%);
+}
+
+/*.page-content .grid .setting ul li {
+  padding: 15px 0 10px;
+  padding-left: 12%;
+}
+
+.page-content .grid .setting ul li:hover {
+  background-color: var(--page-header-bgColor-hover);
+}*/
+
+.page-content .grid > article {
+display: flex;
+min-height: 80vh;
+height: 100%;
+background: var(--page-content-blockColor);
+border-radius: var(--border-radius);
+box-shadow: var(--box-shadow);
+}
+
+/*-------------------end---------------*/
+
+#allSettingButtons {
+  background-color: var(--page-header-bgColor);
+  color: white;
+}
+
+#allSettingButtons:hover {
+  background-color: rgb(185, 13, 47);
+}
 
 
 /*Adjustment----------------------------------–––––––––––––––––––––––––––––––––––––––––––––––––– */

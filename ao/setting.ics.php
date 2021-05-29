@@ -1,6 +1,6 @@
 <?php 
 include('../functions.php');
-include('coe.function.php');
+include('ics.function.php');
 
 if (isset($_GET['logout'])) {
 	session_destroy();
@@ -14,12 +14,12 @@ if (isset($_GET['logout'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admission Officer - COE</title>
-    <link rel="icon" href="../seal/coe-logo.png" sizes="32x32" type="image/png">
+    <title>Administrator</title>
+    <link rel="icon" href="../seal/logo.png" sizes="32x32" type="image/png">
 
     <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">          
-    <link rel="stylesheet" href="../css/setting.coe.css">
+    <link rel="stylesheet" href="../css/setting.ics.css">
     <link rel="stylesheet" type="text/css" href="../DataTables/datatables.css">
 
 </head>
@@ -31,7 +31,7 @@ if (isset($_GET['logout'])) {
             <i class="fa fa-bars"></i>
           </button>
           <a href="#">
-            <img class="logo mx-auto" src="../seal/coe-logo.png" alt="ics logo">
+            <img class="logo mx-auto" src="../seal/logo.png" alt="ics logo">
           </a>
           <ul class="admin-menu">
             <li class="menu-heading">
@@ -43,27 +43,27 @@ if (isset($_GET['logout'])) {
               </a>
             </li> -->
             <li>
-            <a href="coe.ao.qual.php">
+            <a href="ics.qual.php">
                 <i class="fa fa-thumbs-o-up" aria-hidden="true"><span>Qualified</span></i>
               </a>
             </li>
             <li>
-                <a href="coe.admit.php">
+                <a href="ics.admit.php">
                 <i class="fa fa-gavel" aria-hidden="true"><span>Admitted</span></i>
                 </a>
             </li>
             <li>
-                <a href="coe.wait.php">
+                <a href="ics.wait.php">
                 <i class="fa fa-clock-o" aria-hidden="true"><span>Waiting</span></i>
                 </a>
             </li>
             <li>
-              <a href="coe.rej.php">
+              <a href="ics.rej.php">
                 <i class="fa fa-thumbs-o-down" aria-hidden="true"><span>Rejected</span></i>
               </a>
             </li>
             <li>
-              <a href="coe.cancel.php">
+              <a href="ics.cancel.php">
               <i class="fa fa-ban" aria-hidden="true"><span>Cancelled</span></i>
               </a>
             </li>
@@ -71,7 +71,7 @@ if (isset($_GET['logout'])) {
               <h3>Settings</h3>
             </li>
             <li>
-              <a href="setting.coe.php" class="active">
+              <a href="setting.ics.php" class="active">
                 <i class="fa fa-cog" aria-hidden="true"><span>Settings</span></i>
               </a>
             </li>
@@ -117,7 +117,7 @@ if (isset($_GET['logout'])) {
                             <span class="message" id="message"><?php echo $message2; ?></span>
                           <?php endif ?>
                       </h4>
-                      <form action="setting.coe.php" method="post" class="form">
+                      <form action="setting.ics.php" method="post" class="form">
                         
                         <label for="gpa">GPA (Grade Point Average)</label>
                         <input type="number" name="gpa" class="form-control  mb-3" required>
@@ -126,7 +126,7 @@ if (isset($_GET['logout'])) {
                         <input type="number" name="cet" class="form-control" required>
                         
                             <?php  
-                                $query2 = "SELECT * FROM coursestbl WHERE college_id = '2'";
+                                $query2 = "SELECT * FROM coursestbl WHERE college_id = '1'";
                                 $result2 = mysqli_query($db, $query2);
                                 $options2 = "";
                                 while ($row2 = mysqli_fetch_array($result2)){
@@ -153,12 +153,12 @@ if (isset($_GET['logout'])) {
                               <span class="message" id="message"><?php echo $quota_message; ?></span>
                           <?php endif ?>
                         </h4>
-                        <form action="setting.coe.php" method="POST" class="form">
+                        <form action="setting.ics.php" method="POST" class="form">
                             <div class="row">
                               <div class="col-12">
 
                                   <?php  
-                                      $query2 = "SELECT * FROM coursestbl WHERE college_id='2'";
+                                      $query2 = "SELECT * FROM coursestbl WHERE college_id='1'";
                                       $result2 = mysqli_query($db, $query2);
                                       $options2 = "";
                                       while ($row2 = mysqli_fetch_array($result2)){
@@ -196,7 +196,7 @@ if (isset($_GET['logout'])) {
                           <span class="warning" id="warning"><?php echo $account_message2; ?></span>
                           <?php endif ?>
                         </h4>
-                          <form action="setting.coe.php" method="POST" name="createAccount">
+                          <form action="setting.ics.php" method="POST" name="createAccount">
                             <div class="row">
                               <div class="col-6">
                                 <label for="fname" class="form-label">First Name</label>

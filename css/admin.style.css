@@ -17,6 +17,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font: 16px/1.5 "Lato";
 }
 
 ul {
@@ -50,10 +51,10 @@ svg {
 i {
   display: block;
 }
-
+/* 
 body {
   font: 16px/1.5 "Lato", sans-serif;
-}
+} */
 
 /* HEADER/NAVBAR––––––––––––––––––––––––––––––------------------------–––––––––––––––––––– */
 .page-header {

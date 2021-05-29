@@ -44,6 +44,9 @@ i {
   display: block;
 }
 
+body {
+  font: 16px/1.5 "Lato";
+}
 
 /* HEADER/NAVBAR––––––––––––––––––––––––––––––------------------------–––––––––––––––––––– */
 .page-header {
@@ -135,7 +138,6 @@ ul ul a:hover {
 .page-header .admin-menu .menu-heading h3 {
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  font-size: 12px;
   margin-top: 12px;
   color: var(--page-header-headingColor);
 }

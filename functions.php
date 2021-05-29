@@ -119,7 +119,7 @@ function login(){
 						$_SESSION['login_user'] = $username;
 						$_SESSION['userID'] = $rows['id'];
 						$_SESSION['success']  = "You are now logged in";
-						header('location: ao/coe.ao.main.php');
+						header('location: ao/coe.ao.qual.php');
 					}
 
 					elseif ($logged_in_user['user_type'] == 'ics-ao'){
@@ -128,7 +128,7 @@ function login(){
 						$_SESSION['login_user'] = $username;
 						$_SESSION['userID'] = $rows['id'];
 						$_SESSION['success']  = "You are now logged in";
-						header('location: ao/ao.main.php');
+						header('location: ao/ics.qual.php');
 					}
 					
 					elseif($logged_in_user['user_type'] == 'user'){

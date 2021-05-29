@@ -36,11 +36,11 @@ if (isset($_GET['logout'])) {
             <li class="menu-heading">
               <h3>APPLICANTS LIST</h3>
             </li>
-            <li>
+            <!-- <li>
               <a href="coe.ao.main.php">
                 <i class="fa fa-list" aria-hidden="true"><span>Prequalified</span></i>
               </a>
-            </li>
+            </li> -->
             <li>
             <a href="coe.ao.qual.php">
                 <i class="fa fa-thumbs-o-up" aria-hidden="true"><span>Qualified</span></i>
