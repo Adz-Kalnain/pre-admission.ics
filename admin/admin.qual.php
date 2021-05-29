@@ -19,6 +19,7 @@ if (isset($_GET['logout'])) {
     <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">          
     <link rel="stylesheet" href="../css/admin.style.css">
+    <link rel="stylesheet" href="../css/btn.admin.css">
     <link rel="stylesheet" type="text/css" href="../DataTables/datatables.css">
 
 </head>
@@ -44,6 +45,11 @@ if (isset($_GET['logout'])) {
             <li>
                 <a href="admin.pre.php">
                   <i class="fa fa-check" aria-hidden="true"><span>Prequalified</span></i>
+                </a>
+            </li>
+            <li>
+                <a href="admin.inter.php">
+                  <i class="fa fa-handshake-o" aria-hidden="true"><span>Interviewing</span></i>
                 </a>
             </li>
             <li>
@@ -90,53 +96,60 @@ if (isset($_GET['logout'])) {
       </header>
       <?php endif ?>
       <section class="page-content">
-        <!--<section class="search-and-user">
-          <div class="admin-profile">
-            <div class="notifications">
-                <i class="fa fa-bell" aria-hidden="true"></i>
-                <button class="userprofile" id="dropdown-profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-user"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-profile">
-                    <p class="mb-0 mt-4">Mr.Admin Sir</p>
-                    <div class="dropdown-divider"></div>
-                    <p class="mt-0 mb-5">Administrator</p>
-                    <button type="button" class="btn-danger">Logout</button>
-                </div>
-                <span class="badge">11</span>
-              </div>
-          </div>
-        </section>-->
         <section class="btn-group">
           <p class="section-name">Qualified List</p>
           <div class="buttons">
-            <!-- <button class="toggle-more-menu" id="dropdown-more-buttons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-bars"></i>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdown-more-buttons">
-              <button class="dropdown-item" type="button">Print</button>
-            </div> -->
           </div>
         </section>
         <section class="grid">
           <article>
               <div class="table table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mx-3 my-3">
-                <table class="table table-sm table-striped table-bordered table-hover" id="printable-table">
-                  <thead class="thead">
-                    <tr>
-                        <th>Name</th>
-                        <th>Cet</th>
-                        <th>Gpa</th>
-                        <th>Student Type</th>
-                        <th>Course</th>
-                    </tr>
-                </thead>
-                <tbody class="tbody">
-                    <tr>
-                      <!-- CONTENT GOES HERE -->
-                    </tr>
-         
-                </tbody>
+              <table class="table table-sm table-striped table-bordered table-hover" id="printable-table">
+                    <thead class="thead">
+                    <?php $results = mysqli_query($db, "SELECT * from selectedcourse LEFT JOIN users ON selectedcourse.user_id = users.id
+                     LEFT JOIN coursestbl ON selectedcourse.course_id = coursestbl.course_id
+                     LEFT JOIN attachment ON selectedcourse.file_id = attachment.id WHERE userStatus='QUALIFIED'")?>
+                        <tr>
+               
+                            <th>FirstName</th>
+                            <th>LastName</th>
+                            <th>Course</th>
+                            <th>Cet</th>
+                            <th>Gpa</th>
+                            <th>Interview Score</th>
+                            <th>Overall Percentage</th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="tbody">
+                        <?php   while ($row = mysqli_fetch_array($results)) { ?>
+                        <tr>
+                            
+                            <td style="display:none" ><?php echo $row['user_id']; ?> </td>
+                            <td><?php echo $row['fname']; ?> </td>
+                            <td><?php echo $row['lname']; ?> </td>
+                            <td><?php echo $row['course_name']; ?></td>  
+                            <td><?php echo $row['cetValue']; ?></td>  
+                            <td><?php echo $row['gpaValue']; ?></td>
+                            <td><?php echo $row['inter_score']; ?></td>
+                            <td><?php echo $row['average']; ?></td>
+                            <!-- <td><input type="number" name="score" class="form-control scoreInput"></td> -->
+
+                            <td style="display:none" ><?php echo $row['cet_path']; ?></td>  
+                            <td style="display:none"><?php echo $row['gmoral_path']; ?></td>  
+                            <td style="display:none"><?php echo $row['gpa_path']; ?></td>  
+                            <td style="display:none"><?php echo $row['cetValue']; ?></td>  
+                            <td style="display:none"><?php echo $row['gpaValue']; ?></td>  
+                            
+                         <!-- data-toggle="modal" data-target="#selectAction" -->
+                        </tr>      
+                          <?php 
+                            }
+                         ?>
+
+
+
+                    </tbody>
                 </table>
               </div>
           </article>

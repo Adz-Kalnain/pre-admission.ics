@@ -19,6 +19,7 @@ if (isset($_GET['logout'])) {
     <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">          
     <link rel="stylesheet" href="../css/ics.style.css">
+    <link rel="stylesheet" href="../css/btn.admin.css">
     <link rel="stylesheet" type="text/css" href="../DataTables/datatables.css">
 
 </head>
@@ -90,89 +91,55 @@ if (isset($_GET['logout'])) {
         <section class="grid">
           <article>
           <div class="table table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mx-3 my-3">
-                <table class="table table-sm table-striped table-bordered table-hover" id="printable_ao_pre_table">
-                  <thead class="thead">
+          <table class="table table-sm table-striped table-bordered table-hover" id="printable-table">
+                    <thead class="thead">
                     <?php $results = mysqli_query($db, "SELECT * from selectedcourse LEFT JOIN users ON selectedcourse.user_id = users.id
                      LEFT JOIN coursestbl ON selectedcourse.course_id = coursestbl.course_id
-                     LEFT JOIN attachment ON selectedcourse.file_id = attachment.id WHERE userStatus='WAITING' AND college_id='1'")?>
-                    <tr>
-                        <th>Name</th>
-                        <th>Cet</th>
-                        <th>Gpa</th>
-                        <th>Course</th>
-                        <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody class="tbody">
-                      <?php   while ($row = mysqli_fetch_array($results)) { ?>
-                      <tr>
-                        <td><?php echo $row['fname']; ?> <?php echo $row['lname']; ?></td>
-                        
-                        <td><?php echo $row['cetValue']; ?></td>
-                        <td style="display:none" ><?php echo $row['cet_path']; ?></td>
-                        
-                        <td><?php echo $row['gpaValue']; ?></td>
-                        <td style="display:none"><?php echo $row['gpa_path']; ?></td>
+                     LEFT JOIN attachment ON selectedcourse.file_id = attachment.id WHERE userStatus='REJECT' AND college_id='1'")?>
+                        <tr>
+               
+                            <th>FirstName</th>
+                            <th>LastName</th>
+                            <th>Course</th>
+                            <th>Cet</th>
+                            <th>Gpa</th>
+                            <th>Interview Score</th>
+                            <th>Overall Percentage</th>
 
-                        <td><?php echo $row['course_name']; ?></td>   
+                        </tr>
+                    </thead>
+                    <tbody class="tbody">
+                    <?php   while ($row = mysqli_fetch_array($results)) { ?>
+                            <tr>
+                   
+                          <td><?php echo $row['fname']; ?> </td>
+                          <td><?php echo $row['lname']; ?> </td>
+                          <td><?php echo $row['course_name']; ?></td>   
+                          <td><?php echo $row['cetValue']; ?></td>  
+                          <td><?php echo $row['gpaValue']; ?></td>
+                          <td><?php echo $row['inter_score']; ?></td>
+                          <td><?php echo $row['average']; ?></td>
+                          <!-- <td>
+                            <a class="btnaction" href="action/accept.php?user_id=">
+                              <button class="btn btn-success">Verify</button>
+                            </a>
+                         </td> -->
+
+                          <td style="display:none" ><?php echo $row['cet_path']; ?></td>  
+                          <td style="display:none"><?php echo $row['gmoral_path']; ?></td>  
+                          <td style="display:none"><?php echo $row['gpa_path']; ?></td>  
+                          <td style="display:none" ><?php echo $row['user_id']; ?> </td>
                           
-                        <td style="display:none"><?php echo $row['gmoral_path']; ?></td>  
-                        <td style="display:none" ><?php echo $row['user_id']; ?> </td>
-                        <td>
-                        <button type="button" class ="btn btn-info actionbtn">Verify</button>
-                          <button type="accept" name="reject" id="reject" class="btn btn-success">REJECT</button> 
-                        </td>       
-                      </tr>
-                      <?php 
-                        }
-                      ?>
-                  </tbody>
+                         <!-- data-toggle="modal" data-target="#selectAction" -->
+                        </tr>      
+                          <?php 
+                            }
+                         ?>
+
+
+
+                    </tbody>
                 </table>
-
-                <div class="modal fade" id="adminAction" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <form action="ao.function.php" method="POST">
-
-                        <div class="modal-body">
-
-                          <input style="display: none;" type="id"   name="userID" id="userID"  class="form-control" >
-
-                          <div class="form-group">
-                            <label>Name</label>
-                            <input type="id"   disabled="disabled"   name="firstname" id="name"  class="form-control" >
-                          </div>
-                          
-                          <div class="form-group">
-                            <label>CET</label>
-                            <input type="name" name="sender" disabled="disabled"  id="cetValue" class="form-control" >
-                          </div>
-
-                          <div class="form-group">
-                            <label>GPA</label>
-                            <input type="text" name="username" disabled="disabled" class="form-control" id="gpaValue" >
-                          </div>
-
-                          <div class="form-group">
-                            <label>Course</label>
-                            <input type="text" name="username" disabled="disabled" class="form-control" id="coursename" >
-                          </div>
-                          
-                        </div>
-                        <div class="modal-footer">    
-                          <button type="accept" name="accept" id="accept" class="btn btn-success">VERIFY</button>
-                        </div>
-                      </form>
-
-                    </div>
-                  </div>
-                </div>
 
               </div>
           </article>
@@ -195,27 +162,6 @@ if (isset($_GET['logout'])) {
         $('#printable-table').DataTable( {
             select: true
         } );
-    </script>
-
-    <script>
-        $(document).ready(function () {
-            $('.actionbtn').on('click', function () {
-
-              $('#adminAction').modal('show');
-              $tr = $(this).closest('tr');
-
-                var data =$tr.children("td").map(function(){
-                  return $(this).text();
-                }).get();
-                $('#name').val(data[1]);
-                $('#cetValue').val(data[2]);
-                $('#gpaValue').val(data[4]);
-                $('#coursename').val(data[6]);
-                $('#userID').val(data[8]);
-
-            });
-           
-        });
     </script>
 
     <script>

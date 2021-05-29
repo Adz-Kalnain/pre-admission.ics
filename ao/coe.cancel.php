@@ -87,106 +87,54 @@ if (isset($_GET['logout'])) {
         <section class="btn-group">
           <p class="section-name">Cancelled Applications</p>
           <div class="buttons">
-            <!-- <button class="btn btn-primary mr-2 pl-3 pr-3" onclick="myTable1.printPre_ApplicantTable()">
-              <i class="fa fa-print" aria-hidden="true"></i>
-            </button> -->
-            <!-- <button class="btn btn-warning" type="submit"><span class="label">Submit</span></button>
-            <button class="toggle-more-menu" id="dropdown-more-buttons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-bars"></i>
-            </button> -->
-            <!-- <div class="dropdown-menu" aria-labelledby="dropdown-more-buttons">
-              <button class="dropdown-item" type="button">Print</button>
-            </div> -->
           </div>
         </section>
         <section class="grid">
           <article>
           <div class="table table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mx-3 my-3">
-                <table class="table table-sm table-striped table-bordered table-hover" id="printable_ao_pre_table">
-                  <thead class="thead">
+          <table class="table table-sm table-striped table-bordered table-hover" id="printable-table">
+                    <thead class="thead">
                     <?php $results = mysqli_query($db, "SELECT * from selectedcourse LEFT JOIN users ON selectedcourse.user_id = users.id
                      LEFT JOIN coursestbl ON selectedcourse.course_id = coursestbl.course_id
                      LEFT JOIN attachment ON selectedcourse.file_id = attachment.id WHERE userStatus='CANCELLED' AND college_id='2'")?>
-                    <tr>
-                        <th><input type="checkbox" onclick="toggle(this)"></th>
-                        <th>Name</th>
-                        <th>Cet</th>
-                        <th>Gpa</th>
-                        <th>Course</th>
-                        <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody class="tbody">
-                      <?php   while ($row = mysqli_fetch_array($results)) { ?>
-                      <tr>
-                        <td><input type="checkbox" name="selected"></td>
-                        <td><?php echo $row['fname']; ?> <?php echo $row['lname']; ?></td>
-                        
-                        <td><?php echo $row['cetValue']; ?></td>
-                        <td style="display:none" ><?php echo $row['cet_path']; ?></td>
-                        
-                        <td><?php echo $row['gpaValue']; ?></td>
-                        <td style="display:none"><?php echo $row['gpa_path']; ?></td>
+                        <tr>
+               
+                            <th>FirstName</th>
+                            <th>LastName</th>
+                            <th>Course</th>
+                            <th>Action </th>
 
-                        <td><?php echo $row['course_name']; ?></td>   
-                          
-                        <td style="display:none"><?php echo $row['gmoral_path']; ?></td>  
-                        <td style="display:none" ><?php echo $row['user_id']; ?> </td>
-                        <td>
-                        <button type="button" class ="btn btn-info actionbtn">Verify</button>
-                          <button type="accept" name="reject" id="reject" class="btn btn-success">REJECT</button> 
-                        </td>       
-                      </tr>
-                      <?php 
-                        }
-                      ?>
-                  </tbody>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody">
+                 <?php   while ($row = mysqli_fetch_array($results)) { ?>
+                            <tr>
+                   
+                          <td><?php echo $row['fname']; ?> </td>
+                          <td><?php echo $row['lname']; ?> </td>
+                          <td><?php echo $row['course_name']; ?></td>   
+                           
+                          <td style="display:none" ><?php echo $row['cet_path']; ?></td>  
+                          <td style="display:none"><?php echo $row['gmoral_path']; ?></td>  
+                          <td style="display:none"><?php echo $row['gpa_path']; ?></td>  
+                          <td style="display:none"><?php echo $row['cetValue']; ?></td>  
+                          <td style="display:none"><?php echo $row['gpaValue']; ?></td>  
+                          <td style="display:none" ><?php echo $row['user_id']; ?> </td>
+                          <td>
+                            <a class="btnaction" href="action/accept.php?user_id=<?php echo $row['user_id']; ?>">
+                              <button class="btn btn-success">Verify</button>
+                            </a>
+                         </td>
+                         <!-- data-toggle="modal" data-target="#selectAction" -->
+                        </tr>      
+                          <?php 
+                            }
+                         ?>
+
+
+
+                    </tbody>
                 </table>
-
-                <div class="modal fade" id="adminAction" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <form action="ao.function.php" method="POST">
-
-                        <div class="modal-body">
-
-                          <input style="display: none;" type="id"   name="userID" id="userID"  class="form-control" >
-
-                          <div class="form-group">
-                            <label>Name</label>
-                            <input type="id"   disabled="disabled"   name="firstname" id="name"  class="form-control" >
-                          </div>
-                          
-                          <div class="form-group">
-                            <label>CET</label>
-                            <input type="name" name="sender" disabled="disabled"  id="cetValue" class="form-control" >
-                          </div>
-
-                          <div class="form-group">
-                            <label>GPA</label>
-                            <input type="text" name="username" disabled="disabled" class="form-control" id="gpaValue" >
-                          </div>
-
-                          <div class="form-group">
-                            <label>Course</label>
-                            <input type="text" name="username" disabled="disabled" class="form-control" id="coursename" >
-                          </div>
-                          
-                        </div>
-                        <div class="modal-footer">    
-                          <button type="accept" name="accept" id="accept" class="btn btn-success">VERIFY</button>
-                        </div>
-                      </form>
-
-                    </div>
-                  </div>
-                </div>
 
               </div>
           </article>

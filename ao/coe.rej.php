@@ -103,44 +103,55 @@ if (isset($_GET['logout'])) {
         <section class="grid">
           <article>
               <div class="table table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mx-3 my-3">
-              <table class="table table-sm table-striped table-bordered table-hover" id="printable_ao_pre_table">
-                  <thead class="thead">
+              <table class="table table-sm table-striped table-bordered table-hover" id="printable-table">
+                    <thead class="thead">
                     <?php $results = mysqli_query($db, "SELECT * from selectedcourse LEFT JOIN users ON selectedcourse.user_id = users.id
                      LEFT JOIN coursestbl ON selectedcourse.course_id = coursestbl.course_id
-                     LEFT JOIN attachment ON selectedcourse.file_id = attachment.id WHERE userStatus='QUALIFIED' AND college_id='2'")?>
-                    <tr>
-                        <th><input type="checkbox" onclick="toggle(this)"></th>
-                        <th>Name</th>
-                        <th>Cet</th>
-                        <th>Gpa</th>
-                        <th>Course</th>
-                        <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody class="tbody">
-                      <?php   while ($row = mysqli_fetch_array($results)) { ?>
-                      <tr>
-                        <td><input type="checkbox" name="selected"></td>
-                        <td><?php echo $row['fname']; ?> <?php echo $row['lname']; ?></td>
-                        
-                        <td><?php echo $row['cetValue']; ?></td>
-                        <td style="display:none" ><?php echo $row['cet_path']; ?></td>
-                        
-                        <td><?php echo $row['gpaValue']; ?></td>
-                        <td style="display:none"><?php echo $row['gpa_path']; ?></td>
+                     LEFT JOIN attachment ON selectedcourse.file_id = attachment.id WHERE userStatus='REJECT' AND college_id='2'")?>
+                        <tr>
+               
+                            <th>FirstName</th>
+                            <th>LastName</th>
+                            <th>Course</th>
+                            <th>Cet</th>
+                            <th>Gpa</th>
+                            <th>Interview Score</th>
+                            <th>Overall Percentage</th>
+                            <th>Action </th>
 
-                        <td><?php echo $row['course_name']; ?></td>   
+                        </tr>
+                    </thead>
+                    <tbody class="tbody">
+                    <?php   while ($row = mysqli_fetch_array($results)) { ?>
+                            <tr>
+                   
+                          <td><?php echo $row['fname']; ?> </td>
+                          <td><?php echo $row['lname']; ?> </td>
+                          <td><?php echo $row['course_name']; ?></td>   
+                          <td><?php echo $row['cetValue']; ?></td>  
+                          <td><?php echo $row['gpaValue']; ?></td>
+                          <td><?php echo $row['inter_score']; ?></td>
+                          <td><?php echo $row['average']; ?></td>
+                          <td>
+                            <a class="btnaction" href="action/accept.php?user_id=<?php echo $row['user_id']; ?>">
+                              <button class="btn btn-success">Verify</button>
+                            </a>
+                         </td>
+
+                          <td style="display:none" ><?php echo $row['cet_path']; ?></td>  
+                          <td style="display:none"><?php echo $row['gmoral_path']; ?></td>  
+                          <td style="display:none"><?php echo $row['gpa_path']; ?></td>  
+                          <td style="display:none" ><?php echo $row['user_id']; ?> </td>
                           
-                        <td style="display:none"><?php echo $row['gmoral_path']; ?></td>  
-                        <td style="display:none" ><?php echo $row['user_id']; ?> </td>
-                        <td>
-                        <button type="button" class ="btn btn-info actionbtn"> ACTION </button>
-                        </td>       
-                      </tr>
-                      <?php 
-                        }
-                      ?>
-                  </tbody>
+                         <!-- data-toggle="modal" data-target="#selectAction" -->
+                        </tr>      
+                          <?php 
+                            }
+                         ?>
+
+
+
+                    </tbody>
                 </table>
               </div>
           </article>

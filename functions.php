@@ -95,24 +95,42 @@ function login(){
 					}
 					
 					
-					elseif ($logged_in_user['user_type'] == 'evaluator'){
+					elseif ($logged_in_user['user_type'] == 'ics-evaluator'){
 		
 						$_SESSION['user'] = $logged_in_user;
 						$_SESSION['login_user'] = $username;
 						$_SESSION['userID'] = $rows['id'];
 						$_SESSION['success']  = "You are now logged in";
-						header('location: evaluator/evaluator.main.php');
+						header('location: evaluator/ics.evaluator.main.php');
 					}
-					
-					elseif ($logged_in_user['user_type'] == 'ic'){
+
+					elseif ($logged_in_user['user_type'] == 'coe-evaluator'){
 		
 						$_SESSION['user'] = $logged_in_user;
 						$_SESSION['login_user'] = $username;
 						$_SESSION['userID'] = $rows['id'];
 						$_SESSION['success']  = "You are now logged in";
-						header('location: ic/ic.main.php');
+						header('location: evaluator/coe.evaluator.main.php');
 					}
 					
+					elseif ($logged_in_user['user_type'] == 'coe-ic'){
+		
+						$_SESSION['user'] = $logged_in_user;
+						$_SESSION['login_user'] = $username;
+						$_SESSION['userID'] = $rows['id'];
+						$_SESSION['success']  = "You are now logged in";
+						header('location: ic/coe.ic.main.php');
+					}
+					
+					elseif ($logged_in_user['user_type'] == 'ics-ic'){
+		
+						$_SESSION['user'] = $logged_in_user;
+						$_SESSION['login_user'] = $username;
+						$_SESSION['userID'] = $rows['id'];
+						$_SESSION['success']  = "You are now logged in";
+						header('location: ic/ics.ic.main.php');
+					}
+
 					elseif ($logged_in_user['user_type'] == 'coe-ao'){
 		
 						$_SESSION['user'] = $logged_in_user;

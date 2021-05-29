@@ -139,50 +139,47 @@ if (isset($_GET['logout'])) {
                                 <option value=""disbaled selected>Select a course</option>
                                 <?php echo $options2; ?> 
                             </select>
-                            <input type="submit" class="btn mt-3 ml-3" name="submit" value="Save" id="allSettingButtons">
+                            <input type="submit" class="btn mt-3" name="submit" value="Save" id="allSettingButtons">
                       </form>
                     </div>
                   
                   </div>
                     
                   <!--QUOTA-->
-                  <div class="tab-pane fade" id="list-quota" role="tabpanel" aria-labelledby="list-course-list">
-                    <div class="quota" id="setting-content-container">
-                        <h4 class="sett-name mb-5">Quota
+                  <div class="tab-pane fade" id="list-quota" role="tabpanel" aria-labelledby="list-quota-list">
+                    
+                  <div class="quota" id="setting-content-container">
+                      <h4 class="sett-name mb-4">Quota
                           <?php if (isset($quota_message)): ?>
-                              <span class="message" id="message"><?php echo $quota_message; ?></span>
+                            <span class="message" id="message"><?php echo $quota_message; ?></span>
                           <?php endif ?>
-                        </h4>
-                        <form action="setting.coe.php" method="POST" class="form">
-                            <div class="row">
-                              <div class="col-12">
-
-                                  <?php  
-                                      $query2 = "SELECT * FROM coursestbl WHERE college_id='2'";
-                                      $result2 = mysqli_query($db, $query2);
-                                      $options2 = "";
-                                      while ($row2 = mysqli_fetch_array($result2)){
-                                        $options2 = $options2."<option value='$row2[0]'>$row2[1]</option>";
-                                      }
-                                  ?>
-
-                                  <label class="control-label mt-3" for="course_sel">Select Course:</label>
-                                  <select class="form-control input-sm" name="course_sel" id="course_sel" required>
-                                      <option value="empty" disbaled selected>Select a course</option>
-                                      <?php echo $options2 ?> 
-                                  </select>
-                              </div>
-                            </div>
+                      </h4>
+                      <form action="setting.coe.php" method="post" class="form">
+                        
+                        <label for="quota">Accepting applicant</label>
+                        <input type="number" name="quota" class="form-control  mb-3" required>
+                        
+                        <label for="waiting">Waiting applicant</label>
+                        <input type="number" name="waiting" class="form-control" required>
+                        
+                            <?php  
+                                $query = "SELECT * FROM coursestbl WHERE college_id = '2'";
+                                $result = mysqli_query($db, $query);
+                                $options="";
+                                while ($row = mysqli_fetch_array($result)){
+                                  $options = $options."<option>$row[1]</option>";
+                                }
+                            ?>
                             
-                          <label for="quotaInput" class="control-label mt-3">Accepting applicants:</label>
-                          <input type="number" name="quotaInput" class="form-control" required>
-
-                          <label for="waitingInput" class="control-label mt-3">Waiting List:</label>
-                          <input type="number" name="waitingInput" class="form-control" required>
-
-                          <input type="submit" class="btn mt-3" name="quotaSubmit" value="Save" id="allSettingButtons">
-                        </form>
-                      </div>
+                          <label class="control-label mt-3" for="course">Select Course:</label>
+                          <select class="form-control input-sm" name="course" id="course_quota" required>
+                              <option value=""disbaled selected>Select a course</option>
+                              <?php echo $options; ?> 
+                          </select>
+                          
+                          <input type="submit" class="btn mt-3" name="quotasubmit" value="Save" id="allSettingButtons">
+                      </form>
+                    </div>
                   </div>
                   
                   <!--CREATE ACCOUNT-->

@@ -13,12 +13,13 @@ if (isset($_GET['logout'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admission Officer - ICS</title>
-    <link rel="icon" href="../seal/logo.png" sizes="32x32" type="image/png">
+    <title>Evaluator - COE</title>
+    <link rel="icon" href="../seal/coe-logo.png" sizes="32x32" type="image/png">
 
     <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">          
-    <link rel="stylesheet" href="../css/ics.style.css">
+    <link rel="stylesheet" href="../css/coe.style.css">
+    <link rel="stylesheet" href="../css/btn.admin.css">
     <link rel="stylesheet" type="text/css" href="../DataTables/datatables.css">
 
 </head>
@@ -30,48 +31,30 @@ if (isset($_GET['logout'])) {
             <i class="fa fa-bars"></i>
           </button>
           <a href="../index.html">
-            <img class="logo mx-auto" src="../svgs/logo.png" alt="ics logo">
+            <img class="logo mx-auto" src="../seal/coe-logo.png" alt="ics logo">
           </a>
           <ul class="admin-menu">
             <li class="menu-heading">
               <h3>APPLICANTS LIST</h3>
             </li>
-            <!-- <li>
-              <a href="coe.ao.main.php">
+            <li>
+                <a href="coe.evaluator.main.php" class="active">
+                    <i class="fa fa-list" aria-hidden="true"><span>Applications</span></i>
+                </a>
+            </li>
+            <li>
+              <a href="coe.evaluator.pre.php">
                 <i class="fa fa-list" aria-hidden="true"><span>Prequalified</span></i>
               </a>
-            </li> -->
-            <li>
-            <a href="ics.qual.php">
-                <i class="fa fa-thumbs-o-up" aria-hidden="true"><span>Qualified</span></i>
-              </a>
             </li>
             <li>
-                <a href="ics.admit.php">
-                <i class="fa fa-gavel" aria-hidden="true"><span>Admitted</span></i>
-                </a>
-            </li>
-            <li>
-                <a href="ics.wait.php" class="active">
-                <i class="fa fa-clock-o" aria-hidden="true"><span>Waiting</span></i>
-                </a>
-            </li>
-            <li>
-              <a href="ics.rej.php">
+              <a href="coe.evaluator.rej.php">
                 <i class="fa fa-thumbs-o-down" aria-hidden="true"><span>Rejected</span></i>
               </a>
             </li>
             <li>
-              <a href="ics.cancel.php">
+              <a href="coe.evaluator.cancel.php">
               <i class="fa fa-ban" aria-hidden="true"><span>Cancelled</span></i>
-              </a>
-            </li>
-            <li class="menu-heading">
-              <h3>Settings</h3>
-            </li>
-            <li>
-              <a href="setting.ics.php">
-                <i class="fa fa-cog" aria-hidden="true"><span>Settings</span></i>
               </a>
             </li>
             <li>
@@ -85,7 +68,9 @@ if (isset($_GET['logout'])) {
       <?php endif ?>
       <section class="page-content">
         <section class="btn-group">
-          <p class="section-name">Waiting List</p>
+          <p class="section-name">Applications List</p>
+          <div class="buttons">
+          </div>
         </section>
         <section class="grid">
           <article>
@@ -94,7 +79,7 @@ if (isset($_GET['logout'])) {
                     <thead class="thead">
                     <?php $results = mysqli_query($db, "SELECT * from selectedcourse LEFT JOIN users ON selectedcourse.user_id = users.id
                      LEFT JOIN coursestbl ON selectedcourse.course_id = coursestbl.course_id
-                     LEFT JOIN attachment ON selectedcourse.file_id = attachment.id WHERE userStatus='WAITING' AND college_id='1'")?>
+                     LEFT JOIN attachment ON selectedcourse.file_id = attachment.id WHERE userStatus='PENDING' AND college_id='2'")?>
                         <tr>
                
                             <th>FirstName</th>
@@ -102,8 +87,7 @@ if (isset($_GET['logout'])) {
                             <th>Course</th>
                             <th>Cet</th>
                             <th>Gpa</th>
-                            <th>Interview Score</th>
-                            <th>Overall Percentage</th>
+                            <th>action</th>
 
                         </tr>
                     </thead>
@@ -117,10 +101,15 @@ if (isset($_GET['logout'])) {
                             <td><?php echo $row['course_name']; ?></td>  
                             <td><?php echo $row['cetValue']; ?></td>  
                             <td><?php echo $row['gpaValue']; ?></td>
-                            <td><?php echo $row['inter_score']; ?></td>
-                            <td><?php echo $row['average']; ?></td>
+                            <td>
+                            <a class="btnaction" href="action/accept.php?user_id=<?php echo $row['user_id']; ?>">
+                              <button class="btn btn-success">Verify</button>
+                            </a>
+                            <a class="btnaction" href="action/reject.php?user_id=<?php echo $row['user_id']; ?>">
+                              <button class="btn btn-danger">Disqualify</button>
+                            </a>
+                          </td> 
                             <!-- <td><input type="number" name="score" class="form-control scoreInput"></td> -->
-  
                             
                          <!-- data-toggle="modal" data-target="#selectAction" -->
                         </tr>      
@@ -132,8 +121,6 @@ if (isset($_GET['logout'])) {
 
                     </tbody>
                 </table>
-
-              </div>
           </article>
         </section>
       </section>

@@ -12,7 +12,24 @@ if (isset($_POST['assign'])) {
         if ($results) {
         //echo $sender;
             $_SESSION['message'] = "Address updated!"; 
-            header('location: admin.pre.php');
+            header('location: coe.evaluator.pre.php');
+        } else {
+            echo "ERROR: Could not be able to execute $query. ".mysqli_error($db);
+        }
+}
+
+if (isset($_POST['assignIcs'])) {
+    $userID = $_POST['userid'];
+    $ic = $_POST['icname'];
+    $action = 'INTERVIEW';
+
+    
+    $query = "UPDATE selectedcourse SET ic='$ic', userStatus = '$action' WHERE user_id='$userID'";
+    $results = mysqli_query($db, $query);
+        if ($results) {
+        //echo $sender;
+            $_SESSION['message'] = "Address updated!"; 
+            header('location: ics.evaluator.pre.php');
         } else {
             echo "ERROR: Could not be able to execute $query. ".mysqli_error($db);
         }
@@ -35,7 +52,7 @@ if (isset($_POST['scoreSave'])) {
         if ($results) {
         //echo $sender;
             $_SESSION['message'] = "Address updated!"; 
-            header('location: admin.inter.php');
+            header('location: coe.evaluator.pre.php');
         } else {
             echo "ERROR: Could not be able to execute $query. ".mysqli_error($db);
         }
@@ -46,7 +63,7 @@ if (isset($_POST['scoreSave'])) {
         if ($results) {
         //echo $sender;
             $_SESSION['message'] = "Address updated!"; 
-            header('location: admin.inter.php');
+            header('location: coe.evaluator.pre.php');
         } else {
             echo "ERROR: Could not be able to execute $query. ".mysqli_error($db);
         }

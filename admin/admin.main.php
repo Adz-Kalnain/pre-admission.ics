@@ -39,7 +39,7 @@ if (isset($_GET['logout'])) {
             </li>
             <li>
                 <!--<a href="#applicantSubmenu" class="active" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">-->
-                <a href="#admin.main.php" class="active">
+                <a href="admin.main.php" class="active">
                   <i class="fa fa-list" aria-hidden="true"><span>Applications</span></i>
                 </a>
                 <!--<ul class="collapse list-unstyled" id="applicantSubmenu">
@@ -54,6 +54,11 @@ if (isset($_GET['logout'])) {
             <li>
                 <a href="admin.pre.php">
                   <i class="fa fa-check" aria-hidden="true"><span>Prequalified</span></i>
+                </a>
+            </li>
+            <li>
+                <a href="admin.inter.php">
+                  <i class="fa fa-handshake-o" aria-hidden="true"><span>Interviewing</span></i>
                 </a>
             </li>
             <li>
@@ -77,7 +82,7 @@ if (isset($_GET['logout'])) {
               </a>
             </li>
             <li>
-              <a href="admin.calcel.php">
+              <a href="admin.cancel.php">
               <i class="fa fa-ban" aria-hidden="true"><span>Cancelled</span></i>
               </a>
             </li>
@@ -122,9 +127,9 @@ if (isset($_GET['logout'])) {
                         <tr>
                
                             <th>Name</th>
+                            <th>Course</th>
                             <th>Cet</th>
                             <th>Gpa</th>
-                            <th>Course</th>
                             <th>Action </th>
 
                         </tr>
@@ -134,9 +139,9 @@ if (isset($_GET['logout'])) {
                             <tr>
                     
                           <td><?php echo $row['fname']; ?> <?php echo $row['lname']; ?></td>
+                          <td><?php echo $row['course_name']; ?></td>
                           <td><?php echo $row['cetValue']; ?></td>  
-                          <td><?php echo $row['gpaValue']; ?></td>
-                          <td><?php echo $row['course_name']; ?></td>   
+                          <td><?php echo $row['gpaValue']; ?></td>   
                            
                           <td style="display:none" ><?php echo $row['cet_path']; ?></td>  
                           <td style="display:none"><?php echo $row['gmoral_path']; ?></td>  

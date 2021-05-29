@@ -1,6 +1,6 @@
 <?php 
 include('../functions.php');
-
+include ('action/assign.php');
 if (isset($_GET['logout'])) {
 	session_destroy();
 	unset($_SESSION['user']);
@@ -48,6 +48,11 @@ if (isset($_GET['logout'])) {
                 </a>
             </li>
             <li>
+                <a href="admin.inter.php">
+                  <i class="fa fa-handshake-o" aria-hidden="true"><span>Interviewing</span></i>
+                </a>
+            </li>
+            <li>
                 <a href="admin.qual.php">
                     <i class="fa fa-thumbs-o-up" aria-hidden="true"><span>Qualified</span></i>
                 </a>
@@ -68,7 +73,7 @@ if (isset($_GET['logout'])) {
               </a>
             </li>
             <li>
-              <a href="admin.calcel.php">
+              <a href="admin.cancel.php">
               <i class="fa fa-ban" aria-hidden="true"><span>Cancelled</span></i>
               </a>
             </li>
@@ -94,14 +99,6 @@ if (isset($_GET['logout'])) {
         <section class="btn-group">
           <p class="section-name">Pre-qualified List</p>
           <div class="buttons">
-            <!-- <button class="btn btn-primary pl-3 pr-3" type="submit"><span class="label">Submit</span></button>
-            <button class="toggle-more-menu" id="dropdown-more-buttons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-bars"></i>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdown-more-buttons">
-              <button class="dropdown-item" type="button">Print</button>
-              <button class="dropdown-item" type="button">Set Schedule</button>
-            </div> -->
           </div>
         </section>
         <section class="grid">
@@ -117,6 +114,8 @@ if (isset($_GET['logout'])) {
                             <th>FirstName</th>
                             <th>LastName</th>
                             <th>Course</th>
+                            <th>Cet</th>
+                            <th>Gpa</th>
                             <th>Action </th>
 
                         </tr>
@@ -124,17 +123,19 @@ if (isset($_GET['logout'])) {
                     <tbody class="tbody">
                  <?php   while ($row = mysqli_fetch_array($results)) { ?>
                             <tr>
-                   
+                    
+                          <td style="display:none" ><?php echo $row['user_id']; ?> </td>
                           <td><?php echo $row['fname']; ?> </td>
                           <td><?php echo $row['lname']; ?> </td>
-                          <td><?php echo $row['course_name']; ?></td>   
+                          <td><?php echo $row['course_name']; ?></td>    
+                          <td><?php echo $row['cetValue']; ?></td>  
+                          <td><?php echo $row['gpaValue']; ?></td> 
                            
                           <td style="display:none" ><?php echo $row['cet_path']; ?></td>  
                           <td style="display:none"><?php echo $row['gmoral_path']; ?></td>  
                           <td style="display:none"><?php echo $row['gpa_path']; ?></td>  
                           <td style="display:none"><?php echo $row['cetValue']; ?></td>  
-                          <td style="display:none"><?php echo $row['gpaValue']; ?></td>  
-                          <td style="display:none" ><?php echo $row['user_id']; ?> </td>
+                          <td style="display:none"><?php echo $row['gpaValue']; ?></td> 
                           <td>
                               <button class="btn btn-success selectbtn">Select</button>
                          </td>
@@ -165,36 +166,19 @@ if (isset($_GET['logout'])) {
       </div>
 
         <div class="modal-body">
-            
-            <table class="table table-sm table-striped table-bordered table-hover" id="printable-table">
-          
-                <thead class="thead">
-                <?php $results2 = mysqli_query($db, "SELECT * from users WHERE user_type = 'coe-ic' OR user_type='ics-ic'") ?>
-                      <tr>
-                        <th>Name</th>
-                        <th>Action</th>
-                      </tr>
-                </thead>
-                <tbody class="tbody">
-                <!-- Not working -->
-                <?php while ($row2 = mysqli_fetch_array($results2)) { ?>
-                      <tr>
-                        <td style="display: none;" id="userid"></td>
-                        <td><?php echo $row2['fname']; ?> <?php echo $row2['lname']; ?></td>
-                        <td>
-                            <a class="btnaction" href="action/assign.php?user_id=<?php echo $row['user_id'];?>name=<?php echo $row2['fname'] ?> <?php echo $row2['lname'] ?>">
-                              <button class="btn btn-success">Assign</button>
-                            </a>
-                        </td>
-                      </tr>
-                <?php
-                  }
-                ?>
-                <!--  -->
-                </tbody>
-            </table>
-
+            <form action="admin.pre.php" method="POST"> 
+              <input type="id" name="userid" id="userid" style="display: none;">
+              <?php $results2 = mysqli_query($db, "SELECT * from users WHERE user_type = 'coe-ic' OR user_type='ics-ic'") ?>
+              <?php while ($row2 = mysqli_fetch_array($results2)) { ?>
+                <label for="icname">Name : </label>
+                <input type="text" class="mt-2" disabled value="<?php echo $row2['fname']; ?> <?php echo $row2['lname']; ?>">
+                <input type="text" style="display: none;" class="mt-2" name="icname" value="<?php echo $row2['fname']; ?> <?php echo $row2['lname']; ?>">
+                <button type="submit" class="btn btn-info mt-2" name="assign">Assign</button>
+                <br>
+              <?php } ?>
+            </form>
         </div>
+
     </div>
   </div>
 </div>
@@ -238,7 +222,7 @@ if (isset($_GET['logout'])) {
                 var data =$tr.children("td").map(function(){
                   return $(this).text();
                 }).get();
-                $('#userid').val(data[8]);
+                $('#userid').val(data[0]);
           });
           
       });

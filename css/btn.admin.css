@@ -5,6 +5,15 @@
     font-size: 12px;
     text-align: center;
 }
+
+.page-content .table .tbody .addbtn{
+    width: 75px;
+    height: 30px;
+    font-family: latto;
+    font-size: 12px;
+    text-align: center;
+}
+
 .page-content .table .tbody .selectbtn {
     width: 75px;
     height: 30px;

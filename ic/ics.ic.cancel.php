@@ -13,7 +13,7 @@ if (isset($_GET['logout'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admission Officer - ICS</title>
+    <title>Interviewer - ICS</title>
     <link rel="icon" href="../seal/logo.png" sizes="32x32" type="image/png">
 
     <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css">
@@ -36,42 +36,19 @@ if (isset($_GET['logout'])) {
             <li class="menu-heading">
               <h3>APPLICANTS LIST</h3>
             </li>
-            <!-- <li>
-              <a href="coe.ao.main.php">
-                <i class="fa fa-list" aria-hidden="true"><span>Prequalified</span></i>
-              </a>
-            </li> -->
             <li>
-            <a href="ics.qual.php">
-                <i class="fa fa-thumbs-o-up" aria-hidden="true"><span>Qualified</span></i>
-              </a>
-            </li>
-            <li>
-                <a href="ics.admit.php">
-                <i class="fa fa-gavel" aria-hidden="true"><span>Admitted</span></i>
+                <a href="ics.ic.main.php">
+                  <i class="fa fa-handshake-o" aria-hidden="true"><span>Interviewing</span></i>
                 </a>
             </li>
             <li>
-                <a href="ics.wait.php" class="active">
-                <i class="fa fa-clock-o" aria-hidden="true"><span>Waiting</span></i>
-                </a>
-            </li>
-            <li>
-              <a href="ics.rej.php">
+              <a href="ics.ic.rej.php">
                 <i class="fa fa-thumbs-o-down" aria-hidden="true"><span>Rejected</span></i>
               </a>
             </li>
             <li>
-              <a href="ics.cancel.php">
+              <a href="ics.ic.cancel.php" class="active">
               <i class="fa fa-ban" aria-hidden="true"><span>Cancelled</span></i>
-              </a>
-            </li>
-            <li class="menu-heading">
-              <h3>Settings</h3>
-            </li>
-            <li>
-              <a href="setting.ics.php">
-                <i class="fa fa-cog" aria-hidden="true"><span>Settings</span></i>
               </a>
             </li>
             <li>
@@ -85,7 +62,7 @@ if (isset($_GET['logout'])) {
       <?php endif ?>
       <section class="page-content">
         <section class="btn-group">
-          <p class="section-name">Waiting List</p>
+          <p class="section-name">Cancelled List</p>
         </section>
         <section class="grid">
           <article>
@@ -94,7 +71,7 @@ if (isset($_GET['logout'])) {
                     <thead class="thead">
                     <?php $results = mysqli_query($db, "SELECT * from selectedcourse LEFT JOIN users ON selectedcourse.user_id = users.id
                      LEFT JOIN coursestbl ON selectedcourse.course_id = coursestbl.course_id
-                     LEFT JOIN attachment ON selectedcourse.file_id = attachment.id WHERE userStatus='WAITING' AND college_id='1'")?>
+                     LEFT JOIN attachment ON selectedcourse.file_id = attachment.id WHERE userStatus='CANCELLED' AND college_id='1'")?>
                         <tr>
                
                             <th>FirstName</th>
@@ -104,24 +81,32 @@ if (isset($_GET['logout'])) {
                             <th>Gpa</th>
                             <th>Interview Score</th>
                             <th>Overall Percentage</th>
+                            <th>Action </th>
 
                         </tr>
                     </thead>
                     <tbody class="tbody">
-                        <?php   while ($row = mysqli_fetch_array($results)) { ?>
-                        <tr>
-                            
-                            <td style="display:none" ><?php echo $row['user_id']; ?> </td>
-                            <td><?php echo $row['fname']; ?> </td>
-                            <td><?php echo $row['lname']; ?> </td>
-                            <td><?php echo $row['course_name']; ?></td>  
-                            <td><?php echo $row['cetValue']; ?></td>  
-                            <td><?php echo $row['gpaValue']; ?></td>
-                            <td><?php echo $row['inter_score']; ?></td>
-                            <td><?php echo $row['average']; ?></td>
-                            <!-- <td><input type="number" name="score" class="form-control scoreInput"></td> -->
-  
-                            
+                    <?php   while ($row = mysqli_fetch_array($results)) { ?>
+                            <tr>
+                   
+                          <td><?php echo $row['fname']; ?> </td>
+                          <td><?php echo $row['lname']; ?> </td>
+                          <td><?php echo $row['course_name']; ?></td>   
+                          <td><?php echo $row['cetValue']; ?></td>  
+                          <td><?php echo $row['gpaValue']; ?></td>
+                          <td><?php echo $row['inter_score']; ?></td>
+                          <td><?php echo $row['average']; ?></td>
+                          <td>
+                            <a class="btnaction" href="action/accept.php?user_id=<?php echo $row['user_id']; ?>">
+                              <button class="btn btn-success">Verify</button>
+                            </a>
+                         </td>
+
+                          <td style="display:none" ><?php echo $row['cet_path']; ?></td>  
+                          <td style="display:none"><?php echo $row['gmoral_path']; ?></td>  
+                          <td style="display:none"><?php echo $row['gpa_path']; ?></td>  
+                          <td style="display:none" ><?php echo $row['user_id']; ?> </td>
+                          
                          <!-- data-toggle="modal" data-target="#selectAction" -->
                         </tr>      
                           <?php 
@@ -154,27 +139,6 @@ if (isset($_GET['logout'])) {
         $('#printable-table').DataTable( {
             select: true
         } );
-    </script>
-
-    <script>
-        $(document).ready(function () {
-            $('.actionbtn').on('click', function () {
-
-              $('#adminAction').modal('show');
-              $tr = $(this).closest('tr');
-
-                var data =$tr.children("td").map(function(){
-                  return $(this).text();
-                }).get();
-                $('#name').val(data[1]);
-                $('#cetValue').val(data[2]);
-                $('#gpaValue').val(data[4]);
-                $('#coursename').val(data[6]);
-                $('#userID').val(data[8]);
-
-            });
-           
-        });
     </script>
 
     <script>

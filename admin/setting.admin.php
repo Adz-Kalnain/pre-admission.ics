@@ -221,7 +221,7 @@ if (isset($_GET['logout'])) {
                           <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#courseModal" id="allSettingButtons">View all created courses here</button>
                       
                       </form>
-                  </div>
+                    </div>
 
                   <!--MODAL COURSES-->
                   <div class="modal fade" id="courseModal" tabindex="-1" role="dialog" aria-labelledby="courseModalTitle" aria-hidden="true">
@@ -241,7 +241,7 @@ if (isset($_GET['logout'])) {
                                           <tr class="bg-danger" style="color: white;">
                                               <th>Course Name</th>
                                               <th>Course Description</th>
-                                              <th>College</th>
+                                              <th>College Id</th>
                                               <th>Action</th>
                                           </tr>
                                         </thead>
@@ -294,6 +294,7 @@ if (isset($_GET['logout'])) {
                       </form>
                     </div>
 
+                  
                   <!--MODAL COLLEGE-->
                   <div class="modal fade" id="collegeModal" tabindex="-1" role="dialog" aria-labelledby="collegeModalTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -355,69 +356,46 @@ if (isset($_GET['logout'])) {
                           <label for="sy">School year :</label>
                           <input type="text" name="sy" class="form-control mb-3">
                           
-                          <input type="submit" class="btn mt-3" name="admissionSubmit" value="Save" id="allSettingButtons">
+                          <input type="submit" class="btn mt-3" name="admissionsubmit" value="Save" id="allSettingButtons">
                       </form>
                     </div>
                   </div>
                   
                   <!--QUOTA-->
-                  <div class="tab-pane fade" id="list-quota" role="tabpanel" aria-labelledby="list-course-list">
+                  <div class="tab-pane fade" id="list-quota" role="tabpanel" aria-labelledby="list-quota-list">
                     <div class="quota" id="setting-content-container">
-                        <h4 class="sett-name mb-5">Quota
-                          <?php if (isset($quota_message1)): ?>
-                              <span class="message" id="message"><?php echo $quota_message1; ?></span>
-                          <?php endif ?>
-                          <?php if (isset($quota_message2)): ?>
-                              <span class="message" id="message"><?php echo $quota_message2; ?></span>
+                        
+                        <h4 class="sett-name mb-3">Quota
+                          <?php if (isset($quota_message)): ?>
+                              <span class="message" id="message"><?php echo $quota_message; ?></span>
                           <?php endif ?>
                         </h4>
-                        <form action="setting.admin.php" method="POST" class="form">
-                        <div class="row">
-                          <div class="col-6">
 
-                              <?php  
-                                  $query = "SELECT * FROM college";
-                                  $result = mysqli_query($db, $query);
-                                  $options = "";
-                                  while ($row = mysqli_fetch_array($result)){
-                                    $options = $options."<option value='$row[0]'>$row[1]</option>";
-                                  }
-                              ?>
-
-                              <label class="control-label mt-3" for="college_dept">Select College:</label>
-                              <select class="form-control input-sm" name="college_dept" id="college_dept" onchange="courseChange()" required>
-                                  <option value="empty"disabled selected>Select a college</option>
-                                  <?php echo $options; ?>
-                                  <!-- <option value="1" name="ics-college">ics</option>
-                                  <option value="2" name="coe-college">coe</option> -->
-                              </select>
-                          </div>
-                          <div class="col-6">
-
-                              <?php  
-                                  $query2 = "SELECT * FROM coursestbl";
-                                  $result2 = mysqli_query($db, $query2);
-                                  $options2 = "";
-                                  while ($row2 = mysqli_fetch_array($result2)){
-                                    $options2 = $options2."<option value='$row2[0]'>$row2[1]</option>";
-                                  }
-                              ?>
-
-                              <label class="control-label mt-3" for="course_sel">Select Course:</label>
-                              <select class="form-control input-sm" name="course_sel" id="course_sel" required>
-                                  <option value="" disbaled selected>Select a course</option>
-                                  <?php echo $options2 ?> 
-                              </select>
-                          </div>
-                        </div>
-                            
-                          <label for="quotaInput" class="control-label mt-3">Accepting applicants:</label>
-                          <input type="number" name="quotaInput" value="quota" class="form-control" required>
-
-                          <label for="waitingInput" class="control-label mt-3">Waiting List:</label>
-                          <input type="number" name="waitingInput" value="waiting" class="form-control" required>
-
+                        <form action="setting.admin.php" method="POST">
+                          
+                        <label for="quota">Accepting applicant</label>
+                        <input type="number" name="quota" class="form-control  mb-3" required>
+                        
+                        <label for="waiting">Waiting applicant</label>
+                        <input type="number" name="waiting" class="form-control" required>
+                        
+                            <?php  
+                                $query = "SELECT * FROM coursestbl";
+                                $result = mysqli_query($db, $query);
+                                $options="";
+                                while ($row = mysqli_fetch_array($result)){
+                                  $options = $options."<option>$row[1]</option>";
+                                }
+                            ?>
+                          
+                          <label class="control-label mt-3" for="course">Select Course:</label>
+                          <select class="form-control input-sm" name="course" id="course_quota" required>
+                              <option value=""disbaled selected>Select a course</option>
+                              <?php echo $options; ?> 
+                          </select>
+ 
                           <input type="submit" class="btn mt-3" name="quotaSubmit" value="Save" id="allSettingButtons">
+                          
                         </form>
                       </div>
                   </div>

@@ -4,7 +4,7 @@ if (isset($_POST['submit'])) {
 	req();
 }
 
-if (isset($_POST['quotaSubmit'])) {
+if (isset($_POST['quotasubmit'])) {
 	quota();
 }
 
@@ -12,37 +12,6 @@ if (isset($_POST['accountSubmit'])) {
 	newAccount();
 }
 
-if (isset($_POST['accept'])) {
-    $userID= $_POST['userID'];
-    $action = 'VERIFIED';
-
-    $query = "UPDATE selectedcourse SET userStatus='$action'  WHERE user_id='$userID'";
-    $results = mysqli_query($db, $query);
-        if ($results) {
-        //echo $sender;
-            $_SESSION['message'] = "Address updated!";
-            
-            header('location: coe.ao.main.php');
-        } else {
-            echo "ERROR: Could not be able to execute $query. ".mysqli_error($con);
-        }
-}
-
-if  (isset($_POST['reject'])) {
-    $userID= $_POST['userID'];
-    $action = 'REJECT';
-
-    $query = "UPDATE selectedcourse SET userStatus='$action'  WHERE user_id='$userID'";
-    $results = mysqli_query($db, $query);
-        if ($results) {
-        //echo $sender;
-            $_SESSION['message'] = "Address updated!"; 
-            header('location: coe.ao.main.php');
-        } else {
-            echo "ERROR: Could not be able to execute $query. ".mysqli_error($con);
-
-        }
-}
 
 function req() {
     global $db, $message1;
@@ -67,12 +36,11 @@ function req() {
 
 function quota() {
     global $db ,$quota_message;
-    $college = "1";
-    $course = $_POST['course_sel'];
-    $quota = $_POST['quotaInput'];
-    $waiting = $_POST['waitingInput'];
-
-    $sql_check = "SELECT * FROM coursestbl WHERE college_id = '$college' AND course_name = '$course' LIMIT 1";
+    $course = mysqli_real_escape_string($db, $_POST['course']);
+    $quota = mysqli_real_escape_string($db, $_POST['quota']);
+    $waiting = mysqli_real_escape_string($db, $_POST['waiting']);
+    
+    $sql_check = "SELECT * FROM coursestbl WHERE course_name = '$course' LIMIT 1";
     $result_check = mysqli_query($db, $sql_check);
 
     if(mysqli_num_rows($result_check) == 1) {
@@ -81,7 +49,6 @@ function quota() {
 
         if($results) {
             $quota_message = "| You have updated the course quota successfully.";
-            mysqli_close($db);
         }
     }
 }

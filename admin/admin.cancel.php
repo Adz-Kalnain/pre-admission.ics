@@ -19,6 +19,7 @@ if (isset($_GET['logout'])) {
     <link rel="stylesheet" href="../bootstrap4/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">          
     <link rel="stylesheet" href="../css/admin.style.css">
+    <link rel="stylesheet" href="../css/btn.admin.css">
     <link rel="stylesheet" type="text/css" href="../DataTables/datatables.css">
 
 </head>
@@ -44,6 +45,11 @@ if (isset($_GET['logout'])) {
             <li>
                 <a href="admin.pre.php">
                   <i class="fa fa-check" aria-hidden="true"><span>Prequalified</span></i>
+                </a>
+            </li>
+            <li>
+                <a href="admin.inter.php">
+                  <i class="fa fa-handshake-o" aria-hidden="true"><span>Interviewing</span></i>
                 </a>
             </li>
             <li>

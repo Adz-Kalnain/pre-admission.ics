@@ -13,7 +13,7 @@ if (isset($_POST['collegeSubmit'])) {
 	college();
 }
 
-if (isset($_POST['admissionSubmit'])) {
+if (isset($_POST['admissionsubmit'])) {
 	admission();
 }
 
@@ -57,7 +57,7 @@ function req() {
 }
 
 function course() {
-    global $db , $errors , $course_message1 , $course_message2;
+    global $db , $course_message1 , $course_message2;
     $coursename = "";
     $coursedescription = "";
     $college = "";
@@ -130,8 +130,8 @@ function admission() {
             mysqli_close($db);
         }
     }else{
-        $query = "INSERT INTO admissionbatch (start_date, end_date, schoolyear, is_active) 
-        VALUES ('$start', '$end', '$sy', '1')";
+        $query = "INSERT INTO admissionbatch (end_date, start_date, schoolyear, is_active) 
+        VALUES ('$end', '$start', '$sy', '1')";
         $results = mysqli_query($db, $query);
         if ($results) {
             $admission_message = "| You have set the admission date successfully.";
@@ -142,13 +142,12 @@ function admission() {
 }
 
 function quota() {
-    global $db , $errors , $quota_message1 , $quota_message2;
-    $college = $_POST['college_dept'];
-    $course = $_POST['course_sel'];
-    $quota = $_POST['quotaInput'];
-    $waiting = $_POST['waitingInput'];
-
-    $sql_check = "SELECT * FROM coursestbl WHERE college_id = '$college' AND course_name = '$course' LIMIT 1";
+    global $db ,$quota_message;
+    $course = mysqli_real_escape_string($db, $_POST['course']);
+    $quota = mysqli_real_escape_string($db, $_POST['quota']);
+    $waiting = mysqli_real_escape_string($db, $_POST['waiting']);
+   
+    $sql_check = "SELECT * FROM coursestbl WHERE course_name = '$course' LIMIT 1";
     $result_check = mysqli_query($db, $sql_check);
 
     if(mysqli_num_rows($result_check) == 1) {
@@ -156,8 +155,7 @@ function quota() {
         $results = mysqli_query($db, $query);
 
         if($results) {
-            $quota_message1 = "| You have updated the course quota successfully.";
-            mysqli_close($db);
+            $quota_message = "| You have updated the course quota successfully.";
         }
     }
 }
