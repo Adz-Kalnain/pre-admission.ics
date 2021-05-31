@@ -1,5 +1,4 @@
-<!--  < ?php include('authenticate.php') ?>-->
-
+<?php include('registrationclass.php') ?>
 <!doctype html>
 <html lang="en">
 
@@ -141,53 +140,44 @@
                     <?php
                     $db = mysqli_connect('localhost', 'root', '', 'initialsystem');
                     session_start();
-                    $username = "";
+
 
 
 
                     if (isset($_POST['submit'])) {
                         $applicantid = $_POST['applicant'];
-                        $username = $_POST['username'];
-                        $password = $_POST['password'];
-                        // $fname = $_POST['fname'];
-                        // $lname = $_POST['lname'];
+                        $app_ID = $_POST['applicant'];
 
-                        $sql_e = "SELECT * FROM users WHERE username='$username'";
+
+                       
                         $checking = "SELECT * FROM cetresult WHERE applicantid='$applicantid'";
-
-                        $res_e = mysqli_query($db, $sql_e);
+                        $account =  "SELECT * FROM users WHERE applicantid='$app_ID'";
+                        
                         $checking_result =  mysqli_query($db, $checking);
-
+                        $account_result = mysqli_query($db,$account);
+                  
                         if (mysqli_num_rows($checking_result) < 1) {
-                            echo "Sorry your we don't recognize your Applicant ID";
-                            echo "<br><br><div class='form'>
-                            <p class='link pb-2'>Click here to <a href='registration.php'>Try again</a></p>
+                            echo "Sorry your we don't recognize your Applicant ID<br>";
+                            echo "<div class='form'>
+                            <p class='link pb-2'>Click here to <a href='registrationEx.php'>Try again</a></p>
                             </div>";
-                            
                         }
                         
-                        else if (mysqli_num_rows($res_e) > 0) {
-                            $username_error = "Email already taken";
-                        } 
+                        else if (mysqli_num_rows($account_result) > 0) {
+                            echo "Account already exist";
+                            echo "<br><br><div class='form'>
+                            <p class='link pb-2'>Click here to <a href='registrationEx.php'>Try again</a></p>
+                            </div>";
+                        }
                         
-                         else {
-                            $query = "INSERT INTO users (username, password, user_type,studentType) 
-                                        VALUES ('$username', '" . md5($password) . "', 'user')";
-                            $results = mysqli_query($db, $query);
-                            //yung md5 for encryption yan, pero dih na ata possible yung feature na reset password pang gagamit tayo md5, pero oknayan atleast encrypted. 
-                            if ($results) {
+                        else {
+                            $_SESSION['appID'] = $app_ID;
+                           // $appID = new MyClass();
+                           // $appID->setAppid($app_ID);
+                           header("location: RegistrationEx1.php");
+                            //echo 'AppID:'  . $appID->getAppid().'<br>';
+                          
 
-                                echo "<div class='form'>
-                                            <h3>You are registered successfully.</h3><br/>
-                                            <p class='link pb-2'>Click here to <a href='index.php'>Login</a></p>
-                                            </div>";
-                            } else {
-                                echo "<div class='form'>
-                                            <h3>Required fields are missing.</h3><br/>
-                                            <p class='link'>Click here to <a href='registration.php'>registration</a> again.</p>
-                                            </div>";
-                            }
-                            //exit();
                         }
                     } else {
                     ?>
@@ -196,30 +186,8 @@
                             <label for="email" class="form-label">CET's Applicant ID</label>
                             <input type="text" class="form-control login-input" id="applicant" name="applicant" required>
 
-
-                           
-
-
-                            <div class="form-group">
-                                <label>First Name :</label>
-                                <input type="id" disabled="disabled" name="firstname" id="firstname" class="form-control">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Last name :</label>
-                                <input type="name" name="sender" disabled="disabled" id="lastname" class="form-control">
-                            </div>
-
-                            <label for="email" class="form-label">Email</label>
-                            <div <?php if (isset($username_error)) : ?> class="form_error" <?php endif ?>>
-                                <input type="username" class="form-control login-input" id="username" name="username" placeholder="Email Adress" value="<?php echo $username; ?>" required>
-                                <?php if (isset($username_error)) : ?>
-                                    <span><?php echo $username_error; ?></span>
-                                <?php endif ?>
-                            </div>
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control login-input" name="password" placeholder="Password" required>
-                            <input type="submit" name="submit" value="Register" class="btn btn-submit mt-2 mb-2">
+                            
+                            <input type="submit" name="submit" value="Submit" class="btn btn-submit mt-2 mb-2">
                             <p class="link pb-2">Already have an account? <a href="index.php">Login here</a></p>
                         </form>
                     <?php

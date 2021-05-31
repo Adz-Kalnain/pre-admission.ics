@@ -26,12 +26,12 @@
                 <h4 class="mb-4 mt-4 pt-3">Sign-in</h4>
                 
                     <form class="form" method="post" name="login" action="index.php">
-                          <label for="username" class="form-label">Username</label>
+                          <label for="username" class="form-label">Email</label>
                           <input type="text" class="form-control shadow-none" id="username" name="username" placeholder="" autofocus="true"/>
                           <label for="password" class="form-label">Password</label>
                           <input type="password" class="form-control shadow-none" id="password" name="password" placeholder=""/>
                           <input type="submit" value="login" name="login_btn" class="btn btn-login w-100 mt-3"/>
-                          <p class="link mt-2">Don't have an account? <a href="registration.php"><span class="pressMe">Registration Now</span></a></p>
+                          <p class="link mt-2">Don't have an account? <a href="registrationEx.php"><span class="pressMe">Registration Now</span></a></p>
                     </form>
                      
 

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2021 at 04:41 PM
+-- Generation Time: May 31, 2021 at 03:31 PM
 -- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.33
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -72,7 +72,48 @@ INSERT INTO `attachment` (`id`, `cet_path`, `gmoral_path`, `gpa_path`, `shiftee_
 (32, 'FacialRecognition_Chapter1-2-3[FINAL].docx', 'POWERPOINT-2.pptx', 'FacialRecognition_Chapter1-2-3.docx', NULL, 8, '95.2', '23'),
 (33, 'FacialRecognition_Chapter1-2-3[FINAL].docx', 'FacialRecognition_Chapter1-2-3.docx', 'CHAPTER-I_II_III (1).docx', NULL, 8, '95.2', '23'),
 (34, '01-CS138 - CS Elective 3.pdf', '02-CS138 - CS Elective 3.pdf', '03-CS138 - CS Elective 3.pdf', NULL, 15, '90', '90'),
-(35, '05-CS138 - CS Elective 3 - Activity.pdf', '03-CS138 - CS Elective 3.pdf', '02-CS138 - CS Elective 3.pdf', NULL, 16, '95.5', '96.6');
+(35, '05-CS138 - CS Elective 3 - Activity.pdf', '03-CS138 - CS Elective 3.pdf', '02-CS138 - CS Elective 3.pdf', NULL, 16, '95.5', '96.6'),
+(0, 'Act2Thesis.docx', 'Activity_2_Thesis.docx', 'CHAPTER-III-2.docx', NULL, 37, '88', '88');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cetresult`
+--
+
+CREATE TABLE `cetresult` (
+  `applicantid` int(11) NOT NULL,
+  `cetresult` varchar(100) NOT NULL,
+  `year` varchar(100) NOT NULL,
+  `fname` varchar(100) NOT NULL,
+  `lname` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cetresult`
+--
+
+INSERT INTO `cetresult` (`applicantid`, `cetresult`, `year`, `fname`, `lname`) VALUES
+(201400001, '88', '2014', 'Aizzy Diane', 'Algupera'),
+(201400002, '88', '2014', 'Migfren', 'Limen'),
+(201800002, '90', '2018', 'Wenefredo', 'Tejero'),
+(201800003, '93', '2018', 'Ronald Dale', 'Fuentebella'),
+(201800004, '92', '2018', 'Mark Anthony', 'Tubat'),
+(201800005, '95', '2018', 'Josua', 'Habil'),
+(201800006, '70', '2018', 'Jan Renzo', 'Facto'),
+(201801928, '75', '2018', 'Jayson', 'Beltran'),
+(202000018, '90', '2020', 'Juztyne Raine', 'Abella'),
+(202100001, '92', '2021', 'Hannah Charise', 'Toroy'),
+(202100002, '85', '2021', 'Clifford Cyril', 'Jumawan'),
+(202100003, '95', '2021', 'Hannah Fatima', 'Sonza'),
+(202100004, '96', '2021', 'Mersan', 'Nagdar'),
+(202100005, '99', '2021', 'Resham Lal', 'Sohal'),
+(202100006, '97', '2021', 'Exan Jhon', 'Carpio'),
+(202100007, '90', '2021', 'Faulyn', 'Bernardo'),
+(202100008, '91', '2021', 'Cherry Ivy', 'Sagun'),
+(202100009, '83', '2021', 'Julie Ann Joyce', 'Mejos'),
+(202100010, '60', '2021', 'Wesley', 'Hoffdal'),
+(202100011, '50', '2021', 'Yves', 'Surbano');
 
 -- --------------------------------------------------------
 
@@ -216,7 +257,8 @@ CREATE TABLE `selectedcourse` (
 INSERT INTO `selectedcourse` (`id`, `user_id`, `course_id`, `file_id`, `userStatus`, `date`) VALUES
 (28, 8, 11, 33, 'VERIFIED', '2021:05:26'),
 (29, 15, 15, 34, 'VERIFIED', '2021:05:28'),
-(30, 16, 11, 35, 'PENDING', '2021:05:28');
+(30, 16, 11, 35, 'PENDING', '2021:05:28'),
+(0, 37, 11, 0, 'VERIFIED', '2021:05:29');
 
 -- --------------------------------------------------------
 
@@ -226,160 +268,73 @@ INSERT INTO `selectedcourse` (`id`, `user_id`, `course_id`, `file_id`, `userStat
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
+  `applicantid` int(11) DEFAULT NULL,
   `username` varchar(100) NOT NULL,
   `fname` varchar(100) NOT NULL,
   `lname` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `user_type` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `studentType` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `fname`, `lname`, `email`, `user_type`, `password`) VALUES
-(1, 'blue', '', '', 'blue@gmail.com', 'ics-ao', '48d6215903dff56238e52e8891380c8f'),
-(4, 'violet', '', '', 'violet@gmail.com', 'ic', 'd1d813a48d99f0e102f7d0a1b9068001'),
-(5, 'teal', '', '', 'teal@gmail.com', 'admin', '3c4184e82bb3be8fa32669800fb7373c'),
-(6, 'cyan', '', '', 'cyan@gmail.com', 'evaluator', '6411532ba4971f378391776a9db629d3'),
-(7, 'gold', '', '', 'gold@gmail.com', 'coe-ao', 'e07e81c20cf5935f5225765f0af81755'),
-(8, 'silver', 'ronald ', 'fuentebella', 'silver@gmail.com', 'user', '97f014516561ef487ec368d6158eb3f4'),
-(9, 'grey', 'jayson', 'beltran', 'grey@gmail.com', 'user', 'ca50000a180a293de0b27acb67a695cb'),
-(10, 'mark', 'mark', 'tubat', 'mark@gmail.com', 'user', 'ea82410c7a9991816b5eeeebe195e20a'),
-(11, 'josh', 'josh', 'habil', 'josh@gmail.com', 'user', 'f94adcc3ddda04a8f34928d862f404b4'),
-(12, 'Ken', 'Kenneth', 'Emmanuel', 'Ken@gmail.com', 'user', '202cb962ac59075b964b07152d234b70'),
-(13, 'Mig', 'Migfren', 'Limen', 'Migfren@gmail.com', 'user', '202cb962ac59075b964b07152d234b70'),
-(14, 'Aizzy', 'Aizzy Dianne', 'Algupera', 'Aizzy@gmail.com', 'user', '202cb962ac59075b964b07152d234b70'),
-(15, 'red', 'color', 'red', 'red@gmail.com', 'user', 'bda9643ac6601722a28f238714274da4'),
-(16, 'green', 'color', 'green', 'green@gmail.com', 'user', '9f27410725ab8cc8854a2769c7a516b8'),
-(17, 'yello', 'color', 'yellow', 'yello@gmail.com', 'ao', 'd487dd0b55dfcacdd920ccbdaeafa351'),
-(18, 'black', 'color', 'black', 'black@gmail.com', '0', '1ffd9e753c8054cc61456ac7fac1ac89'),
-(19, 'white', 'color', 'white', 'white@gmail.com', 'ics-ao', 'd508fe45cecaf653904a0e774084bb5c'),
-(20, 'Color', 'Orange', 'Orange', 'orange@gmail.com', 'coe-evaluator', 'be0d2904c9e06433f9401ed0211be7e9'),
-(21, 'Color', 'Pink', 'Pink', 'pink@gmail.com', 'coe-ic', '4a0b0dcedd48f780778d1cd1bb8f9877'),
-(22, 'pitch', 'Color', 'Pitch', 'pitch@gmail.com', 'coe-ic', '8ee0b79fb35b0efe85b44c0ee243f8d5');
+INSERT INTO `users` (`id`, `applicantid`, `username`, `fname`, `lname`, `email`, `user_type`, `password`, `studentType`) VALUES
+(1, NULL, 'blue', '', '', 'blue@gmail.com', 'user', '48d6215903dff56238e52e8891380c8f', NULL),
+(4, NULL, 'violet', '', '', 'violet@gmail.com', 'ic', 'd1d813a48d99f0e102f7d0a1b9068001', NULL),
+(5, NULL, 'teal', '', '', 'teal@gmail.com', 'admin', '3c4184e82bb3be8fa32669800fb7373c', NULL),
+(6, NULL, 'cyan', '', '', 'cyan@gmail.com', 'evaluator', '6411532ba4971f378391776a9db629d3', NULL),
+(7, NULL, 'gold', '', '', 'gold@gmail.com', 'ao', 'e07e81c20cf5935f5225765f0af81755', NULL),
+(8, NULL, 'silver', 'ronald ', 'fuentebella', 'silver@gmail.com', 'user', '97f014516561ef487ec368d6158eb3f4', NULL),
+(9, NULL, 'grey', 'jayson', 'beltran', 'grey@gmail.com', 'user', 'ca50000a180a293de0b27acb67a695cb', NULL),
+(39, 202000018, 'bg201801928@wmsu.edu.ph', 'Juztyne Raine', 'Abella', '', 'user', '202cb962ac59075b964b07152d234b70', 'Regular'),
+(40, 201800004, 'Mark@gmail.com', 'Mark Anthony', 'Tubat', '', 'user', '202cb962ac59075b964b07152d234b70', 'Regular');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `admissionbatch`
+-- Indexes for table `cetresult`
 --
-ALTER TABLE `admissionbatch`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `attachment`
---
-ALTER TABLE `attachment`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `userid` (`user_id`);
-
---
--- Indexes for table `college`
---
-ALTER TABLE `college`
-  ADD PRIMARY KEY (`college_id`);
-
---
--- Indexes for table `coursestbl`
---
-ALTER TABLE `coursestbl`
-  ADD PRIMARY KEY (`course_id`),
-  ADD KEY `collegeid` (`college_id`);
-
---
--- Indexes for table `interviewertbl`
---
-ALTER TABLE `interviewertbl`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `selectedcourse`
---
-ALTER TABLE `selectedcourse`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `courseid` (`course_id`),
-  ADD KEY `fileid` (`file_id`),
-  ADD KEY `user_id` (`user_id`);
+ALTER TABLE `cetresult`
+  ADD PRIMARY KEY (`applicantid`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `applicant_id` (`applicantid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `admissionbatch`
+-- AUTO_INCREMENT for table `cetresult`
 --
-ALTER TABLE `admissionbatch`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `attachment`
---
-ALTER TABLE `attachment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
-
---
--- AUTO_INCREMENT for table `college`
---
-ALTER TABLE `college`
-  MODIFY `college_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT for table `coursestbl`
---
-ALTER TABLE `coursestbl`
-  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
-
---
--- AUTO_INCREMENT for table `interviewertbl`
---
-ALTER TABLE `interviewertbl`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT for table `selectedcourse`
---
-ALTER TABLE `selectedcourse`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+ALTER TABLE `cetresult`
+  MODIFY `applicantid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202100012;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `attachment`
+-- Constraints for table `users`
 --
-ALTER TABLE `attachment`
-  ADD CONSTRAINT `userid` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `coursestbl`
---
-ALTER TABLE `coursestbl`
-  ADD CONSTRAINT `collegeid` FOREIGN KEY (`college_id`) REFERENCES `college` (`college_id`);
-
---
--- Constraints for table `selectedcourse`
---
-ALTER TABLE `selectedcourse`
-  ADD CONSTRAINT `courseid` FOREIGN KEY (`course_id`) REFERENCES `coursestbl` (`course_id`),
-  ADD CONSTRAINT `fileid` FOREIGN KEY (`file_id`) REFERENCES `attachment` (`id`),
-  ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+ALTER TABLE `users`
+  ADD CONSTRAINT `applicant_id` FOREIGN KEY (`applicantid`) REFERENCES `cetresult` (`applicantid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -10,11 +10,6 @@ $arr = mysqli_fetch_array($query);
 if (isset($_GET['select'])) {
   $id = $_GET['select'];
 }
-
-$appId = $arr['applicantid'];
-$results1 = mysqli_query($db, "SELECT * from cetresult  WHERE applicantid = '$appId' ");
-$arr1 = mysqli_fetch_array($results1);
-
 ?>
 
 
@@ -29,9 +24,15 @@ $arr1 = mysqli_fetch_array($results1);
   <link rel="icon" href="../seal/wmsu-logo.png" sizes="32x32" type="image/png">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/style.uapplication.css">
+  <link rel="stylesheet" type="text/css" href="../DataTables/datatables.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
 
 
 </head>
@@ -170,7 +171,7 @@ $arr1 = mysqli_fetch_array($results1);
             <p>
               Welcome
               <strong>
-                <?php echo $_SESSION['login_user']; ?>
+                <?php echo $arr['applicantid']; ?>
               </strong>
             </p>
 
@@ -191,32 +192,41 @@ $arr1 = mysqli_fetch_array($results1);
     </nav>
   </header>
   <div class="container"><br>
-
-
-
     <div class="col-lg-12">
+
 
       <div class="card shadow mb-4">
         <div class="card-header py-3">
           <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-7">
               <h6 class="m-0 font-weight-bold text-danger">List of Courses</h6>
             </div>
-            <div class="col-md-3">
-              <a href="UserApplication.php">Return to Colleges</a>
+            <div class="col-md-5">
+              <div class="input-group">
+                <input class="form-control border-end-0 border rounded-pill" type="text" placeholder="Search for Course" id="myInput" onkeyup="myFunction()">
+                <span class="input-group-append">
+                  <button class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" type="button">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </span>
+              </div>
             </div>
           </div>
         </div>
         <div class="card-body">
           <div class="row">
-
-
             <div class="col-lg-12">
+              <table class='selected-col-2' id="myTable">
+                <tbody class="tbody">
+                  <?php
 
 
-              <table class='selected-col-2'>
-                <tbody>
-                  <?php $results = mysqli_query($db, "SELECT * from coursestbl WHERE college_id='$id'") ?>
+                  $results = mysqli_query($db, "SELECT * from coursestbl ");
+
+
+                  ?>
+
+                  <?php $results = mysqli_query($db, "SELECT * from coursestbl ") ?>
 
                   <?php while ($row = mysqli_fetch_array($results)) { ?>
                     <tr>
@@ -232,7 +242,7 @@ $arr1 = mysqli_fetch_array($results1);
                   <?php } ?>
                 </tbody>
               </table>
-
+             
               <!-- FORWARD ACTION -->
               <div class="modal fade" id="selectModal">
                 <form id="send" action="upload.php" method="post" enctype="multipart/form-data">
@@ -241,24 +251,6 @@ $arr1 = mysqli_fetch_array($results1);
                       <?php $getID = mysqli_query($db, "SELECT * from users WHERE username ='gold'");
                       $rows = mysqli_num_rows($getID); ?>
                       <div class="modal-header">
-
-                      <?php
-                      
-                        if ( $arr['studentType'] == 'Regular'){
-                          $label = 'GPA PERCENTAGE';
-                          $label2 = 'GPA COPY';
-                        }
-                        else if ($arr['studentType'] == 'Transferee'){
-                          $label = 'TOR PERCENTAGE';
-                          $label2 = 'TOR COPY';
-                        }
-
-                        else {
-
-                        }
-
-
-                        ?>
 
                         <h4 class="modal-title">Upload your Requirements</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -280,19 +272,16 @@ $arr1 = mysqli_fetch_array($results1);
                         <div class="col-sm-12">
                           <div class="tab">
                             <label>CET Overall Percentage:</label>
-                            <input type="name" name="cetValue" id="cetValue" value="<?php echo $arr1['cetresult']?>" oninput="this.className = ''" class="form-control">
+                            <input type="name" name="cetValue" id="cetValue" oninput="this.className = ''" class="form-control">
                             <label for="cet" class="form-label">CET copy</label>
                             <input type="file" id="cet" oninput="this.className = ''" name="cet">
                           </div>
                         </div>
-
-
-
                         <div class="col-sm-12">
                           <div class="tab">
-                            <label><?php echo $label ?></label>
+                            <label>GPA Percentage:</label>
                             <input type="name" name="gpaValue" id="gpaValue" oninput="this.className = ''" class="form-control">
-                            <label for="gpa" class="form-label"><?php echo $label2 ?></label>
+                            <label for="gpa" class="form-label">GPA Copy</label>
                             <input type="file" id="gpa" oninput="this.className = ''" name="gpa">
                           </div>
                         </div>
@@ -331,17 +320,12 @@ $arr1 = mysqli_fetch_array($results1);
                             <span class="step"></span>
                           </div>
 
-                        </div>
+                   
                 </form>
-
               </div>
             </div>
-          </div>
-
-
-        </div>
-
-      </div>
+            </div>
+            </div>
       <!-- /.container-fluid -->
 
     </div>
@@ -362,6 +346,22 @@ $arr1 = mysqli_fetch_array($results1);
         </div>
       </div>
     </div>
+    <script src="../jquery/jquery.min.js"></script>
+    <script src="../bootstrap4/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="../DataTables/datatables.js"></script>
+    <script src="../js/control.js"></script>
+
+    <script>
+      $(document).ready(function() {
+        $('#myTable').DataTable();
+      });
+    </script>
+
+    <script>
+      $('#myTable').DataTable({
+        select: true
+      });
+    </script>
 </body>
 
 </html>
@@ -440,6 +440,37 @@ $arr1 = mysqli_fetch_array($results1);
     }
     //... and adds the "active" class on the current step:
     x[n].className += " active";
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#limit-records").change(function() {
+      $('form').submit();
+    })
+  })
+</script>
+<script>
+  function myFunction() {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[2];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
   }
 </script>
 <script>

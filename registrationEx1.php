@@ -1,4 +1,4 @@
-<!--  < ?php include('authenticate.php') ?>-->
+<?php include('registrationclass.php') ?>
 
 <!doctype html>
 <html lang="en">
@@ -146,33 +146,32 @@
 
 
                     if (isset($_POST['submit'])) {
-                        $applicantid = $_POST['applicant'];
+                        //$applicantid = $_POST['applicant'];
                         $username = $_POST['username'];
                         $password = $_POST['password'];
-                        // $fname = $_POST['fname'];
-                        // $lname = $_POST['lname'];
+                    
+                        $type = $_POST['studentType'];
+                        $appId = $_SESSION['appID'];
 
                         $sql_e = "SELECT * FROM users WHERE username='$username'";
-                        $checking = "SELECT * FROM cetresult WHERE applicantid='$applicantid'";
+
+                        $results1 = mysqli_query($db, "SELECT * from cetresult  WHERE applicantid = '$appId' ");
+                        $arr = mysqli_fetch_array($results1);
+                        $fname = $arr['fname'];
+                        $lname = $arr['lname'];
+                            
+
 
                         $res_e = mysqli_query($db, $sql_e);
-                        $checking_result =  mysqli_query($db, $checking);
+                       
 
-                        if (mysqli_num_rows($checking_result) < 1) {
-                            echo "Sorry your we don't recognize your Applicant ID";
-                            echo "<br><br><div class='form'>
-                            <p class='link pb-2'>Click here to <a href='registration.php'>Try again</a></p>
-                            </div>";
-                            
-                        }
-                        
-                        else if (mysqli_num_rows($res_e) > 0) {
+                        if (mysqli_num_rows($res_e) > 0) {
                             $username_error = "Email already taken";
                         } 
-                        
-                         else {
-                            $query = "INSERT INTO users (username, password, user_type,studentType) 
-                                        VALUES ('$username', '" . md5($password) . "', 'user')";
+
+                        else {
+                            $query = "INSERT INTO users (applicantid,fname, lname,username, password, user_type,studentType) 
+                                        VALUES ('$appId','$fname','$lname','$username', '" . md5($password) . "', 'user','$type')";
                             $results = mysqli_query($db, $query);
                             //yung md5 for encryption yan, pero dih na ata possible yung feature na reset password pang gagamit tayo md5, pero oknayan atleast encrypted. 
                             if ($results) {
@@ -191,24 +190,26 @@
                         }
                     } else {
                     ?>
-
+                          <?php ?>
                         <form class="form" action="" method="post">
+                            
+
+                                       
+                            <div class="form-group">
                             <label for="email" class="form-label">CET's Applicant ID</label>
-                            <input type="text" class="form-control login-input" id="applicant" name="applicant" required>
-
-
-                           
-
-
-                            <div class="form-group">
-                                <label>First Name :</label>
-                                <input type="id" disabled="disabled" name="firstname" id="firstname" class="form-control">
+                            <input type="id" name="appID"  id="appID" class="form-control login-input" disabled="disable" value="<?php echo $_SESSION['appID'] ?>" >
                             </div>
 
                             <div class="form-group">
-                                <label>Last name :</label>
-                                <input type="name" name="sender" disabled="disabled" id="lastname" class="form-control">
+
+                                <select name="studentType" id="studentType"  class="form-control action">
+                                <option disabled="disabled" selected="selected">Select Student Type</option>
+                                <option value="Regular">Regular</option>
+                                <option value="Transferee">Transferee</option>
+                                <option value="Shiftee">Shiftee</option>
+                            </select>
                             </div>
+                         
 
                             <label for="email" class="form-label">Email</label>
                             <div <?php if (isset($username_error)) : ?> class="form_error" <?php endif ?>>
