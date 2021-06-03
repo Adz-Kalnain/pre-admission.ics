@@ -28,19 +28,22 @@
     $cet = $_FILES['cet']['name'];
     $moral = $_FILES['moral']['name'];
     $gpa = $_FILES['gpa']['name'];
-     $shiftee = $_FILES['shiftee']['name'];
+    ;
 
+    $cetnew = $id .'_'.$cet;
+    $moralnew = $id .'_'.$moral;
+    $gpanew = $id .'_'.$gpa;
 
     // destination of the file on the server
-    $destination = '../files_upload/attachment/' . $cet;
-    $destination2 = '../files_upload/attachment/' . $moral;
-    $destination3 = '../files_upload/attachment/' . $gpa;
+    $destination = '../files_upload/attachment/' . $cetnew;
+    $destination2 = '../files_upload/attachment/' . $moralnew;
+    $destination3 = '../files_upload/attachment/' . $gpanew;
 
 
     // get the file extension
-    $extension1 = pathinfo($cet, PATHINFO_EXTENSION);
-    $extension2 = pathinfo($moral, PATHINFO_EXTENSION);
-    $extension3 = pathinfo($gpa, PATHINFO_EXTENSION);
+    $extension1 = pathinfo($cetnew, PATHINFO_EXTENSION);
+    $extension2 = pathinfo($moralnew, PATHINFO_EXTENSION);
+    $extension3 = pathinfo($gpanew, PATHINFO_EXTENSION);
 
 
     // the physical file on a temporary uploads directory on the server
@@ -69,7 +72,7 @@
         move_uploaded_file($file3, $destination3);
         if (move_uploaded_file($file1, $destination)) {
             
-            $sql = "INSERT INTO attachment (cet_path,gpa_path,gmoral_path,user_id,cetValue,gpaValue) VALUES ('$cet','$moral','$gpa','$id','$cetValue','$gpaValue')";
+            $sql = "INSERT INTO attachment (cet_path,gpa_path,gmoral_path,user_id,cetValue,gpaValue) VALUES ('$cetnew','$moralnew','$gpanew','$id','$cetValue','$gpaValue')";
             if (mysqli_query($db, $sql)) {
                 $file_id = mysqli_insert_id($db);
                $query1= mysqli_query($db,"INSERT INTO selectedcourse (user_id,course_id,file_id,date,userStatus) VALUES ('$id','$courseID','$file_id','$today','PENDING')") ;   

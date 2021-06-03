@@ -102,7 +102,11 @@ if (isset($_GET['logout'])) {
                             <th>FirstName</th>
                             <th>LastName</th>
                             <th>Course</th>
-                            <th>Action </th>
+                            <th>Student Type</th>
+                            <th>Cet</th>
+                            <th>Gpa</th>
+                            <th>Interview Score</th>
+                            <th>Overall Percentage</th>
 
                         </tr>
                     </thead>
@@ -112,19 +116,15 @@ if (isset($_GET['logout'])) {
                    
                           <td><?php echo $row['fname']; ?> </td>
                           <td><?php echo $row['lname']; ?> </td>
-                          <td><?php echo $row['course_name']; ?></td>   
+                          <td><?php echo $row['course_name']; ?></td>
+                          <td><?php echo $row['studentType']; ?></td>     
+                          <td style="display:none"><?php echo $row['cetValue']; ?></td>  
+                          <td style="display:none"><?php echo $row['gpaValue']; ?></td>
                            
                           <td style="display:none" ><?php echo $row['cet_path']; ?></td>  
                           <td style="display:none"><?php echo $row['gmoral_path']; ?></td>  
                           <td style="display:none"><?php echo $row['gpa_path']; ?></td>  
-                          <td style="display:none"><?php echo $row['cetValue']; ?></td>  
-                          <td style="display:none"><?php echo $row['gpaValue']; ?></td>  
                           <td style="display:none" ><?php echo $row['user_id']; ?> </td>
-                          <td>
-                            <a class="btnaction" href="action/accept.php?user_id=<?php echo $row['user_id']; ?>">
-                              <button class="btn btn-success">Verify</button>
-                            </a>
-                         </td>
                          <!-- data-toggle="modal" data-target="#selectAction" -->
                         </tr>      
                           <?php 

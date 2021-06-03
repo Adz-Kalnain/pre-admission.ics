@@ -1,4 +1,5 @@
-<?php include('registrationclass.php') ?>
+<?php include('registrationclass.php');
+include('../db.php'); ?>
 <!doctype html>
 <html lang="en">
 
@@ -6,24 +7,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registration - WMSU Online Pre-Admission System</title>
-
     <link rel="stylesheet" href="bootstrap4/css/bootstrap.min.css">
     <link rel="icon" href="seal/wmsu-logo.png" sizes="32x32" type="image/png">
 
     <style>
-        /*.navbar{
-        background-color:rgba(0, 128, 128, 0.808);
-    }
-    .navbar .navbar-brand img{
-        width: 90px;
-        border-radius: 60px;
-        margin-right: 10px;
-    }
-    .navbar .navbar-collapse ul li a.active{
-        border-bottom: 2px solid white;
-    }*/
         .container {
             max-width: 960px;
+
         }
 
         .container main div img {
@@ -33,6 +23,7 @@
 
         .container main #form-body {
             background-color: rgba(104, 87, 67, 0.055);
+
             padding-left: 35px;
             padding-right: 35px;
             margin: auto;
@@ -138,7 +129,7 @@
                     <h4 class="mb-4 mt-4 pt-3">Registration</h4>
 
                     <?php
-                    $db = mysqli_connect('localhost', 'root', '', 'initialsystem');
+                    
                     session_start();
 
 
@@ -149,34 +140,30 @@
                         $app_ID = $_POST['applicant'];
 
 
-                       
+
                         $checking = "SELECT * FROM cetresult WHERE applicantid='$applicantid'";
                         $account =  "SELECT * FROM users WHERE applicantid='$app_ID'";
-                        
+
                         $checking_result =  mysqli_query($db, $checking);
-                        $account_result = mysqli_query($db,$account);
-                  
+                        $account_result = mysqli_query($db, $account);
+
                         if (mysqli_num_rows($checking_result) < 1) {
                             echo "Sorry your we don't recognize your Applicant ID<br>";
                             echo "<div class='form'>
                             <p class='link pb-2'>Click here to <a href='registrationEx.php'>Try again</a></p>
                             </div>";
-                        }
-                        
-                        else if (mysqli_num_rows($account_result) > 0) {
+                        } else if (mysqli_num_rows($account_result) > 0) {
                             echo "Account already exist";
                             echo "<br><br><div class='form'>
                             <p class='link pb-2'>Click here to <a href='registrationEx.php'>Try again</a></p>
                             </div>";
-                        }
-                        
-                        else {
+                        } else {
                             $_SESSION['appID'] = $app_ID;
-                           // $appID = new MyClass();
-                           // $appID->setAppid($app_ID);
-                           header("location: RegistrationEx1.php");
+                            // $appID = new MyClass();
+                            // $appID->setAppid($app_ID);
+                            header("location: RegistrationEx1.php");
                             //echo 'AppID:'  . $appID->getAppid().'<br>';
-                          
+
 
                         }
                     } else {
@@ -186,7 +173,7 @@
                             <label for="email" class="form-label">CET's Applicant ID</label>
                             <input type="text" class="form-control login-input" id="applicant" name="applicant" required>
 
-                            
+
                             <input type="submit" name="submit" value="Submit" class="btn btn-submit mt-2 mb-2">
                             <p class="link pb-2">Already have an account? <a href="index.php">Login here</a></p>
                         </form>

@@ -159,7 +159,7 @@ if (isset($_GET['select'])) {
   <header id="uphead">
     <nav class="navbar navbar-expand-lg navbar-dark px-5">
       <a class="navbar-brand justify-content-start" href="UserProfile.html">
-        <img src="../svgs/ics_seal.jpg" alt="">WMSU Online Pre-Admission
+      <img src="../seal/wmsu-logo.png" alt="">WMSU Online Pre-Admission
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -269,14 +269,15 @@ if (isset($_GET['select'])) {
                       </div>
 
                       <div class="modal-body">
-                        <div class="col-sm-12">
+                      <div class="col-sm-12">
                           <div class="tab">
                             <label>CET Overall Percentage:</label>
-                            <input type="name" name="cetValue" id="cetValue" oninput="this.className = ''" class="form-control">
+                            <input type="name" name="cetValue" id="cetValue" value="<?php echo $arr1['cetresult']?>" oninput="this.className = ''" class="form-control">
                             <label for="cet" class="form-label">CET copy</label>
                             <input type="file" id="cet" oninput="this.className = ''" name="cet">
                           </div>
                         </div>
+
                         <div class="col-sm-12">
                           <div class="tab">
                             <label>GPA Percentage:</label>
@@ -289,13 +290,6 @@ if (isset($_GET['select'])) {
                           <div class="tab">
                             <label for="moral" class="form-label">Good Moral Copy</label>
                             <input type="file" id="moral" oninput="this.className = ''" name="moral">
-                          </div>
-                        </div>
-                        <div class="col-sm-12">
-                          <div class="tab">
-                            <label for="gpa" class="form-label">Shiftee Form copy (if your
-                              Shiftee)</label>
-                            <input type="file" id="shiftee" oninput="this.className = ''" name="shiftee">
                           </div>
                         </div>
                         <div class="col-sm-12">

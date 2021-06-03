@@ -128,6 +128,7 @@ if (isset($_GET['logout'])) {
                
                             <th>Name</th>
                             <th>Course</th>
+                            <th>Student Type</th>
                             <th>Cet</th>
                             <th>Gpa</th>
                             <th>Action </th>
@@ -140,12 +141,13 @@ if (isset($_GET['logout'])) {
                     
                           <td><?php echo $row['fname']; ?> <?php echo $row['lname']; ?></td>
                           <td><?php echo $row['course_name']; ?></td>
-                          <td><?php echo $row['cetValue']; ?></td>  
+                          <td><?php echo $row['studentType'] ?></td>
+                          <td><?php echo $row['cetValue']; ?></td>
+                          <td style="display: none;"><?php echo $row['cet_path']; ?></td>   
                           <td><?php echo $row['gpaValue']; ?></td>   
-                           
-                          <td style="display:none" ><?php echo $row['cet_path']; ?></td>  
+                          <td style="display: none;"><?php echo $row['gpa_path']; ?></td>
+
                           <td style="display:none"><?php echo $row['gmoral_path']; ?></td>  
-                          <td style="display:none"><?php echo $row['gpa_path']; ?></td>  
                           <td style="display:none" ><?php echo $row['user_id']; ?> </td>
                           <td>
                             <a class="btnaction" href="action/accept.php?user_id=<?php echo $row['user_id']; ?>">
@@ -184,27 +186,6 @@ if (isset($_GET['logout'])) {
         $('#printable-table').DataTable( {
             select: true
         } );
-    </script>
-
-    <script>
-      $(document).ready(function () {
-          $('.actionbtn').on('click', function () {
-
-
-            $('#adminAction').modal('show');
-            $tr = $(this).closest('tr');
-
-                var data =$tr.children("td").map(function(){
-                  return $(this).text();
-                }).get();
-                $('#firstname').val(data[0]);
-                $('#cetValue').val(data[1]);
-                $('#gpaValue').val(data[2]);
-                $('#coursename').val(data[3]);
-                  
-          });
-          
-      });
     </script>
 
 </html>

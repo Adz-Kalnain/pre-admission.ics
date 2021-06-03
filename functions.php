@@ -1,10 +1,10 @@
 <?php 
 session_start();
-
+include('../db.php');
 // connect to database
 //$db = mysqli_connect('localhost', 'root', '', 'initialsystem');
 //$db = mysqli_connect('sql208.epizy.com', 'epiz_28315883', 'heDrBDtXAD', 'epiz_28315883_initialsystem');
-$db = mysqli_connect('localhost','root','','initialsystem');
+
 
 // variable declaration
 $username = "";
@@ -153,6 +153,7 @@ function login(){
 						$_SESSION['user'] = $logged_in_user;
 						$_SESSION['login_user'] = $username;
 						$_SESSION['userID'] = $rows['id'];
+						$_SESSION['appID'] = $rows['applicantid'];
 						$_SESSION['success']  = "You are now logged in";
 						header('location: student/UserProfile.php');
 			  }

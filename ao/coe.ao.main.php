@@ -87,16 +87,6 @@ if (isset($_GET['logout'])) {
         <section class="btn-group">
           <p class="section-name">Pre-qualified List</p>
           <div class="buttons">
-            <!-- <button class="btn btn-primary mr-2 pl-3 pr-3" onclick="myTable1.printPre_ApplicantTable()">
-              <i class="fa fa-print" aria-hidden="true"></i>
-            </button> -->
-            <!-- <button class="btn btn-warning" type="submit"><span class="label">Submit</span></button>
-            <button class="toggle-more-menu" id="dropdown-more-buttons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-bars"></i>
-            </button> -->
-            <!-- <div class="dropdown-menu" aria-labelledby="dropdown-more-buttons">
-              <button class="dropdown-item" type="button">Print</button>
-            </div> -->
           </div>
         </section>
         <section class="grid">
@@ -110,7 +100,6 @@ if (isset($_GET['logout'])) {
                         <tr>
                
                             <th>FirstName</th>
-                            <th>LastName</th>
                             <th>Course</th>
                             <th>Cet</th>
                             <th>Gpa</th>

@@ -82,6 +82,7 @@ if (isset($_GET['logout'])) {
                             <th>FirstName</th>
                             <th>LastName</th>
                             <th>Course</th>
+                            <th>Student Type</th>
                             <th>Cet</th>
                             <th>Gpa</th>
                             <th>Set score</th>
@@ -95,7 +96,8 @@ if (isset($_GET['logout'])) {
                             <td style="display:none" ><?php echo $row['user_id']; ?> </td>
                             <td><?php echo $row['fname']; ?> </td>
                             <td><?php echo $row['lname']; ?> </td>
-                            <td><?php echo $row['course_name']; ?></td>  
+                            <td><?php echo $row['course_name']; ?></td>
+                            <td><?php echo $row['studentType']; ?></td>  
                             <td><?php echo $row['cetValue']; ?></td>  
                             <td><?php echo $row['gpaValue']; ?></td>
                             <td style="display:none"><?php echo $row['quota']; ?></td>

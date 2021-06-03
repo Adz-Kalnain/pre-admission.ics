@@ -1,0 +1,101 @@
+.container {
+    max-width: 960px;
+    
+}
+
+.container main div img {
+    width: 120px;
+    border-radius: 60px;
+}
+
+.container main #form-body {
+    background-color: rgba(104, 87, 67, 0.055);
+    max-width: 600px;
+    padding-left: 35px;
+    padding-right: 35px;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.container main .form {
+    /*background-color: rgba(104, 87, 67, 0.055);*/
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 5px;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.form-label {
+    color: rgb(87, 85, 85);
+    float: left;
+    margin-top: 15px;
+}
+
+h4 {
+    color: rgb(85, 84, 84);
+}
+
+.form-check-label {
+    color: grey;
+}
+
+.btn-submit {
+    background-color: crimson;
+    color: white;
+    width: 90%;
+}
+
+.btn-submit:hover {
+    background-color: rgb(173, 17, 49);
+    color: whitesmoke;
+}
+
+.form_error span {
+    width: 80%;
+    height: 35px;
+    margin: 3px 10%;
+    color: red;
+}
+
+.form .link a {
+    color: crimson;
+}
+
+@media (max-width: 375px) {
+    .h2 {
+        font-size: 20px;
+    }
+
+    .form-label {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 520px) {
+    .navbar .navbar-brand img {
+        width: 60px;
+    }
+
+    .navbar .navbar-brand {
+        font-size: 16px;
+        font-weight: 200px;
+    }
+}
+
+@media (max-width: 440px) {
+    .navbar .navbar-brand {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    .navbar .navbar-brand img {
+        width: 30px;
+        margin-right: 2px;
+    }
+
+    .navbar .navbar-toggler .navbar-toggler-icon {
+        width: 20px;
+        height: 20px;
+    }
+}

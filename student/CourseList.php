@@ -158,7 +158,7 @@ $arr1 = mysqli_fetch_array($results1);
   <header id="uphead">
     <nav class="navbar navbar-expand-lg navbar-dark px-5">
       <a class="navbar-brand justify-content-start" href="UserProfile.html">
-        <img src="../svgs/ics_seal.jpg" alt="">WMSU Online Pre-Admission
+      <img src="../seal/wmsu-logo.png" alt="">WMSU Online Pre-Admission
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -302,18 +302,7 @@ $arr1 = mysqli_fetch_array($results1);
                             <input type="file" id="moral" oninput="this.className = ''" name="moral">
                           </div>
                         </div>
-                        <div class="col-sm-12">
-                          <div class="tab">
-                            <label for="gpa" class="form-label">Shiftee Form copy (if your
-                              Shiftee)</label>
-                            <input type="file" id="shiftee" oninput="this.className = ''" name="shiftee">
-                          </div>
-                        </div>
-                        <div class="col-sm-12">
-                          <div class="tab">
-                            <label class="form-label">Are you sure you want to submit?</label>
-                          </div>
-                        </div>
+                       
                         <div style="overflow:auto;">
 
                           <div class="modal-footer">

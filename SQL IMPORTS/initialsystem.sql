@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2021 at 03:31 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.34
+-- Generation Time: Jun 01, 2021 at 10:07 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.2.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -64,16 +64,9 @@ CREATE TABLE `attachment` (
 --
 
 INSERT INTO `attachment` (`id`, `cet_path`, `gmoral_path`, `gpa_path`, `shiftee_path`, `user_id`, `cetValue`, `gpaValue`) VALUES
-(27, 'CHAPTER-III (2).docx', 'CHAPTER-III.docx', 'wmsucare-thesis.docx', NULL, 8, '95.2', '85'),
-(28, 'CHAPTER-III (2).docx', 'wmsucare-thesis.docx', 'CHAPTER-III (3).docx', NULL, 8, '95.2', '85'),
-(29, 'wmsucare-thesis.docx', 'CHAPTER-III (1).docx', 'CHAPTER-III (3).docx', NULL, 8, '95.2', '85'),
-(30, 'Assignment 01.pdf', 'CHAPTER-III.docx', 'chapter2.docx', NULL, 8, '23', '23'),
-(31, 'Assignment 01.pdf', 'CHAPTER-III.docx', 'concept_map.pdf', NULL, 8, '95.2', '85'),
-(32, 'FacialRecognition_Chapter1-2-3[FINAL].docx', 'POWERPOINT-2.pptx', 'FacialRecognition_Chapter1-2-3.docx', NULL, 8, '95.2', '23'),
-(33, 'FacialRecognition_Chapter1-2-3[FINAL].docx', 'FacialRecognition_Chapter1-2-3.docx', 'CHAPTER-I_II_III (1).docx', NULL, 8, '95.2', '23'),
-(34, '01-CS138 - CS Elective 3.pdf', '02-CS138 - CS Elective 3.pdf', '03-CS138 - CS Elective 3.pdf', NULL, 15, '90', '90'),
-(35, '05-CS138 - CS Elective 3 - Activity.pdf', '03-CS138 - CS Elective 3.pdf', '02-CS138 - CS Elective 3.pdf', NULL, 16, '95.5', '96.6'),
-(0, 'Act2Thesis.docx', 'Activity_2_Thesis.docx', 'CHAPTER-III-2.docx', NULL, 37, '88', '88');
+(1, 'Activity_2_Thesis.docx', 'Act2Thesis.docx', 'Chapter-II_RRL.docx', NULL, 50, '99', '88'),
+(2, 'Beltran Jayson MidtermPart2.docx', 'Fuentebella Beltran Tubat.docx', 'wmsucare-thesis.docx', NULL, 52, '88', '88'),
+(3, 'Beltran Jayson MidtermPart2.docx', 'Fuentebella Beltran Tubat.docx', '', NULL, 53, '88', '88');
 
 -- --------------------------------------------------------
 
@@ -174,7 +167,7 @@ CREATE TABLE `coursestbl` (
 --
 
 INSERT INTO `coursestbl` (`course_id`, `course_name`, `course_description`, `college_id`, `course_img`, `quota`, `waiting`, `cet_req`, `gpa_req`) VALUES
-(11, 'Bachelor of Science in Computer Science', 'Computer science is the study of how data and instructions are processed,\r\n                            stored and communicated by computing devices. It involves designing software and addressing\r\n                            fundamental scientific questions about the nature of computation but also involves many\r\n                            aspects of hardware and the architecture of large computer systems.', 1, 'ics_seal.jpg', 120, 20, 80, 80),
+(11, 'Bachelor of Science in Computer Science', 'Computer science is the study of how data and instructions are processed,\r\n                            stored and communicated by computing devices. It involves designing software and addressing\r\n                            fundamental scientific questions about the nature of computation but also involves many\r\n                            aspects of hardware and the architecture of large computer systems.', 1, 'ics_seal.jpg', 120, 20, 85, 85),
 (12, 'Bachelor of Science in Information Technology', 'Information technologists help companies and offices in a technological\r\n                            environment stay competitive and active. They help keep all computers in an office running\r\n                            smoothly by conducting repetitive databases and network security activities.', 1, 'ics_seal.jpg', NULL, NULL, 80, 80),
 (13, 'Nursing', 'Save Life', 3, 'nursing.png', NULL, NULL, NULL, NULL),
 (15, 'Bachelor of Science major in Civil Engineering', 'A six-semester or three–year curriculum prepares the students to do design, construction of physical structures. Students are also equipped and oriented on plumbing, irrigation, flood control and other engineering structure development. This qualifies the graduates to take the junior geodetic, urban planning and plumbing licensure examinations.', 2, 'CivilE.png', NULL, NULL, 80, 80),
@@ -247,18 +240,20 @@ CREATE TABLE `selectedcourse` (
   `course_id` int(11) NOT NULL,
   `file_id` int(11) NOT NULL,
   `userStatus` varchar(100) DEFAULT NULL,
-  `date` varchar(200) NOT NULL
+  `date` varchar(200) NOT NULL,
+  `ic` varchar(100) DEFAULT NULL,
+  `average` float DEFAULT NULL,
+  `inter_score` int(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `selectedcourse`
 --
 
-INSERT INTO `selectedcourse` (`id`, `user_id`, `course_id`, `file_id`, `userStatus`, `date`) VALUES
-(28, 8, 11, 33, 'VERIFIED', '2021:05:26'),
-(29, 15, 15, 34, 'VERIFIED', '2021:05:28'),
-(30, 16, 11, 35, 'PENDING', '2021:05:28'),
-(0, 37, 11, 0, 'VERIFIED', '2021:05:29');
+INSERT INTO `selectedcourse` (`id`, `user_id`, `course_id`, `file_id`, `userStatus`, `date`, `ic`, `average`, `inter_score`) VALUES
+(4, 50, 11, 1, 'QUALIFIED', '2021:05:31', 'Steph Domingo', 89, 80),
+(5, 52, 11, 2, 'PENDING', '2021:06:01', NULL, NULL, NULL),
+(6, 53, 11, 3, 'PENDING', '2021:06:01', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -283,25 +278,42 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `applicantid`, `username`, `fname`, `lname`, `email`, `user_type`, `password`, `studentType`) VALUES
-(1, NULL, 'blue', '', '', 'blue@gmail.com', 'user', '48d6215903dff56238e52e8891380c8f', NULL),
-(4, NULL, 'violet', '', '', 'violet@gmail.com', 'ic', 'd1d813a48d99f0e102f7d0a1b9068001', NULL),
 (5, NULL, 'teal', '', '', 'teal@gmail.com', 'admin', '3c4184e82bb3be8fa32669800fb7373c', NULL),
-(6, NULL, 'cyan', '', '', 'cyan@gmail.com', 'evaluator', '6411532ba4971f378391776a9db629d3', NULL),
-(7, NULL, 'gold', '', '', 'gold@gmail.com', 'ao', 'e07e81c20cf5935f5225765f0af81755', NULL),
-(8, NULL, 'silver', 'ronald ', 'fuentebella', 'silver@gmail.com', 'user', '97f014516561ef487ec368d6158eb3f4', NULL),
-(9, NULL, 'grey', 'jayson', 'beltran', 'grey@gmail.com', 'user', 'ca50000a180a293de0b27acb67a695cb', NULL),
-(39, 202000018, 'bg201801928@wmsu.edu.ph', 'Juztyne Raine', 'Abella', '', 'user', '202cb962ac59075b964b07152d234b70', 'Regular'),
-(40, 201800004, 'Mark@gmail.com', 'Mark Anthony', 'Tubat', '', 'user', '202cb962ac59075b964b07152d234b70', 'Regular');
+(50, 202100005, 'Mersan@gmail.com', 'Resham Lal', 'Sohal', '', 'user', '202cb962ac59075b964b07152d234b70', 'Regular'),
+(51, NULL, 'Stephy@gmail.com', 'Steph', 'Domingo', '', 'coe-ic', '202cb962ac59075b964b07152d234b70', NULL),
+(52, 201400001, 'Aizzy@gmail.com', 'Aizzy Diane', 'Algupera', '', 'user', '202cb962ac59075b964b07152d234b70', 'Regular'),
+(53, 201400002, 'apxoctane', 'Migfren', 'Limen', '', 'user', '202cb962ac59075b964b07152d234b70', 'Regular');
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `attachment`
+--
+ALTER TABLE `attachment`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `cetresult`
 --
 ALTER TABLE `cetresult`
   ADD PRIMARY KEY (`applicantid`);
+
+--
+-- Indexes for table `coursestbl`
+--
+ALTER TABLE `coursestbl`
+  ADD PRIMARY KEY (`course_id`);
+
+--
+-- Indexes for table `selectedcourse`
+--
+ALTER TABLE `selectedcourse`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_ID` (`user_id`),
+  ADD KEY `college_ID` (`course_id`),
+  ADD KEY `file_ID` (`file_id`);
 
 --
 -- Indexes for table `users`
@@ -315,20 +327,44 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `attachment`
+--
+ALTER TABLE `attachment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `cetresult`
 --
 ALTER TABLE `cetresult`
   MODIFY `applicantid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202100012;
 
 --
+-- AUTO_INCREMENT for table `coursestbl`
+--
+ALTER TABLE `coursestbl`
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+
+--
+-- AUTO_INCREMENT for table `selectedcourse`
+--
+ALTER TABLE `selectedcourse`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `selectedcourse`
+--
+ALTER TABLE `selectedcourse`
+  ADD CONSTRAINT `file_ID` FOREIGN KEY (`file_id`) REFERENCES `attachment` (`id`);
 
 --
 -- Constraints for table `users`

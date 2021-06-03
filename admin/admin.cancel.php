@@ -110,22 +110,48 @@ if (isset($_GET['logout'])) {
         <section class="grid">
           <article>
               <div class="table table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl mx-3 my-3">
-                <table class="table table-sm table-striped table-bordered table-hover" id="printable-table">
-                  <thead class="thead">
-                    <tr>
-                        <th>Name</th>
-                        <th>Cet</th>
-                        <th>Gpa</th>
-                        <th>Student Type</th>
-                        <th>Course</th>
-                    </tr>
-                </thead>
-                <tbody class="tbody">
-                    <tr>
-                      <!-- CONTENT GOES HERE -->
-                    </tr>
-         
-                </tbody>
+              <table class="table table-sm table-striped table-bordered table-hover" id="printable-table">
+                    <thead class="thead">
+                    <?php $results = mysqli_query($db, "SELECT * from selectedcourse LEFT JOIN users ON selectedcourse.user_id = users.id
+                     LEFT JOIN coursestbl ON selectedcourse.course_id = coursestbl.course_id
+                     LEFT JOIN attachment ON selectedcourse.file_id = attachment.id WHERE userStatus='CANCELLED'")?>
+                        <tr>
+               
+                            <th>Name</th>
+                            <th>Course</th>
+                            <th>Student Type</th>
+                            <th>Cet</th>
+                            <th>Gpa</th>
+                            <th>Interview Score</th>
+                            <th>Overall Percentage</th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="tbody">
+                 <?php   while ($row = mysqli_fetch_array($results)) { ?>
+                            <tr>
+                   
+                          <td><?php echo $row['fname']; ?> <?php echo $row['lname']; ?></td>
+                          <td><?php echo $row['course_name']; ?></td>
+                          <td><?php echo $row['studentType']; ?></td>   
+                          <td><?php echo $row['cetValue']; ?></td>  
+                          <td><?php echo $row['gpaValue']; ?></td>
+                          <td><?php echo $row['inter_score']; ?></td>
+                          <td><?php echo $row['average']; ?></td>
+
+                          <td style="display:none" ><?php echo $row['cet_path']; ?></td>  
+                          <td style="display:none"><?php echo $row['gmoral_path']; ?></td>  
+                          <td style="display:none"><?php echo $row['gpa_path']; ?></td>  
+                          <td style="display:none" ><?php echo $row['user_id']; ?> </td>
+                         <!-- data-toggle="modal" data-target="#selectAction" -->
+                        </tr>      
+                          <?php 
+                            }
+                         ?>
+
+
+
+                    </tbody>
                 </table>
               </div>
           </article>

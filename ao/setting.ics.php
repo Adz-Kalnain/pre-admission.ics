@@ -203,18 +203,8 @@ if (isset($_GET['logout'])) {
                                 <label for="lname" class="form-label">Last Name</label>
                                 <input type="text" class="form-control mb-3" id="lname" name="lname" placeholder="Last Name" required>
                               </div>
-
-                              <div class="col-6">
-                                <label for="username" class="form-label">Username</label>
-                                <div <?php if (isset($name_error)): ?> class="form_error" <?php endif ?> >
-                                  <input type="text" class="form-control mb-3" id="username" name="username" placeholder="Username" value="<?php echo $username; ?>" required>
-                                  <?php if (isset($name_error)): ?>
-                                  <span><?php echo $name_error; ?></span>
-                                  <?php endif ?>
-                                </div>
-                              </div>
                                 
-                              <div class="col-6">
+                              <div class="col-12">
                                 <label for="email" class="form-label">Email</label>
                                 <div <?php if (isset($email_error)): ?> class="form_error" <?php endif ?> >
                                   <input type="email" class="form-control mb-3" id="email" name="email" placeholder="Email Adress" value="<?php echo $email; ?>" required>

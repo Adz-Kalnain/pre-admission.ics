@@ -117,9 +117,13 @@ if (isset($_GET['logout'])) {
                      LEFT JOIN attachment ON selectedcourse.file_id = attachment.id WHERE userStatus='REJECT'")?>
                         <tr>
                
-                            <th>FirstName</th>
-                            <th>LastName</th>
+                            <th>Name</th>
                             <th>Course</th>
+                            <th>Student Type</th>
+                            <th>Cet</th>
+                            <th>Gpa</th>
+                            <th>Interview Score</th>
+                            <th>Overall Percentage</th>
                             <th>Action </th>
 
                         </tr>
@@ -128,15 +132,17 @@ if (isset($_GET['logout'])) {
                  <?php   while ($row = mysqli_fetch_array($results)) { ?>
                             <tr>
                    
-                          <td><?php echo $row['fname']; ?> </td>
-                          <td><?php echo $row['lname']; ?> </td>
-                          <td><?php echo $row['course_name']; ?></td>   
-                           
+                          <td><?php echo $row['fname']; ?> <?php echo $row['lname']; ?></td>
+                          <td><?php echo $row['course_name']; ?></td>
+                          <td><?php echo $row['studentType']; ?></td>   
+                          <td><?php echo $row['cetValue']; ?></td>  
+                          <td><?php echo $row['gpaValue']; ?></td>
+                          <td><?php echo $row['inter_score']; ?></td>
+                          <td><?php echo $row['average']; ?></td>
+
                           <td style="display:none" ><?php echo $row['cet_path']; ?></td>  
                           <td style="display:none"><?php echo $row['gmoral_path']; ?></td>  
                           <td style="display:none"><?php echo $row['gpa_path']; ?></td>  
-                          <td style="display:none"><?php echo $row['cetValue']; ?></td>  
-                          <td style="display:none"><?php echo $row['gpaValue']; ?></td>  
                           <td style="display:none" ><?php echo $row['user_id']; ?> </td>
                           <td>
                             <a class="btnaction" href="action/accept.php?user_id=<?php echo $row['user_id']; ?>">

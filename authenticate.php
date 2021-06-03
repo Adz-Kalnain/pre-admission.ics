@@ -1,5 +1,5 @@
 <?php 
-  $db = mysqli_connect('localhost', 'root', '', 'initialsystem');
+ include('db.php');
   $username = "";
   $email = "";
   if (isset($_POST['submit'])) {

@@ -48,7 +48,7 @@ if (isset($_GET['logout'])) {
               </a>
             </li>
             <li>
-              <a href="coe.evalutator.rej.php">
+              <a href="coe.evaluator.rej.php">
                 <i class="fa fa-thumbs-o-down" aria-hidden="true"><span>Rejected</span></i>
               </a>
             </li>
@@ -85,6 +85,7 @@ if (isset($_GET['logout'])) {
                             <th>FirstName</th>
                             <th>LastName</th>
                             <th>Course</th>
+                            <th>Student Type</th>
                             <th>Cet</th>
                             <th>Gpa</th>
 
@@ -97,7 +98,8 @@ if (isset($_GET['logout'])) {
                             <td style="display:none" ><?php echo $row['user_id']; ?> </td>
                             <td><?php echo $row['fname']; ?> </td>
                             <td><?php echo $row['lname']; ?> </td>
-                            <td><?php echo $row['course_name']; ?></td>  
+                            <td><?php echo $row['course_name']; ?></td>
+                            <td><?php echo $row['studentType']; ?></td>  
                             <td><?php echo $row['cetValue']; ?></td>  
                             <td><?php echo $row['gpaValue']; ?></td>
                             

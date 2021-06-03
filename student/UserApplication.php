@@ -190,16 +190,27 @@ $arr = mysqli_fetch_array($query);
   </header>
   <div class="container"><br>
     <div class="col-lg-12">
-      <label>Search for your desired course</label>
-      <form class="example" action="/action_page.php" style="margin:auto;max-width:300px">
-        <input type="text" placeholder="Search.." name="search" id="myInput" onkeyup="myFunction()">
-        <button type="submit"><i class="fa fa-search"></i></button>
-      </form>
       <div class="card shadow mb-4">
         <div class="card-header py-3">
           <div class="row">
           <div class="col-md-10">
-          <h6 class="m-0 font-weight-bold text-danger">List of Colleges</h6>
+          <h6 class="m-0 font-weight-bold text-danger">List of Colleges</h6><br>
+          <div class="col-ml-12">
+          <div class="row">
+              <div class="col-md-4">
+              </div>
+            <div class="col-md-6">
+            <div class="input-group">
+                <input class="form-control border-end-0 border rounded-pill" type="text" placeholder="Search for a College" id="myInput" onkeyup="myFunction()">
+                <span class="input-group-append">
+                  <button class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" type="button">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+            </div>
+          </div>
           </div>
           <div class="col-md-2">
           <a href="Listofcourses.php">View all Courses</a>
